@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-1: init">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java" afterDir="false" />
+    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-2: N-Tier">
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackClientRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackRunner.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature/CHARM-2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,9 +48,22 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="CharmBackRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.eliseev.charm.back.CharmBackRunner" />
+  <component name="RunManager" selected="Application.CharmBackServerRunner">
+    <configuration name="CharmBackClientRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.eliseev.charm.back.CharmBackClientRunner" />
+      <module name="charm-back" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.eliseev.charm.back.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharmBackServerRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.eliseev.charm.back.CharmBackServerRunner" />
       <module name="charm-back" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -62,7 +71,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CharmBackRunner" />
+        <item itemvalue="Application.CharmBackServerRunner" />
+        <item itemvalue="Application.CharmBackClientRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -83,7 +93,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721039695815</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CHARM-1: N-Tier">
+      <option name="closed" value="true" />
+      <created>1721048317661</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721048317661</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHARM-1: init" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHARM-1: init" />
+    <MESSAGE value="CHARM-2: N-Tier" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHARM-2: N-Tier" />
   </component>
 </project>
