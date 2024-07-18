@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-2: N-Tier">
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackClientRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
         <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -41,14 +43,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.CharmBackServerRunner">
+}</component>
+  <component name="RunManager" selected="Application.CharmBackClientRunner">
     <configuration name="CharmBackClientRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.eliseev.charm.back.CharmBackClientRunner" />
       <module name="charm-back" />
@@ -71,8 +73,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CharmBackServerRunner" />
         <item itemvalue="Application.CharmBackClientRunner" />
+        <item itemvalue="Application.CharmBackServerRunner" />
       </list>
     </recent_temporary>
   </component>

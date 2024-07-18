@@ -46,4 +46,15 @@ public class Profile {
     public void setAbout(String about) {
         this.about = about;
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+               "id=" + id +
+               ", email='" + email + '\'' +
+               ", name='" + name + '\'' +
+               ", surname='" + surname + '\'' +
+               ", about='" + about + '\'' +
+               '}';
+    }
 }
