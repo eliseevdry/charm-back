@@ -11,7 +11,7 @@ public class CharmBackClientRunner {
     public static void main(String[] args) throws IOException, InterruptedException {
         try (HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://yandex.ru"))
+                    .uri(URI.create("http://localhost:8080/profile?id=1"))
                     .GET()
                     .build();
             HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
