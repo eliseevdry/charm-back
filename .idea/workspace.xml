@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-4: TCP + HTTP">
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmHttpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="add LICENSE">
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LikeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackClientRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackClientRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmHttpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +35,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "eliseevdry"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;eliseevdry&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -87,8 +88,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CharmBackServerRunner" />
         <item itemvalue="Application.CharmBackClientRunner" />
         <item itemvalue="Application.CharmBackServerRunner" />
+        <item itemvalue="Application.CharmBackClientRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -117,7 +120,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721048317661</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add LICENSE">
+      <option name="closed" value="true" />
+      <created>1722222676930</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722222676930</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add LICENSE">
+      <option name="closed" value="true" />
+      <created>1722222868349</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722222868349</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,7 +150,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/CHARM-2" />
+                        <option value="feature/CHARM-7" />
                       </list>
                     </value>
                   </entry>
@@ -146,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHARM-1: init" />
     <MESSAGE value="CHARM-2: N-Tier" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHARM-2: N-Tier" />
+    <MESSAGE value="add LICENSE" />
+    <option name="LAST_COMMIT_MESSAGE" value="add LICENSE" />
   </component>
 </project>

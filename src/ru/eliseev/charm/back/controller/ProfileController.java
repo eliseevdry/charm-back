@@ -3,6 +3,7 @@ package ru.eliseev.charm.back.controller;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.service.ProfileService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProfileController {
@@ -25,26 +26,12 @@ public class ProfileController {
         return service.save(profile).toString();
     }
 
-    public String findById(String request) {
-        String[] strings = request.split(",");
-        if (strings.length != 1) return "Bad request: need one number parameter";
-
-        long id;
-        try {
-            id = Long.parseLong(strings[0]);
-        } catch (NumberFormatException e) {
-            return "Bad request: can`t parse string [" + strings[0] + "] to long.";
-        }
-
-        Optional<Profile> maybeProfile = service.findById(id);
-
-        if (maybeProfile.isEmpty()) return "Not found";
-
-        return maybeProfile.get().toString();
+    public Optional<Profile> findById(Long id) {
+        return service.findById(id);
     }
     
-    public String findAll() {
-        return service.findAll().toString();
+    public List<Profile> findAll() {
+        return service.findAll();
     }
     
     public String update(String request) {
