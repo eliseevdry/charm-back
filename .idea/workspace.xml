@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="add LICENSE">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/servlet-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-9: Servlet">
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ForwardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charm-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackClientRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmBackServerRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/CharmHttpServer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LikeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/CHARM-8" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,17 +67,17 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/web/WEB-INF/classes",
+    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/web/html" />
-      <recent name="$PROJECT_DIR$/web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
@@ -92,7 +85,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="my_web_charm" type="com.poratu.idea.plugins.tomcat">
+    <configuration name="charm_web" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
       <predefined_log_file id="Tomcat Catalina Log" />
@@ -100,11 +93,11 @@
       <predefined_log_file id="Tomcat Host Manager Log" />
       <option name="catalinaBase" value="$USER_HOME$/.SmartTomcat/charm-back/charm-back" />
       <option name="contextPath" value="/" />
-      <option name="docBase" value="$PROJECT_DIR$/web" />
+      <option name="docBase" value="$PROJECT_DIR$/out/production/charm-back" />
       <option name="envOptions">
         <map />
       </option>
-      <option name="extraClassPath" value="$PROJECT_DIR$/out/production/charm-back/ru" />
+      <option name="extraClassPath" value="" />
       <option name="tomcatInfo">
         <TomcatInfo>
           <option name="name" value="Apache Tomcat/10.1.26" />
@@ -118,12 +111,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.CharmBackServerRunner" />
-        <item itemvalue="Application.CharmBackClientRunner" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -182,7 +169,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722847499845</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="CHARM-9: Servlet">
+      <option name="closed" value="true" />
+      <created>1723383082540</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723383082540</updated>
+    </task>
+    <task id="LOCAL-00008" summary="CHARM-9: Servlet">
+      <option name="closed" value="true" />
+      <created>1723383143608</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723383143608</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +216,8 @@
     <MESSAGE value="CHARM-2: N-Tier" />
     <MESSAGE value="add LICENSE" />
     <MESSAGE value="CHARM-8: WebApp и war архив" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHARM-8: WebApp и war архив" />
+    <MESSAGE value="CHARM-9: Servlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHARM-9: Servlet" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
