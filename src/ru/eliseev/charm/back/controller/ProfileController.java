@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.service.ProfileService;
 
@@ -18,6 +19,9 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("genders") == null) {
+            req.getSession().setAttribute("genders", Gender.values());
+        }
         String sId = req.getParameter("id");
         String forwardUri = "/notFound";
         if (sId != null) {
@@ -28,5 +32,27 @@ public class ProfileController extends HttpServlet {
             }
         }
         req.getRequestDispatcher(forwardUri).forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String sId = req.getParameter("id");
+        Profile profile = new Profile();
+        profile.setEmail(req.getParameter("email"));
+        profile.setName(req.getParameter("name"));
+        profile.setSurname(req.getParameter("surname"));
+        profile.setAbout(req.getParameter("about"));
+        profile.setGender(Gender.valueOf(req.getParameter("gender")));
+        
+        Long id;
+        if (!sId.isBlank()) {
+            id = Long.parseLong(sId);
+            profile.setId(id);
+            service.update(profile);
+        } else {
+            id = service.save(profile).getId();
+        }
+        
+        resp.sendRedirect(String.format("/profile?id=%s", id));
     }
 }

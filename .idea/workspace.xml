@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-9: homework">
-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-2.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Gender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,16 +25,16 @@
       <list>
         <option value="Record" />
         <option value="Interface" />
-        <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="lesson/CHARM-10" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,17 +75,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources",
+    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/lib",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.eliseev.charm.back.model" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
-      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
-      <recent name="$PROJECT_DIR$/web/html" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
@@ -99,9 +106,6 @@
       <option name="catalinaBase" value="$USER_HOME$/.SmartTomcat/charm-back/charm-back" />
       <option name="contextPath" value="/" />
       <option name="docBase" value="$PROJECT_DIR$/out/production/charm-back" />
-      <option name="envOptions">
-        <map />
-      </option>
       <option name="extraClassPath" value="" />
       <option name="tomcatInfo">
         <TomcatInfo>
