@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-9: homework">
-      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-2.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Gender.java" afterDir="false" />
+    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-11: JSTL + HTML forms">
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/HiddenHttpMethodFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,16 +21,16 @@
       <list>
         <option value="Record" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="HTML File" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lesson/CHARM-10" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,7 +71,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/lib",
+    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources/WEB-INF/jsp",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
@@ -84,8 +80,8 @@
       <recent name="ru.eliseev.charm.back.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
+      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
@@ -206,8 +202,18 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="39ab209d-7e86-4afb-b257-4b4e64dcbf1c" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="39ab209d-7e86-4afb-b257-4b4e64dcbf1c">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -236,6 +242,17 @@
     <MESSAGE value="CHARM-9: Servlet" />
     <MESSAGE value="CHARM-9: homework" />
     <option name="LAST_COMMIT_MESSAGE" value="CHARM-9: homework" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
