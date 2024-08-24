@@ -55,15 +55,4 @@ public class Profile {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-    @Override
-    public String toString() {
-        return "Profile{" +
-               "id=" + id +
-               ", email='" + email + '\'' +
-               ", name='" + name + '\'' +
-               ", surname='" + surname + '\'' +
-               ", about='" + about + '\'' +
-               '}';
-    }
 }

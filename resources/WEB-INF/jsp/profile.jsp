@@ -7,11 +7,11 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <c:if test="${requestScope.profile.id == null}">
-                <h1>Hello new user!</h1>
-            </c:if>
             <form method="post" action="/profile">
-                <input hidden type="text" name="id" value="${requestScope.profile.id}">
+                <c:if test="${requestScope.profile.id != null}">
+                    <input type = "hidden" name = "_method" value = "put"/>
+                </c:if>
+                <input type = "hidden" name="id" value="${requestScope.profile.id}">
                 <table>
                     <tr>
                         <td><h3>Email</h3></td>
@@ -34,7 +34,7 @@
                         <td>
                             <select name="gender">
                                 <option value="${requestScope.profile.gender}" selected hidden>${requestScope.profile.gender}</option>
-                                <c:forEach var="gender" items="${sessionScope.genders}">
+                                <c:forEach var="gender" items="${applicationScope.genders}">
                                     <option value="${gender}">${gender}</option>
                                 </c:forEach>
                             </select>
@@ -43,6 +43,13 @@
                 </table>
                 <button type="submit">Save</button>
             </form>
+            <c:if test="${requestScope.profile.id != null}">
+                <form method="post" action="/profile">
+                    <input type = "hidden" name = "_method" value = "delete"/>
+                    <input type = "hidden" name="id" value="${requestScope.profile.id}">
+                    <button type="submit">Delete</button>
+                </form>
+            </c:if>
         </div>
         <%@ include file="footer.html" %>
     </body>

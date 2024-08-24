@@ -9,7 +9,6 @@ import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.service.ProfileService;
 
-import javax.naming.NameNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -19,9 +18,6 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("genders") == null) {
-            req.getSession().setAttribute("genders", Gender.values());
-        }
         String sId = req.getParameter("id");
         String forwardUri = "/notFound";
         if (sId != null) {
@@ -35,24 +31,40 @@ public class ProfileController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Profile profile = getProfile(req);
+        Long id = service.save(profile).getId();
+        resp.sendRedirect(String.format("/profile?id=%s", id));
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Profile profile = getProfile(req);
+        service.update(profile);
+        resp.sendRedirect(String.format("/profile?id=%s", profile.getId()));
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sId = req.getParameter("id");
+        if (!sId.isBlank()) {
+            service.delete(Long.parseLong(sId));
+        }
+        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        resp.sendRedirect("/registration");
+    }
+
+    private Profile getProfile(HttpServletRequest req) {
         Profile profile = new Profile();
+        String sId = req.getParameter("id");
+        if (!sId.isBlank()) {
+            profile.setId(Long.parseLong(sId));
+        }
         profile.setEmail(req.getParameter("email"));
         profile.setName(req.getParameter("name"));
         profile.setSurname(req.getParameter("surname"));
         profile.setAbout(req.getParameter("about"));
         profile.setGender(Gender.valueOf(req.getParameter("gender")));
-        
-        Long id;
-        if (!sId.isBlank()) {
-            id = Long.parseLong(sId);
-            profile.setId(id);
-            service.update(profile);
-        } else {
-            id = service.save(profile).getId();
-        }
-        
-        resp.sendRedirect(String.format("/profile?id=%s", id));
+        return profile;
     }
 }
