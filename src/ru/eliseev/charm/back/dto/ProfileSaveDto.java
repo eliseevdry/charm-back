@@ -1,8 +1,11 @@
-package ru.eliseev.charm.back.model;
+package ru.eliseev.charm.back.dto;
 
+import ru.eliseev.charm.back.model.Gender;
+
+import java.time.Instant;
 import java.time.LocalDate;
 
-public class Profile {
+public class ProfileSaveDto {
     private Long id;
     private String email;
     private String name;

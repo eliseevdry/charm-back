@@ -1,13 +1,16 @@
-package ru.eliseev.charm.back.model;
+package ru.eliseev.charm.back.dto;
+
+import ru.eliseev.charm.back.model.Gender;
 
 import java.time.LocalDate;
 
-public class Profile {
+public class ProfileGetDto {
     private Long id;
     private String email;
     private String name;
     private String surname;
     private LocalDate birthDate;
+    private Integer age;
     private String about;
     private Gender gender;
 
@@ -49,6 +52,14 @@ public class Profile {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getAbout() {

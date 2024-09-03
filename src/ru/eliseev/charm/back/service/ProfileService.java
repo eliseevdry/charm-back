@@ -1,6 +1,10 @@
 package ru.eliseev.charm.back.service;
 
 import ru.eliseev.charm.back.dao.ProfileDao;
+import ru.eliseev.charm.back.dto.ProfileGetDto;
+import ru.eliseev.charm.back.dto.ProfileSaveDto;
+import ru.eliseev.charm.back.mapper.ProfileGetDtoMapper;
+import ru.eliseev.charm.back.mapper.ProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
 
 import java.util.List;
@@ -11,6 +15,10 @@ public class ProfileService {
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
+    
+    private final ProfileGetDtoMapper profileGetDtoMapper = ProfileGetDtoMapper.getInstance();
+
+    private final ProfileMapper profileMapper = ProfileMapper.getInstance();
 
     private ProfileService() {
     }
@@ -19,21 +27,21 @@ public class ProfileService {
         return INSTANCE;
     }
 
-    public Profile save(Profile profile) {
-        return dao.save(profile);
+    public Long save(ProfileSaveDto dto) {
+        return dao.save(profileMapper.map(dto)).getId();
     }
 
-    public Optional<Profile> findById(Long id) {
+    public Optional<ProfileGetDto> findById(Long id) {
         if (id == null) return Optional.empty();
-        return dao.findById(id);
+        return dao.findById(id).map(profileGetDtoMapper::map);
     }
 
-    public List<Profile> findAll() {
-        return dao.findAll();
+    public List<ProfileGetDto> findAll() {
+        return dao.findAll().stream().map(profileGetDtoMapper::map).toList();
     }
 
-    public void update(Profile profile) {
-        dao.update(profile);
+    public void update(ProfileSaveDto dto) {
+        dao.update(profileMapper.map(dto));
     }
 
     public boolean delete(Long id) {
