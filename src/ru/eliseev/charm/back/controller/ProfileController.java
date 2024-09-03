@@ -5,43 +5,52 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.eliseev.charm.back.dto.ProfileGetDto;
+import ru.eliseev.charm.back.dto.ProfileSaveDto;
+import ru.eliseev.charm.back.mapper.ProfileSaveDtoMapper;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.service.ProfileService;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @WebServlet("/profile")
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
+    private final ProfileSaveDtoMapper profileSaveDtoMapper = ProfileSaveDtoMapper.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sId = req.getParameter("id");
         String forwardUri = "/notFound";
         if (sId != null) {
-            Optional<Profile> profile = service.findById(Long.parseLong(sId));
-            if (profile.isPresent()) {
-                req.setAttribute("profile", profile.get());
+            Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
+            if (optProfileDto.isPresent()) {
+                req.setAttribute("profile", optProfileDto.get());
                 forwardUri = "/WEB-INF/jsp/profile.jsp";
             }
+        } else {
+            req.setAttribute("profiles", service.findAll());
+            forwardUri = "/WEB-INF/jsp/profiles.jsp";
         }
         req.getRequestDispatcher(forwardUri).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Profile profile = getProfile(req);
-        Long id = service.save(profile).getId();
+        ProfileSaveDto dto = profileSaveDtoMapper.map(req);
+        Long id = service.save(dto);
         resp.sendRedirect(String.format("/profile?id=%s", id));
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Profile profile = getProfile(req);
-        service.update(profile);
-        resp.sendRedirect(String.format("/profile?id=%s", profile.getId()));
+        ProfileSaveDto dto = profileSaveDtoMapper.map(req);
+        service.update(dto);
+        resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
     }
 
     @Override
@@ -52,19 +61,5 @@ public class ProfileController extends HttpServlet {
         }
         resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         resp.sendRedirect("/registration");
-    }
-
-    private Profile getProfile(HttpServletRequest req) {
-        Profile profile = new Profile();
-        String sId = req.getParameter("id");
-        if (!sId.isBlank()) {
-            profile.setId(Long.parseLong(sId));
-        }
-        profile.setEmail(req.getParameter("email"));
-        profile.setName(req.getParameter("name"));
-        profile.setSurname(req.getParameter("surname"));
-        profile.setAbout(req.getParameter("about"));
-        profile.setGender(Gender.valueOf(req.getParameter("gender")));
-        return profile;
     }
 }

@@ -3,6 +3,7 @@ package ru.eliseev.charm.back.dao;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class ProfileDao {
         profile.setEmail("ivanov@mail.ru");
         profile.setName("Ivan");
         profile.setSurname("Ivanov");
+        profile.setBirthDate(LocalDate.parse("2001-12-03"));
         profile.setAbout("I am QA");
         profile.setGender(Gender.MALE);
         this.storage.put(1L, profile);
@@ -31,6 +33,7 @@ public class ProfileDao {
         profile1.setEmail("sidorova@mail.ru");
         profile1.setName("Elena");
         profile1.setSurname("Sidorova");
+        profile1.setBirthDate(LocalDate.parse("1999-09-01"));
         profile1.setAbout("I am Java Dev");
         profile1.setGender(Gender.FEMALE);
         this.storage.put(2L, profile1);
