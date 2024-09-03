@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/resources/words.properties" />
+    <file url="file://$PROJECT_DIR$/resources/words_en.properties" />
+    <file url="file://$PROJECT_DIR$/resources/words_ru.properties" />
+    <file url="file://$PROJECT_DIR$/resources/worlds.properties" />
+    <file url="file://$PROJECT_DIR$/resources/worlds_en.properties" />
+    <file url="file://$PROJECT_DIR$/resources/worlds_ru.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/resources/worlds.properties" />
+      <file value="file://$PROJECT_DIR$/resources/worlds_en.properties" />
+      <file value="file://$PROJECT_DIR$/resources/worlds_ru.properties" />
+      <base-name>worlds</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/resources/words.properties" />
+      <file value="file://$PROJECT_DIR$/resources/words_en.properties" />
+      <file value="file://$PROJECT_DIR$/resources/words_ru.properties" />
+      <base-name>words</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

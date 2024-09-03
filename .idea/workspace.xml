@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-114: localization">
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LanguageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/LanguageFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/WordBundle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/LanguageController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="new/CHARM-114" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,24 +72,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources/WEB-INF/jsp&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ru.eliseev.charm.back.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
       <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
     </key>
@@ -257,6 +266,11 @@
           <url>file://$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java</url>
           <line>66</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/LangFilter.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
