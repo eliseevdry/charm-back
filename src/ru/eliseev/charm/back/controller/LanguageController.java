@@ -13,10 +13,8 @@ import java.io.IOException;
 public class LanguageController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String lang = req.getParameter("lang");
-
-        System.out.println("Cookie header: " + req.getHeader("cookie"));
 
         Cookie cookie = new Cookie("lang", "en");
         if ("ru".equals(lang)) {
