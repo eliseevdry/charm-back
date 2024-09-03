@@ -8,12 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileSaveDto;
 import ru.eliseev.charm.back.mapper.ProfileSaveDtoMapper;
-import ru.eliseev.charm.back.model.Gender;
-import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.service.ProfileService;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Optional;
 
 @WebServlet("/profile")
@@ -41,16 +38,22 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProfileSaveDto dto = profileSaveDtoMapper.map(req);
+        ProfileSaveDto dto = profileSaveDtoMapper.map(req, new ProfileSaveDto());
         Long id = service.save(dto);
         resp.sendRedirect(String.format("/profile?id=%s", id));
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProfileSaveDto dto = profileSaveDtoMapper.map(req);
+        ProfileSaveDto dto = profileSaveDtoMapper.map(req, new ProfileSaveDto());
         service.update(dto);
-        resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
+        String referer = req.getHeader("referer");
+        resp.sendRedirect(referer);
+    }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.service(req, resp);
     }
 
     @Override

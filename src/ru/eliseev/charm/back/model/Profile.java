@@ -5,11 +5,13 @@ import java.time.LocalDate;
 public class Profile {
     private Long id;
     private String email;
+    private String password;
     private String name;
     private String surname;
     private LocalDate birthDate;
     private String about;
     private Gender gender;
+    private Status status;
 
     public Long getId() {
         return id;
@@ -25,6 +27,14 @@ public class Profile {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -65,5 +75,13 @@ public class Profile {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

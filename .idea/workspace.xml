@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-114: localization">
-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileSaveDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileSaveDtoMapper.java" afterDir="false" />
+    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-15: refactor DTO and Mappers, add registration.jsp">
+      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/HiddenHttpMethodFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/HiddenHttpMethodFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dao/ProfileDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileGetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileGetDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileSaveDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileSaveDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileGetDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileGetDtoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileSaveDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileSaveDtoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/model/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +31,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Enum" />
-        <option value="HTML File" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -32,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="new/CHARM-115" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,6 +113,9 @@
       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.eliseev.charm.back.model" />
     </key>
   </component>
   <component name="RunManager">
@@ -219,7 +232,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725260196956</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="CHARM-16: Fix">
+      <option name="closed" value="true" />
+      <created>1725396640455</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725396640455</updated>
+    </task>
+    <task id="LOCAL-00012" summary="CHARM-15: refactor DTO and Mappers, add registration.jsp">
+      <option name="closed" value="true" />
+      <created>1725440235018</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725440235018</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,7 +292,11 @@
     <MESSAGE value="CHARM-9: Servlet" />
     <MESSAGE value="CHARM-9: homework" />
     <MESSAGE value="CHARM-114: localization" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHARM-114: localization" />
+    <MESSAGE value="CHARM-15: Fix" />
+    <MESSAGE value="CHARM-16: Fix" />
+    <MESSAGE value="CHARM-15: refactor DTO and Mappers, add registration.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHARM-15: refactor DTO and Mappers, add registration.jsp" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

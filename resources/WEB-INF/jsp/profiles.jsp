@@ -20,6 +20,7 @@
                     <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>
                     <td><h3>${requestScope.wordBundle.getWord("surname")}</h3></td>
                     <td><h3>${requestScope.wordBundle.getWord("age")}</h3></td>
+                    <td><h3>${requestScope.wordBundle.getWord("status")}</h3></td>
                 </tr>
                 <c:forEach var="profile" items="${requestScope.profiles}">
                     <tr>
@@ -28,6 +29,21 @@
                         <td><h3>${profile.name}</h3></td>
                         <td><h3>${profile.surname}</h3></td>
                         <td><h3>${profile.age}</h3></td>
+                        <td>
+                            <form action="/profile" method="post">
+                                <input type="hidden" name="_method" value="put"/>
+                                <input type="hidden" name="id" value="${profile.id}">
+                                <select name="status">
+                                    <option value="${profile.status}" selected hidden>
+                                        ${requestScope.wordBundle.getWord(profile.status)}
+                                    </option>
+                                    <c:forEach var="status" items="${applicationScope.statuses}">
+                                        <option value="${status}">${requestScope.wordBundle.getWord(status)}</option>
+                                    </c:forEach>
+                                </select>
+                                <button type="submit">Save</button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
