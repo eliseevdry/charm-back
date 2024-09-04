@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
-import ru.eliseev.charm.back.dto.ProfileSaveDto;
-import ru.eliseev.charm.back.mapper.ProfileSaveDtoMapper;
+import ru.eliseev.charm.back.dto.ProfileUpdateDto;
+import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
 import ru.eliseev.charm.back.service.ProfileService;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
-    private final ProfileSaveDtoMapper profileSaveDtoMapper = ProfileSaveDtoMapper.getInstance();
+    private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,32 +37,10 @@ public class ProfileController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProfileSaveDto dto = profileSaveDtoMapper.map(req, new ProfileSaveDto());
-        Long id = service.save(dto);
-        resp.sendRedirect(String.format("/profile?id=%s", id));
-    }
-
-    @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProfileSaveDto dto = profileSaveDtoMapper.map(req, new ProfileSaveDto());
+        ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
         service.update(dto);
         String referer = req.getHeader("referer");
         resp.sendRedirect(referer);
-    }
-
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.service(req, resp);
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sId = req.getParameter("id");
-        if (!sId.isBlank()) {
-            service.delete(Long.parseLong(sId));
-        }
-        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-        resp.sendRedirect("/registration");
     }
 }

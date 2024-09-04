@@ -3,12 +3,7 @@
 <html lang="en">
     <head>
         <title>Charm Profiles</title>
-        <style>
-            table, td {
-                border: 1px solid;
-                border-collapse: collapse;
-            }
-        </style>
+        <%@ include file="style.html" %>
     </head>
     <body>
         <%@ include file="header.jsp" %>
@@ -24,11 +19,11 @@
                 </tr>
                 <c:forEach var="profile" items="${requestScope.profiles}">
                     <tr>
-                        <td><h3>${profile.id}</h3></td>
-                        <td><h3>${profile.email}</h3></td>
-                        <td><h3>${profile.name}</h3></td>
-                        <td><h3>${profile.surname}</h3></td>
-                        <td><h3>${profile.age}</h3></td>
+                        <td><h4>${profile.id}</h4></td>
+                        <td><h4>${profile.email}</h4></td>
+                        <td><h4>${profile.name}</h4></td>
+                        <td><h4>${profile.surname}</h4></td>
+                        <td><h4>${profile.age}</h4></td>
                         <td>
                             <form action="/profile" method="post">
                                 <input type="hidden" name="_method" value="put"/>
@@ -41,7 +36,7 @@
                                         <option value="${status}">${requestScope.wordBundle.getWord(status)}</option>
                                     </c:forEach>
                                 </select>
-                                <button type="submit">Save</button>
+                                <button type="submit">${requestScope.wordBundle.getWord("save")}</button>
                             </form>
                         </td>
                     </tr>

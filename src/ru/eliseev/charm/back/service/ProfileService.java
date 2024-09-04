@@ -2,10 +2,11 @@ package ru.eliseev.charm.back.service;
 
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
-import ru.eliseev.charm.back.dto.ProfileSaveDto;
-import ru.eliseev.charm.back.mapper.ProfileGetDtoMapper;
-import ru.eliseev.charm.back.mapper.ProfileMapper;
-import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.dto.ProfileUpdateDto;
+import ru.eliseev.charm.back.dto.RegistrationDto;
+import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
+import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
+import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +17,11 @@ public class ProfileService {
 
     private final ProfileDao dao = ProfileDao.getInstance();
 
-    private final ProfileGetDtoMapper profileGetDtoMapper = ProfileGetDtoMapper.getInstance();
+    private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
 
-    private final ProfileMapper profileMapper = ProfileMapper.getInstance();
+    private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
+
+    private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
 
     private ProfileService() {
     }
@@ -27,21 +30,21 @@ public class ProfileService {
         return INSTANCE;
     }
 
-    public Long save(ProfileSaveDto dto) {
-        return dao.save(profileMapper.map(dto, new Profile())).getId();
+    public Long save(RegistrationDto dto) {
+        return dao.save(registrationDtoToProfileMapper.map(dto)).getId();
     }
 
     public Optional<ProfileGetDto> findById(Long id) {
-        return dao.findById(id).map(profile -> profileGetDtoMapper.map(profile, new ProfileGetDto()));
+        return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
 
     public List<ProfileGetDto> findAll() {
-        return dao.findAll().stream().map(profile -> profileGetDtoMapper.map(profile, new ProfileGetDto())).toList();
+        return dao.findAll().stream().map(profileToProfileGetDtoMapper::map).toList();
     }
 
-    public void update(ProfileSaveDto dto) {
+    public void update(ProfileUpdateDto dto) {
         dao.findById(dto.getId())
-                .ifPresent(profile -> dao.update(profileMapper.map(dto, profile)));
+                .ifPresent(profile -> dao.update(profileUpdateDtoToProfileMapper.map(dto, profile)));
     }
 
     public boolean delete(Long id) {

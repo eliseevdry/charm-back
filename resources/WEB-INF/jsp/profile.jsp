@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <title>Charm Profile</title>
+        <%@ include file="style.html" %>
     </head>
     <body>
         <%@ include file="header.jsp" %>
@@ -13,7 +14,7 @@
                 <table>
                     <tr>
                         <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
-                        <td><input type="email" name="email" value="${requestScope.profile.email}"></td>
+                        <td><input type="email" name="email" value="${requestScope.profile.email}" disabled></td>
                     </tr>
                     <tr>
                         <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>
@@ -47,7 +48,7 @@
                 </table>
                 <button type="submit">${requestScope.wordBundle.getWord("save")}</button>
             </form>
-            <form method="post" action="/profile">
+            <form method="post" action="/registration">
                 <input type="hidden" name="_method" value="delete"/>
                 <input type="hidden" name="id" value="${requestScope.profile.id}">
                 <button type="submit">${requestScope.wordBundle.getWord("delete")}</button>
