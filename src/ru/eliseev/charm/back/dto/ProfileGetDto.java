@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.dto;
 
 import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.model.Status;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ public class ProfileGetDto {
     private Integer age;
     private String about;
     private Gender gender;
+    private Status status;
 
     public Long getId() {
         return id;
@@ -76,5 +78,13 @@ public class ProfileGetDto {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

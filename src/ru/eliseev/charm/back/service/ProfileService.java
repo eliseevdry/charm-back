@@ -15,7 +15,7 @@ public class ProfileService {
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
-    
+
     private final ProfileGetDtoMapper profileGetDtoMapper = ProfileGetDtoMapper.getInstance();
 
     private final ProfileMapper profileMapper = ProfileMapper.getInstance();
@@ -28,24 +28,23 @@ public class ProfileService {
     }
 
     public Long save(ProfileSaveDto dto) {
-        return dao.save(profileMapper.map(dto)).getId();
+        return dao.save(profileMapper.map(dto, new Profile())).getId();
     }
 
     public Optional<ProfileGetDto> findById(Long id) {
-        if (id == null) return Optional.empty();
-        return dao.findById(id).map(profileGetDtoMapper::map);
+        return dao.findById(id).map(profile -> profileGetDtoMapper.map(profile, new ProfileGetDto()));
     }
 
     public List<ProfileGetDto> findAll() {
-        return dao.findAll().stream().map(profileGetDtoMapper::map).toList();
+        return dao.findAll().stream().map(profile -> profileGetDtoMapper.map(profile, new ProfileGetDto())).toList();
     }
 
     public void update(ProfileSaveDto dto) {
-        dao.update(profileMapper.map(dto));
+        dao.findById(dto.getId())
+                .ifPresent(profile -> dao.update(profileMapper.map(dto, profile)));
     }
 
     public boolean delete(Long id) {
-        if (id == null) return false;
         return dao.delete(id);
     }
 }

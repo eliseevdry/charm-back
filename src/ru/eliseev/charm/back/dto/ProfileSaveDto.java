@@ -1,18 +1,20 @@
 package ru.eliseev.charm.back.dto;
 
 import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.model.Status;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 public class ProfileSaveDto {
     private Long id;
     private String email;
+    private String password;
     private String name;
     private String surname;
     private LocalDate birthDate;
     private String about;
     private Gender gender;
+    private Status status;
 
     public Long getId() {
         return id;
@@ -28,6 +30,14 @@ public class ProfileSaveDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -68,5 +78,13 @@ public class ProfileSaveDto {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
