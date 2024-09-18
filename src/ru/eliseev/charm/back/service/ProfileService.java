@@ -55,10 +55,9 @@ public class ProfileService {
     }
 
     private void checkEmail(String oldEmail, String newEmail) {
-        if (newEmail == null) return;
-        Set<String> emails = dao.getAllEmails();
-        if (!Objects.equals(oldEmail, newEmail) &&
-            emails.contains(newEmail)) {
+        if (newEmail == null || Objects.equals(oldEmail, newEmail)) return;
+        Set<String> existEmails = dao.getAllEmails();
+        if (existEmails.contains(newEmail)) {
             throw new DuplicateEmailException();
         }
     }

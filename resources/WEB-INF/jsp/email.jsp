@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
-        <title>Charm Profiles</title>
+        <title>Charm Email</title>
         <%@ include file="style.html" %>
     </head>
     <body>
