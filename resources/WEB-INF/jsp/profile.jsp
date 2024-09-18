@@ -14,7 +14,7 @@
                 <table>
                     <tr>
                         <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
-                        <td><input type="email" name="email" value="${requestScope.profile.email}" disabled></td>
+                        <td><a href="/email?id=${requestScope.profile.id}">${requestScope.profile.email}</a></td>
                     </tr>
                     <tr>
                         <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>

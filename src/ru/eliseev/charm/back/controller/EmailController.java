@@ -8,15 +8,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
+import ru.eliseev.charm.back.model.exception.DuplicateEmailException;
 import ru.eliseev.charm.back.service.ProfileService;
 
 import java.io.IOException;
 import java.util.Optional;
 
+import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
-@WebServlet("/profile")
-public class ProfileController extends HttpServlet {
+@WebServlet("/email")
+public class EmailController extends HttpServlet {
+
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
@@ -29,11 +32,8 @@ public class ProfileController extends HttpServlet {
             Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
             if (optProfileDto.isPresent()) {
                 req.setAttribute("profile", optProfileDto.get());
-                forwardUri = "/WEB-INF/jsp/profile.jsp";
+                forwardUri = "/WEB-INF/jsp/email.jsp";
             }
-        } else {
-            req.setAttribute("profiles", service.findAll());
-            forwardUri = "/WEB-INF/jsp/profiles.jsp";
         }
         if (forwardUri == null) {
             resp.sendError(SC_NOT_FOUND);
@@ -44,9 +44,12 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
-        service.update(dto);
-        String referer = req.getHeader("referer");
-        resp.sendRedirect(referer);
+        ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req, new ProfileUpdateDto());
+        try {
+            service.update(dto);
+            resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
+        } catch (DuplicateEmailException e) {
+            resp.sendError(SC_BAD_REQUEST);
+        }
     }
 }
