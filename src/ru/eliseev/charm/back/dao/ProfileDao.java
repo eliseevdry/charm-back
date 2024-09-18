@@ -8,11 +8,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 public class ProfileDao {
-    
+
     private static final ProfileDao INSTANCE = new ProfileDao();
 
     private final AtomicLong idStorage;
@@ -73,5 +75,9 @@ public class ProfileDao {
     public boolean delete(Long id) {
         if (id == null) return false;
         return storage.remove(id) != null;
+    }
+
+    public Set<String> getAllEmails() {
+        return storage.values().stream().map(Profile::getEmail).collect(Collectors.toSet());
     }
 }

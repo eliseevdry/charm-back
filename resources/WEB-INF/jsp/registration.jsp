@@ -2,11 +2,12 @@
 <html lang="en">
     <head>
         <title>Charm Registration</title>
+        <%@ include file="style.html" %>
     </head>
     <body>
       <%@ include file="header.jsp" %>
       <div>
-          <form method="post" action="/profile">
+          <form method="post" action="/registration">
               <table>
                   <tr>
                       <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>

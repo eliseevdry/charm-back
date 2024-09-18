@@ -1,0 +1,319 @@
+Index: resources/WEB-INF/jsp/profiles.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html lang=\"en\">\n    <head>\n        <title>Charm Profiles</title>\n        <%@ include file=\"style.html\" %>\n    </head>\n    <body>\n        <%@ include file=\"header.jsp\" %>\n        <div>\n            <table>\n                <tr>\n                    <td><h3>id</h3></td>\n                    <td><h3>${requestScope.wordBundle.getWord(\"email\")}</h3></td>\n                    <td><h3>${requestScope.wordBundle.getWord(\"name\")}</h3></td>\n                    <td><h3>${requestScope.wordBundle.getWord(\"surname\")}</h3></td>\n                    <td><h3>${requestScope.wordBundle.getWord(\"age\")}</h3></td>\n                    <td><h3>${requestScope.wordBundle.getWord(\"status\")}</h3></td>\n                </tr>\n                <c:forEach var=\"profile\" items=\"${requestScope.profiles}\">\n                    <tr>\n                        <td><h3>${profile.id}</h3></td>\n                        <td><h3>${profile.email}</h3></td>\n                        <td><h3>${profile.name}</h3></td>\n                        <td><h3>${profile.surname}</h3></td>\n                        <td><h3>${profile.age}</h3></td>\n                        <td>\n                            <form action=\"/profile\" method=\"post\">\n                                <input type=\"hidden\" name=\"_method\" value=\"put\"/>\n                                <input type=\"hidden\" name=\"id\" value=\"${profile.id}\">\n                                <select name=\"status\">\n                                    <option value=\"${profile.status}\" selected hidden>\n                                        ${requestScope.wordBundle.getWord(profile.status)}\n                                    </option>\n                                    <c:forEach var=\"status\" items=\"${applicationScope.statuses}\">\n                                        <option value=\"${status}\">${requestScope.wordBundle.getWord(status)}</option>\n                                    </c:forEach>\n                                </select>\n                                <button type=\"submit\">${requestScope.wordBundle.getWord(\"save\")}</button>\n                            </form>\n                        </td>\n                    </tr>\n                </c:forEach>\n            </table>\n        </div>\n        <%@ include file=\"footer.jsp\" %>\n    </body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/WEB-INF/jsp/profiles.jsp b/resources/WEB-INF/jsp/profiles.jsp
+--- a/resources/WEB-INF/jsp/profiles.jsp	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/WEB-INF/jsp/profiles.jsp	(date 1726638999477)
+@@ -19,11 +19,11 @@
+                 </tr>
+                 <c:forEach var="profile" items="${requestScope.profiles}">
+                     <tr>
+-                        <td><h3>${profile.id}</h3></td>
+-                        <td><h3>${profile.email}</h3></td>
+-                        <td><h3>${profile.name}</h3></td>
+-                        <td><h3>${profile.surname}</h3></td>
+-                        <td><h3>${profile.age}</h3></td>
++                        <td><h4>${profile.id}</h4></td>
++                        <td><h4>${profile.email}</h4></td>
++                        <td><h4>${profile.name}</h4></td>
++                        <td><h4>${profile.surname}</h4></td>
++                        <td><h4>${profile.age}</h4></td>
+                         <td>
+                             <form action="/profile" method="post">
+                                 <input type="hidden" name="_method" value="put"/>
+Index: resources/WEB-INF/jsp/footer.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" %>\n<div>\n  <hr>\n  <h3>${requestScope.wordBundle.getWord(\"all-rights-reserved\")} 2024</h3>\n</div>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/WEB-INF/jsp/footer.jsp b/resources/WEB-INF/jsp/footer.jsp
+--- a/resources/WEB-INF/jsp/footer.jsp	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/WEB-INF/jsp/footer.jsp	(date 1726638895834)
+@@ -1,5 +1,5 @@
+ <%@ page contentType="text/html;charset=UTF-8" %>
+ <div>
+   <hr>
+-  <h3>${requestScope.wordBundle.getWord("all-rights-reserved")} 2024</h3>
++  <small>${requestScope.wordBundle.getWord("all-rights-reserved")} 2024</small>
+ </div>
+\ No newline at end of file
+Index: resources/WEB-INF/jsp/profile.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html lang=\"en\">\n    <head>\n        <title>Charm Profile</title>\n        <%@ include file=\"style.html\" %>\n    </head>\n    <body>\n        <%@ include file=\"header.jsp\" %>\n        <div>\n            <form method=\"post\" action=\"/profile\">\n                <input type=\"hidden\" name=\"_method\" value=\"put\"/>\n                <input type=\"hidden\" name=\"id\" value=\"${requestScope.profile.id}\">\n                <table>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"email\")}</h3></td>\n                        <td><input type=\"email\" name=\"email\" value=\"${requestScope.profile.email}\" disabled></td>\n                    </tr>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"name\")}</h3></td>\n                        <td><input type=\"text\" name=\"name\" value=\"${requestScope.profile.name}\"></td>\n                    </tr>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"surname\")}</h3></td>\n                        <td><input type=\"text\" name=\"surname\" value=\"${requestScope.profile.surname}\"></td>\n                    </tr>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"birth-date\")}</h3></td>\n                        <td><input type=\"date\" name=\"birthDate\" value=\"${requestScope.profile.birthDate}\"></td>\n                    </tr>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"about\")}</h3></td>\n                        <td><input type=\"text\" name=\"about\" value=\"${requestScope.profile.about}\"></td>\n                    </tr>\n                    <tr>\n                        <td><h3>${requestScope.wordBundle.getWord(\"gender\")}</h3></td>\n                        <td>\n                            <select name=\"gender\">\n                                <option value=\"${requestScope.profile.gender}\" selected hidden>\n                                    ${requestScope.wordBundle.getWord(requestScope.profile.gender)}\n                                </option>\n                                <c:forEach var=\"gender\" items=\"${applicationScope.genders}\">\n                                    <option value=\"${gender}\">${requestScope.wordBundle.getWord(gender)}</option>\n                                </c:forEach>\n                            </select>\n                        </td>\n                    </tr>\n                </table>\n                <button type=\"submit\">${requestScope.wordBundle.getWord(\"save\")}</button>\n            </form>\n            <form method=\"post\" action=\"/profile\">\n                <input type=\"hidden\" name=\"_method\" value=\"delete\"/>\n                <input type=\"hidden\" name=\"id\" value=\"${requestScope.profile.id}\">\n                <button type=\"submit\">${requestScope.wordBundle.getWord(\"delete\")}</button>\n            </form>\n        </div>\n        <%@ include file=\"footer.jsp\" %>\n    </body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/WEB-INF/jsp/profile.jsp b/resources/WEB-INF/jsp/profile.jsp
+--- a/resources/WEB-INF/jsp/profile.jsp	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/WEB-INF/jsp/profile.jsp	(date 1726605176826)
+@@ -15,6 +15,10 @@
+                     <tr>
+                         <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
+                         <td><input type="email" name="email" value="${requestScope.profile.email}" disabled></td>
++                        <td>
++                            <button type="reset">Change email</button>
++                            <button type="reset">Change password</button>
++                        </td>
+                     </tr>
+                     <tr>
+                         <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>
+Index: resources/WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--\n Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n-->\n<web-app xmlns=\"https://jakarta.ee/xml/ns/jakartaee\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"https://jakarta.ee/xml/ns/jakartaee\n                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd\"\n         version=\"6.0\">\n</web-app>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/WEB-INF/web.xml b/resources/WEB-INF/web.xml
+--- a/resources/WEB-INF/web.xml	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/WEB-INF/web.xml	(date 1726638242990)
+@@ -20,4 +20,8 @@
+          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                       https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+          version="6.0">
++    <error-page>
++        <error-code>404</error-code>
++        <location>/WEB-INF/jsp/error404.jsp</location>
++    </error-page>
+ </web-app>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"df5eef17-91fb-4fa0-8313-069ecb9e2e70\" name=\"Changes\" comment=\"CHARM-15: refactor DTO and Mappers, add registration.jsp\">\n      <change afterPath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/style.html\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/RegistrationDto.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RegistrationDtoToProfileMapper.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RequestToRegistrationDtoMapper.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/utils/StringUtils.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/registration.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/resources/WEB-INF/jsp/registration.jsp\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileSaveDto.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileUpdateDto.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileGetDtoMapper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileToProfileGetDtoMapper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileMapper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileUpdateDtoToProfileMapper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileSaveDtoMapper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RequestToProfileUpdateDtoMapper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Enum\" />\n        <option value=\"Interface\" />\n        <option value=\"HTML File\" />\n        <option value=\"Record\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"refactor/CHARM-15\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;eliseevdry&quot;\n  }\n}</component>\n  <component name=\"GitRewordedCommitMessages\">\n    <option name=\"commitMessagesMapping\">\n      <RewordedCommitMessageMapping>\n        <option name=\"originalMessage\" value=\"CHARM-141: Аутентификация, DTO, мапперы, логгер, валидатор, роли, getAll\" />\n        <option name=\"rewordedMessage\" value=\"CHARM-141: Аутентификация, DTO, мапперы, логгер, валидатор, роли, getAll\" />\n      </RewordedCommitMessageMapping>\n    </option>\n    <option name=\"currentCommit\" value=\"1\" />\n    <option name=\"onto\" value=\"35297f37bbee6e9276f3b4361af78c37af32b4a3\" />\n  </component>\n  <component name=\"GithubPullRequestsUISettings\">\n    <option name=\"selectedUrlAndAccountId\">\n      <UrlAndAccount>\n        <option name=\"accountId\" value=\"7532325e-0cb0-450f-afb2-9dfdbfa4b98d\" />\n        <option name=\"url\" value=\"https://github.com/eliseevdry/charm-back.git\" />\n      </UrlAndAccount>\n    </option>\n  </component>\n  <component name=\"LogFilters\">\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\n    <option name=\"FILTER_INFO\" value=\"true\" />\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\n    <option name=\"CUSTOM_FILTER\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 8\n}</component>\n  <component name=\"ProjectId\" id=\"2jEQPJM1acdqGZzO87JYnQOeSxb\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateClassDialog.RecentsKey\">\n      <recent name=\"ru.eliseev.charm.back.mapper\" />\n      <recent name=\"ru.eliseev.charm.back.model\" />\n    </key>\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/resources\" />\n      <recent name=\"$PROJECT_DIR$/resources/WEB-INF/jsp\" />\n      <recent name=\"$PROJECT_DIR$/lib\" />\n      <recent name=\"$PROJECT_DIR$/web/WEB-INF/classes\" />\n      <recent name=\"$PROJECT_DIR$/web/WEB-INF\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/resources/WEB-INF/jsp\" />\n      <recent name=\"$PROJECT_DIR$/web/WEB-INF/classes\" />\n      <recent name=\"$PROJECT_DIR$/web/WEB-INF/lib\" />\n    </key>\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\n      <recent name=\"ru.eliseev.charm.back.mapper\" />\n      <recent name=\"ru.eliseev.charm.back.controller\" />\n      <recent name=\"ru.eliseev.charm.back.model\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"charm_web\" type=\"com.poratu.idea.plugins.tomcat\">\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Localhost Log\" />\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Access Log\" />\n      <predefined_log_file id=\"Tomcat Catalina Log\" />\n      <predefined_log_file id=\"Tomcat Manager Log\" />\n      <predefined_log_file id=\"Tomcat Host Manager Log\" />\n      <option name=\"catalinaBase\" value=\"$USER_HOME$/.SmartTomcat/charm-back/charm-back\" />\n      <option name=\"contextPath\" value=\"/\" />\n      <option name=\"docBase\" value=\"$PROJECT_DIR$/out/production/charm-back\" />\n      <option name=\"extraClassPath\" value=\"\" />\n      <option name=\"tomcatInfo\">\n        <TomcatInfo>\n          <option name=\"name\" value=\"Apache Tomcat/10.1.26\" />\n          <option name=\"path\" value=\"$USER_HOME$/app/apache-tomcat-10.1.26\" />\n          <option name=\"version\" value=\"10.1.26.0\" />\n        </TomcatInfo>\n      </option>\n      <option name=\"vmOptions\" value=\"\" />\n      <module name=\"charm-back\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"df5eef17-91fb-4fa0-8313-069ecb9e2e70\" name=\"Changes\" comment=\"\" />\n      <created>1720949730700</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1720949730700</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"CHARM-1: init\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721039695814</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721039695815</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"CHARM-1: N-Tier\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721048317661</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721048317661</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"add LICENSE\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722222676930</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722222676930</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"add LICENSE\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722222868349</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722222868349</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"CHARM-8: WebApp и war архив\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722847492002</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722847492002</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"CHARM-8: WebApp и war архив\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722847499845</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722847499845</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"CHARM-9: Servlet\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723383082540</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723383082540</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"CHARM-9: Servlet\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723383143608</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723383143608</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"CHARM-9: homework\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723891401491</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723891401491</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"CHARM-114: localization\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1725260196955</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1725260196956</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"CHARM-16: Fix\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1725396640455</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1725396640455</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"CHARM-15: refactor DTO and Mappers, add registration.jsp\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1725440235018</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1725440235018</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"CHARM-15: refactor DTO and Mappers, add registration.jsp\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1725443699738</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1725443699739</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"14\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"OPEN_GENERIC_TABS\">\n      <map>\n        <entry key=\"39ab209d-7e86-4afb-b257-4b4e64dcbf1c\" value=\"TOOL_WINDOW\" />\n      </map>\n    </option>\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"39ab209d-7e86-4afb-b257-4b4e64dcbf1c\">\n          <value>\n            <State />\n          </value>\n        </entry>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"new/CHARM-112\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"CHARM-1: init\" />\n    <MESSAGE value=\"CHARM-2: N-Tier\" />\n    <MESSAGE value=\"add LICENSE\" />\n    <MESSAGE value=\"CHARM-8: WebApp и war архив\" />\n    <MESSAGE value=\"CHARM-9: Servlet\" />\n    <MESSAGE value=\"CHARM-9: homework\" />\n    <MESSAGE value=\"CHARM-114: localization\" />\n    <MESSAGE value=\"CHARM-15: Fix\" />\n    <MESSAGE value=\"CHARM-16: Fix\" />\n    <MESSAGE value=\"CHARM-15: refactor DTO and Mappers, add registration.jsp\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"CHARM-15: refactor DTO and Mappers, add registration.jsp\" />\n    <option name=\"OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/filter/LangFilter.java</url>\n          <line>45</line>\n          <option name=\"timeStamp\" value=\"47\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/.idea/workspace.xml	(date 1726638895892)
+@@ -4,24 +4,16 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-15: refactor DTO and Mappers, add registration.jsp">
+-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/style.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/RegistrationDto.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RegistrationDtoToProfileMapper.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RequestToRegistrationDtoMapper.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/utils/StringUtils.java" afterDir="false" />
++    <list default="true" id="df5eef17-91fb-4fa0-8313-069ecb9e2e70" name="Changes" comment="CHARM-16: refactor DTO and Mappers, add registration.jsp">
++      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/error404.jsp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/registration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/registration.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/web.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/words.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/words_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/words_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/ProfileController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/controller/RegistrationController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileSaveDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/dto/ProfileUpdateDto.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/Mapper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileGetDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileToProfileGetDtoMapper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileUpdateDtoToProfileMapper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/ProfileSaveDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/mapper/RequestToProfileUpdateDtoMapper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/eliseev/charm/back/service/ProfileService.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -87,30 +79,30 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "DefaultHtmlFileTemplate": "HTML File",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "last_opened_file_path": "/Users/andrey.s.eliseev/IdeaProjects/charm/charm-back/resources/WEB-INF/jsp/error",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "File.Encoding"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="ru.eliseev.charm.back.mapper" />
+       <recent name="ru.eliseev.charm.back.model" />
+     </key>
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp/error" />
+       <recent name="$PROJECT_DIR$/resources" />
+       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
+       <recent name="$PROJECT_DIR$/lib" />
+       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
+-      <recent name="$PROJECT_DIR$/web/WEB-INF" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/resources/WEB-INF/jsp" />
+@@ -261,7 +253,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1725443699739</updated>
+     </task>
+-    <option name="localTasksCounter" value="14" />
++    <task id="LOCAL-00014" summary="CHARM-16: refactor DTO and Mappers, add registration.jsp">
++      <option name="closed" value="true" />
++      <created>1726605030683</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1726605030683</updated>
++    </task>
++    <option name="localTasksCounter" value="15" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -308,7 +308,8 @@
+     <MESSAGE value="CHARM-15: Fix" />
+     <MESSAGE value="CHARM-16: Fix" />
+     <MESSAGE value="CHARM-15: refactor DTO and Mappers, add registration.jsp" />
+-    <option name="LAST_COMMIT_MESSAGE" value="CHARM-15: refactor DTO and Mappers, add registration.jsp" />
++    <MESSAGE value="CHARM-16: refactor DTO and Mappers, add registration.jsp" />
++    <option name="LAST_COMMIT_MESSAGE" value="CHARM-16: refactor DTO and Mappers, add registration.jsp" />
+     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+   </component>
+   <component name="XDebuggerManager">
+Index: resources/words_en.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>about=About\nactive=Active\nage=Age\nall-rights-reserved=All rights reserved\nbirth-date=Birth date\nconfirm-password=Confirm password\ndelete=Delete\nemail=Email\nfemale=Female\ngender=Gender\ninactive=Inactive\nmale=Male\nname=Name\nother=Other\npassword=Password\nsave=Save\nstatus=Status\nsurname=Surname
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>NATIVE_TO_ASCII_ISO-8859-1
+===================================================================
+diff --git a/resources/words_en.properties b/resources/words_en.properties
+--- a/resources/words_en.properties	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/words_en.properties	(date 1726638520897)
+@@ -12,6 +12,7 @@
+ male=Male
+ name=Name
+ other=Other
++page-not-found=Page not found
+ password=Password
+ save=Save
+ status=Status
+Index: resources/words.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>about=About\nactive=Active\nage=Age\nall-rights-reserved=All rights reserved\nbirth-date=Birth date\nconfirm-password=Confirm password\ndelete=Delete\nemail=Email\nfemale=Female\ngender=Gender\ninactive=Inactive\nmale=Male\nname=Name\nother=Other\npassword=Password\nsave=Save\nstatus=Status\nsurname=Surname
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>NATIVE_TO_ASCII_ISO-8859-1
+===================================================================
+diff --git a/resources/words.properties b/resources/words.properties
+--- a/resources/words.properties	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/words.properties	(date 1726638519832)
+@@ -12,6 +12,7 @@
+ male=Male
+ name=Name
+ other=Other
++page-not-found=Page not found
+ password=Password
+ save=Save
+ status=Status
+Index: resources/WEB-INF/jsp/error404.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/WEB-INF/jsp/error404.jsp b/resources/WEB-INF/jsp/error404.jsp
+new file mode 100644
+--- /dev/null	(date 1726638508649)
++++ b/resources/WEB-INF/jsp/error404.jsp	(date 1726638508649)
+@@ -0,0 +1,15 @@
++<%@ page contentType="text/html;charset=UTF-8" %>
++<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
++<html lang="en">
++    <head>
++        <title>Charm Not Found</title>
++        <%@ include file="style.html" %>
++    </head>
++    <body>
++        <%@ include file="header.jsp" %>
++        <div>
++            <h3>404 - ${requestScope.wordBundle.getWord("page-not-found")}</h3>
++        </div>
++        <%@ include file="footer.jsp" %>
++    </body>
++</html>
+\ No newline at end of file
+Index: resources/words_ru.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>about=О себе\nactive=Активный\nage=Возраст\nall-rights-reserved=Все права защищены\nbirth-date=Дата рождения\nconfirm-password=Подтвердите пароль\ndelete=Удалить\nemail=Почта\nfemale=Женщина\ngender=Пол\ninactive=Неактивный\nmale=Мужчина\nname=Имя\nother=Другое\npassword=Пароль\nsave=Сохранить\nstatus=Статус\nsurname=Фамилия
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>NATIVE_TO_ASCII_ISO-8859-1
+===================================================================
+diff --git a/resources/words_ru.properties b/resources/words_ru.properties
+--- a/resources/words_ru.properties	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/resources/words_ru.properties	(date 1726638552086)
+@@ -12,6 +12,7 @@
+ male=Мужчина
+ name=Имя
+ other=Другое
++page-not-found=Страница не найдена
+ password=Пароль
+ save=Сохранить
+ status=Статус
+Index: src/ru/eliseev/charm/back/controller/ProfileController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.eliseev.charm.back.controller;\n\nimport jakarta.servlet.ServletException;\nimport jakarta.servlet.annotation.WebServlet;\nimport jakarta.servlet.http.HttpServlet;\nimport jakarta.servlet.http.HttpServletRequest;\nimport jakarta.servlet.http.HttpServletResponse;\nimport ru.eliseev.charm.back.dto.ProfileGetDto;\nimport ru.eliseev.charm.back.dto.ProfileUpdateDto;\nimport ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;\nimport ru.eliseev.charm.back.service.ProfileService;\n\nimport java.io.IOException;\nimport java.util.Optional;\n\n@WebServlet(\"/profile\")\npublic class ProfileController extends HttpServlet {\n    private final ProfileService service = ProfileService.getInstance();\n\n    private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();\n\n    @Override\n    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\n        String sId = req.getParameter(\"id\");\n        String forwardUri = \"/notFound\";\n        if (sId != null) {\n            Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));\n            if (optProfileDto.isPresent()) {\n                req.setAttribute(\"profile\", optProfileDto.get());\n                forwardUri = \"/WEB-INF/jsp/profile.jsp\";\n            }\n        } else {\n            req.setAttribute(\"profiles\", service.findAll());\n            forwardUri = \"/WEB-INF/jsp/profiles.jsp\";\n        }\n        req.getRequestDispatcher(forwardUri).forward(req, resp);\n    }\n\n    @Override\n    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {\n        ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req, new ProfileUpdateDto());\n        service.update(dto);\n        String referer = req.getHeader(\"referer\");\n        resp.sendRedirect(referer);\n    }\n\n    @Override\n    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\n        String sId = req.getParameter(\"id\");\n        if (!sId.isBlank()) {\n            service.delete(Long.parseLong(sId));\n        }\n        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);\n        resp.sendRedirect(\"/registration\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ru/eliseev/charm/back/controller/ProfileController.java b/src/ru/eliseev/charm/back/controller/ProfileController.java
+--- a/src/ru/eliseev/charm/back/controller/ProfileController.java	(revision ed334ce037083df41b205184c1a2162f068c1343)
++++ b/src/ru/eliseev/charm/back/controller/ProfileController.java	(date 1726638459224)
+@@ -13,6 +13,8 @@
+ import java.io.IOException;
+ import java.util.Optional;
+ 
++import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
++
+ @WebServlet("/profile")
+ public class ProfileController extends HttpServlet {
+     private final ProfileService service = ProfileService.getInstance();
+@@ -22,7 +24,7 @@
+     @Override
+     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+         String sId = req.getParameter("id");
+-        String forwardUri = "/notFound";
++        String forwardUri = null;
+         if (sId != null) {
+             Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
+             if (optProfileDto.isPresent()) {
+@@ -33,7 +35,11 @@
+             req.setAttribute("profiles", service.findAll());
+             forwardUri = "/WEB-INF/jsp/profiles.jsp";
+         }
+-        req.getRequestDispatcher(forwardUri).forward(req, resp);
++        if (forwardUri == null) {
++            resp.sendError(SC_NOT_FOUND);
++        } else {
++            req.getRequestDispatcher(forwardUri).forward(req, resp);
++        }
+     }
+ 
+     @Override
