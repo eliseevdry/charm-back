@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
@@ -19,6 +21,8 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/email")
 public class EmailController extends HttpServlet {
+
+    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
 
     private final ProfileService service = ProfileService.getInstance();
 
@@ -47,6 +51,7 @@ public class EmailController extends HttpServlet {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req, new ProfileUpdateDto());
         try {
             service.update(dto);
+            log.warn("Profile with id {} changed email to {}", dto.getId(), dto.getEmail());
             resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
         } catch (DuplicateEmailException e) {
             resp.sendError(SC_BAD_REQUEST);
