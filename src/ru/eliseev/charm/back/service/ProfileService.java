@@ -34,6 +34,7 @@ public class ProfileService {
     }
 
     public Long save(RegistrationDto dto) {
+        checkEmail(null, dto.getEmail());
         return dao.save(registrationDtoToProfileMapper.map(dto)).getId();
     }
 
