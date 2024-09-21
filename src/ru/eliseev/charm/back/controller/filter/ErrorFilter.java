@@ -26,7 +26,7 @@ public class ErrorFilter implements Filter {
 
         Throwable e = (Throwable) req.getAttribute(ERROR_EXCEPTION);
 
-        if (res.getStatus() > 500) {
+        if (res.getStatus() >= 500) {
             log.error("Unexpected error: ", e);
         } else {
             log.error("{} error", res.getStatus());
