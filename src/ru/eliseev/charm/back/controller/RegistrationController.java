@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.eliseev.charm.back.dto.RegistrationDto;
@@ -14,9 +15,8 @@ import ru.eliseev.charm.back.service.ProfileService;
 import java.io.IOException;
 
 @WebServlet("/registration")
+@Slf4j
 public class RegistrationController extends HttpServlet {
-
-    private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
 
     private final ProfileService service = ProfileService.getInstance();
 
