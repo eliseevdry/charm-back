@@ -3,13 +3,13 @@
 <html lang="en">
     <head>
         <title>Charm Not Found</title>
-        <%@ include file="style.html" %>
+        <%@ include file="../style.html" %>
     </head>
     <body>
-        <%@ include file="header.jsp" %>
+        <%@ include file="../header.jsp" %>
         <div>
-            <h3>404 - ${requestScope.wordBundle.getWord("page-not-found")}</h3>
+            <h3>404 - ${wordBundle.getWord("page-not-found")}</h3>
         </div>
-        <%@ include file="footer.jsp" %>
+        <%@ include file="../footer.jsp" %>
     </body>
 </html>

@@ -11,13 +11,13 @@
             <table>
                 <tr>
                     <td><h3>id</h3></td>
-                    <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
-                    <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>
-                    <td><h3>${requestScope.wordBundle.getWord("surname")}</h3></td>
-                    <td><h3>${requestScope.wordBundle.getWord("age")}</h3></td>
-                    <td><h3>${requestScope.wordBundle.getWord("status")}</h3></td>
+                    <td><h3>${wordBundle.getWord("email")}</h3></td>
+                    <td><h3>${wordBundle.getWord("name")}</h3></td>
+                    <td><h3>${wordBundle.getWord("surname")}</h3></td>
+                    <td><h3>${wordBundle.getWord("age")}</h3></td>
+                    <td><h3>${wordBundle.getWord("status")}</h3></td>
                 </tr>
-                <c:forEach var="profile" items="${requestScope.profiles}">
+                <c:forEach var="profile" items="${profiles}">
                     <tr>
                         <td><h4>${profile.id}</h4></td>
                         <td><h4>${profile.email}</h4></td>
@@ -30,13 +30,13 @@
                                 <input type="hidden" name="id" value="${profile.id}">
                                 <select name="status">
                                     <option value="${profile.status}" selected hidden>
-                                        ${requestScope.wordBundle.getWord(profile.status)}
+                                        ${wordBundle.getWord(profile.status)}
                                     </option>
                                     <c:forEach var="status" items="${applicationScope.statuses}">
-                                        <option value="${status}">${requestScope.wordBundle.getWord(status)}</option>
+                                        <option value="${status}">${wordBundle.getWord(status)}</option>
                                     </c:forEach>
                                 </select>
-                                <button type="submit">${requestScope.wordBundle.getWord("save")}</button>
+                                <button type="submit">${wordBundle.getWord("save")}</button>
                             </form>
                         </td>
                     </tr>
