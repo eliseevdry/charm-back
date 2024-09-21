@@ -1,5 +1,7 @@
 package ru.eliseev.charm.back.service;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
@@ -14,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
@@ -25,9 +28,6 @@ public class ProfileService {
     private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
 
     private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
-
-    private ProfileService() {
-    }
 
     public static ProfileService getInstance() {
         return INSTANCE;
