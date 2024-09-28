@@ -8,7 +8,7 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <form method="post" action="/profile">
+            <form method="post" action="/profile?id=${profile.id}">
                 <input type="hidden" name="_method" value="put"/>
                 <input type="hidden" name="id" value="${profile.id}">
                 <table>
@@ -53,6 +53,12 @@
                 <input type="hidden" name="id" value="${profile.id}">
                 <button type="submit">${wordBundle.getWord("delete")}</button>
             </form>
+            <div style="color: red">
+                <c:forEach var="error" items="${errors}">
+                    <span>${wordBundle.getWord(error)}</span>
+                    <br>
+                </c:forEach>
+            </div>
         </div>
         <%@ include file="footer.jsp" %>
     </body>
