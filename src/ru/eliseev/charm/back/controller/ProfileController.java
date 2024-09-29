@@ -50,13 +50,13 @@ public class ProfileController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
         ValidationResult validationResult = profileUpdateValidator.validate(dto);
-        if (!validationResult.isValid()) {
-            req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
-        } else {
+        if (validationResult.isValid()) {
             service.update(dto);
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
         }
     }
 }
