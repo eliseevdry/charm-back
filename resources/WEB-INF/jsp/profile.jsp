@@ -8,51 +8,57 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <form method="post" action="/profile">
+            <form method="post" action="/profile?id=${profile.id}">
                 <input type="hidden" name="_method" value="put"/>
-                <input type="hidden" name="id" value="${requestScope.profile.id}">
+                <input type="hidden" name="id" value="${profile.id}">
                 <table>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
-                        <td><a href="/email?id=${requestScope.profile.id}">${requestScope.profile.email}</a></td>
+                        <td><h3>${wordBundle.getWord("email")}</h3></td>
+                        <td><a href="/email?id=${profile.id}">${profile.email}</a></td>
                     </tr>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("name")}</h3></td>
-                        <td><input type="text" name="name" value="${requestScope.profile.name}"></td>
+                        <td><h3>${wordBundle.getWord("name")}</h3></td>
+                        <td><input type="text" name="name" value="${profile.name}"></td>
                     </tr>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("surname")}</h3></td>
-                        <td><input type="text" name="surname" value="${requestScope.profile.surname}"></td>
+                        <td><h3>${wordBundle.getWord("surname")}</h3></td>
+                        <td><input type="text" name="surname" value="${profile.surname}"></td>
                     </tr>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("birth-date")}</h3></td>
-                        <td><input type="date" name="birthDate" value="${requestScope.profile.birthDate}"></td>
+                        <td><h3>${wordBundle.getWord("birth-date")}</h3></td>
+                        <td><input type="date" name="birthDate" value="${profile.birthDate}"></td>
                     </tr>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("about")}</h3></td>
-                        <td><input type="text" name="about" value="${requestScope.profile.about}"></td>
+                        <td><h3>${wordBundle.getWord("about")}</h3></td>
+                        <td><input type="text" name="about" value="${profile.about}"></td>
                     </tr>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("gender")}</h3></td>
+                        <td><h3>${wordBundle.getWord("gender")}</h3></td>
                         <td>
                             <select name="gender">
-                                <option value="${requestScope.profile.gender}" selected hidden>
-                                    ${requestScope.wordBundle.getWord(requestScope.profile.gender)}
+                                <option value="${profile.gender}" selected hidden>
+                                    ${wordBundle.getWord(profile.gender)}
                                 </option>
                                 <c:forEach var="gender" items="${applicationScope.genders}">
-                                    <option value="${gender}">${requestScope.wordBundle.getWord(gender)}</option>
+                                    <option value="${gender}">${wordBundle.getWord(gender)}</option>
                                 </c:forEach>
                             </select>
                         </td>
                     </tr>
                 </table>
-                <button type="submit">${requestScope.wordBundle.getWord("save")}</button>
+                <button type="submit">${wordBundle.getWord("save")}</button>
             </form>
             <form method="post" action="/registration">
                 <input type="hidden" name="_method" value="delete"/>
-                <input type="hidden" name="id" value="${requestScope.profile.id}">
-                <button type="submit">${requestScope.wordBundle.getWord("delete")}</button>
+                <input type="hidden" name="id" value="${profile.id}">
+                <button type="submit">${wordBundle.getWord("delete")}</button>
             </form>
+            <div style="color: red">
+                <c:forEach var="error" items="${errors}">
+                    <span>${wordBundle.getWord(error)}</span>
+                    <br>
+                </c:forEach>
+            </div>
         </div>
         <%@ include file="footer.jsp" %>
     </body>

@@ -9,12 +9,9 @@ import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
-import ru.eliseev.charm.back.model.exception.DuplicateEmailException;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
@@ -34,7 +31,6 @@ public class ProfileService {
     }
 
     public Long save(RegistrationDto dto) {
-        checkEmail(null, dto.getEmail());
         return dao.save(registrationDtoToProfileMapper.map(dto)).getId();
     }
 
@@ -47,20 +43,7 @@ public class ProfileService {
     }
 
     public void update(ProfileUpdateDto dto) {
-        dao.findById(dto.getId())
-                .ifPresent(profile -> {
-                            checkEmail(profile.getEmail(), dto.getEmail());
-                            dao.update(profileUpdateDtoToProfileMapper.map(dto, profile));
-                        }
-                );
-    }
-
-    private void checkEmail(String oldEmail, String newEmail) {
-        if (newEmail == null || Objects.equals(oldEmail, newEmail)) return;
-        Set<String> existEmails = dao.getAllEmails();
-        if (existEmails.contains(newEmail)) {
-            throw new DuplicateEmailException();
-        }
+        dao.findById(dto.getId()).ifPresent(profile -> dao.update(profileUpdateDtoToProfileMapper.map(dto, profile)));
     }
 
     public boolean delete(Long id) {

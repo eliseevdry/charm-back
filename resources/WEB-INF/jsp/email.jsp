@@ -8,18 +8,24 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <h3 style="color: red">${requestScope.wordBundle.getWord("email-warning")}</h3>
-            <form method="post" action="/email">
+            <h3 style="color: red">${wordBundle.getWord("email-warning")}</h3>
+            <form method="post" action="/email?id=${profile.id}">
                 <input type="hidden" name="_method" value="put"/>
-                <input type="hidden" name="id" value="${requestScope.profile.id}">
+                <input type="hidden" name="id" value="${profile.id}">
                 <table>
                     <tr>
-                        <td><h3>${requestScope.wordBundle.getWord("email")}</h3></td>
-                        <td><input type="email" name="email" value="${requestScope.profile.email}"></td>
+                        <td><h3>${wordBundle.getWord("email")}</h3></td>
+                        <td><input type="email" name="email" value="${profile.email}"></td>
                     </tr>
                 </table>
-                <button type="submit">${requestScope.wordBundle.getWord("save")}</button>
+                <button type="submit">${wordBundle.getWord("save")}</button>
             </form>
+            <div style="color: red">
+                <c:forEach var="error" items="${errors}">
+                    <span>${wordBundle.getWord(error)}</span>
+                    <br>
+                </c:forEach>
+            </div>
         </div>
         <%@ include file="footer.jsp" %>
     </body>

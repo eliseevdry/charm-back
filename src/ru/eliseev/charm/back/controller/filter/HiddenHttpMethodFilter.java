@@ -11,17 +11,22 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Setter;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
 
 import java.io.IOException;
 import java.util.Locale;
 
-@WebFilter("/*")
+import static jakarta.servlet.DispatcherType.FORWARD;
+import static jakarta.servlet.DispatcherType.REQUEST;
+import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+
+@WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {
 
     private static final String METHOD_PARAM = "_method";
-    
+
     @Override
     public void init(FilterConfig filterConfig) {
         ServletContext servletContext = filterConfig.getServletContext();
@@ -39,15 +44,18 @@ public class HiddenHttpMethodFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        String paramValue = request.getParameter(METHOD_PARAM);
-        
-        if ("POST".equals(request.getMethod()) && paramValue != null && !paramValue.isBlank()) {
-            String method = paramValue.toUpperCase(Locale.ENGLISH);
-            HttpServletRequest wrapper = new HttpMethodRequestWrapper(request, method);
-            filterChain.doFilter(wrapper, response);
+        if (request.getDispatcherType() == FORWARD && request instanceof HttpMethodRequestWrapper) {
+            ((HttpMethodRequestWrapper) request).setMethod("GET");
         } else {
-            filterChain.doFilter(request, response);
+            String paramValue = request.getParameter(METHOD_PARAM);
+
+            if ("POST".equals(request.getMethod()) && !isBlank(paramValue)) {
+                String method = paramValue.toUpperCase(Locale.ENGLISH);
+                request = new HttpMethodRequestWrapper(request, method);
+            }
         }
+
+        filterChain.doFilter(request, response);
     }
 
     /**
@@ -56,7 +64,8 @@ public class HiddenHttpMethodFilter implements Filter {
      */
     private static class HttpMethodRequestWrapper extends HttpServletRequestWrapper {
 
-        private final String method;
+        @Setter
+        private String method;
 
         public HttpMethodRequestWrapper(HttpServletRequest request, String method) {
             super(request);

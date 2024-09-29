@@ -9,6 +9,8 @@ import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
 import ru.eliseev.charm.back.service.ProfileService;
+import ru.eliseev.charm.back.validator.ProfileUpdateValidator;
+import ru.eliseev.charm.back.validator.ValidationResult;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -20,6 +22,8 @@ public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
+
+    private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,10 +47,16 @@ public class ProfileController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
-        service.update(dto);
-        String referer = req.getHeader("referer");
-        resp.sendRedirect(referer);
+        ValidationResult validationResult = profileUpdateValidator.validate(dto);
+        if (!validationResult.isValid()) {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
+        } else {
+            service.update(dto);
+            String referer = req.getHeader("referer");
+            resp.sendRedirect(referer);
+        }
     }
 }

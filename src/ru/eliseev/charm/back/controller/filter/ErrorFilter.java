@@ -29,7 +29,7 @@ public class ErrorFilter implements Filter {
         if (res.getStatus() >= 500) {
             log.error("Unexpected error: ", e);
         } else {
-            log.error("{} error", res.getStatus());
+            log.warn("{} status code", res.getStatus());
         }
 
         filterChain.doFilter(req, res);

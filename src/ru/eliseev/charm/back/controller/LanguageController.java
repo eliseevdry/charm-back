@@ -13,12 +13,10 @@ public class LanguageController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String lang = req.getParameter("lang");
+        String lang = "ru".equals(req.getParameter("lang")) ? "ru" : "en";
 
-        Cookie cookie = new Cookie("lang", "en");
-        if ("ru".equals(lang)) {
-            cookie.setValue("ru");
-        }
+        Cookie cookie = new Cookie("lang", lang);
+
         resp.addCookie(cookie);
         String referer = req.getHeader("referer");
 
