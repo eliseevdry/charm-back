@@ -1,8 +1,6 @@
 package ru.eliseev.charm.back.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -17,4 +15,5 @@ public class Profile {
     private String about;
     private Gender gender;
     private Status status;
+    private String photo;
 }

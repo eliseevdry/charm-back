@@ -1,9 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div>
-    <h3>Charm <3</h3>
     <form method="post" action="/lang">
-        <button type="submit" name="lang" value="ru">ru</button>
-        <button type="submit" name="lang" value="en">en</button>
+        <table>
+            <tr class="hiddenRow">
+                <td>
+                    <a href="/"><img src="content/app/img/heart.png" alt="" width="75"></a>
+                </td>
+                <td>
+                    <button type="submit" name="lang" value="ru" class="langButton">
+                        <img src="content/app/img/ru.png" class="langImg">
+                    </button>
+                </td>
+                <td>
+                    <button type="submit" name="lang" value="en" class="langButton">
+                        <img src="content/app/img/en.png" class="langImg">
+                    </button>
+                </td>
+            </tr>
+        </table>
     </form>
     <hr>
 </div>

@@ -1,7 +1,9 @@
 package ru.eliseev.charm.back.service;
 
+import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
@@ -9,6 +11,7 @@ import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
+import ru.eliseev.charm.back.model.Profile;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,8 @@ public class ProfileService {
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
+    
+    private final ContentService contentService = ContentService.getInstance();
 
     private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
 
@@ -42,8 +47,14 @@ public class ProfileService {
         return dao.findAll().stream().map(profileToProfileGetDtoMapper::map).toList();
     }
 
+    @SneakyThrows
     public void update(ProfileUpdateDto dto) {
-        dao.findById(dto.getId()).ifPresent(profile -> dao.update(profileUpdateDtoToProfileMapper.map(dto, profile)));
+        Optional<Profile> optProfile = dao.findById(dto.getId());
+        if (optProfile.isPresent()) {
+            Part photo = dto.getPhoto();
+            contentService.upload("/profile/" + dto.getId() + "/" + photo.getSubmittedFileName(), photo.getInputStream());
+            dao.update(profileUpdateDtoToProfileMapper.map(dto, optProfile.get()));
+        }
     }
 
     public boolean delete(Long id) {

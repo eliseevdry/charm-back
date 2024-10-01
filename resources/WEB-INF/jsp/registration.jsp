@@ -19,7 +19,14 @@
                         <td><input type="password" name="password"></td>
                     </tr>
                 </table>
-                <button type="submit">${wordBundle.getWord("save")}</button>
+                <table>
+                    <tr class="hiddenRow">
+                        <td>
+                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
+                                   class="icon"/>
+                        </td>
+                    </tr>
+                </table>
             </form>
             <div style="color: red">
                 <c:forEach var="error" items="${errors}">

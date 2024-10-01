@@ -32,6 +32,7 @@ public class ProfileDao {
         profile.setAbout("I am QA");
         profile.setGender(Gender.MALE);
         profile.setStatus(Status.ACTIVE);
+        profile.setPhoto("ava1.jpg");
         this.storage.put(1L, profile);
         Profile profile1 = new Profile();
         profile1.setId(2L);
@@ -43,6 +44,7 @@ public class ProfileDao {
         profile1.setAbout("I am Java Dev");
         profile1.setGender(Gender.FEMALE);
         profile1.setStatus(Status.INACTIVE);
+        profile1.setPhoto("ava1.jpg");
         this.storage.put(2L, profile1);
         this.idStorage = new AtomicLong(3L);
     }
