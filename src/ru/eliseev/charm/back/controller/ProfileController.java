@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/profile")
+@MultipartConfig
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
@@ -50,13 +52,13 @@ public class ProfileController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
         ValidationResult validationResult = profileUpdateValidator.validate(dto);
-        if (!validationResult.isValid()) {
-            req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
-        } else {
+        if (validationResult.isValid()) {
             service.update(dto);
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
         }
     }
 }

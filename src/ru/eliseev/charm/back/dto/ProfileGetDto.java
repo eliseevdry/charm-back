@@ -17,4 +17,5 @@ public class ProfileGetDto {
     private String about;
     private Gender gender;
     private Status status;
+    private String photo;
 }

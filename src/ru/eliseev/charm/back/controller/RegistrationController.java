@@ -32,14 +32,14 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         RegistrationDto dto = requestToRegistrationDtoMapper.map(req);
-        ValidationResult result = registrationValidator.validate(dto);
-        if (!result.isValid()) {
-            req.setAttribute("errors", result.getErrors());
-            doGet(req, resp);
-        } else {
+        ValidationResult validationResult = registrationValidator.validate(dto);
+        if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
             resp.sendRedirect(String.format("/profile?id=%s", id));
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
         }
     }
 

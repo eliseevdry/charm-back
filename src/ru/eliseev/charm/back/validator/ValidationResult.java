@@ -18,4 +18,7 @@ public class ValidationResult {
         return errors.isEmpty();
     }
     
+    public List<String> getErrors() {
+        return new ArrayList<>(errors);
+    }
 }

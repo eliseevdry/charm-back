@@ -11,7 +11,6 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.Setter;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
 
@@ -44,8 +43,8 @@ public class HiddenHttpMethodFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        if (request.getDispatcherType() == FORWARD && request instanceof HttpMethodRequestWrapper) {
-            ((HttpMethodRequestWrapper) request).setMethod("GET");
+        if (request.getDispatcherType() != REQUEST && request instanceof HttpMethodRequestWrapper wrapper) {
+            request = (HttpServletRequest) wrapper.getRequest();
         } else {
             String paramValue = request.getParameter(METHOD_PARAM);
 
@@ -64,8 +63,7 @@ public class HiddenHttpMethodFilter implements Filter {
      */
     private static class HttpMethodRequestWrapper extends HttpServletRequestWrapper {
 
-        @Setter
-        private String method;
+        private final String method;
 
         public HttpMethodRequestWrapper(HttpServletRequest request, String method) {
             super(request);

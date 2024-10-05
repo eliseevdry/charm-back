@@ -3,6 +3,7 @@ package ru.eliseev.charm.back.mapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
@@ -26,6 +27,7 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
     }
 
     @Override
+    @SneakyThrows
     public ProfileUpdateDto map(HttpServletRequest req, ProfileUpdateDto dto) {
         String id = req.getParameter("id");
         if (!isBlank(id)) {
@@ -50,6 +52,7 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
         if (!isBlank(status)) {
             dto.setStatus(Status.valueOf(status));
         }
+        dto.setPhoto(req.getPart("photo"));
         return dto;
     }
 }

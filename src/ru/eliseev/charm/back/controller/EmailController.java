@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import java.util.Optional;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/email")
+@MultipartConfig
 @Slf4j
 public class EmailController extends HttpServlet {
 
@@ -50,13 +52,13 @@ public class EmailController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req, new ProfileUpdateDto());
         ValidationResult validationResult = profileUpdateValidator.validate(dto);
-        if (!validationResult.isValid()) {
-            req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
-        } else {
+        if (validationResult.isValid()) {
             service.update(dto);
             log.warn("Profile with id {} changed email to {}", dto.getId(), dto.getEmail());
             resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
         }
     }
 }
