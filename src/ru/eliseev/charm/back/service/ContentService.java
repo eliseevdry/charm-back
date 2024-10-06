@@ -17,19 +17,17 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ContentService {
     private static final ContentService INSTANCE = new ContentService();
+    
+    public static final String BASE_PATH = "/Users/andrey.s.eliseev/Downloads";
 
     public static ContentService getInstance() {
         return INSTANCE;
     }
-    
+
     public void upload(String contentPath, InputStream inputStream) throws IOException {
-        Path contentFullPath = getAbsolutePath(contentPath);
-        OutputStream outputStream = Files.exists(contentFullPath.getParent())
-                ? Files.newOutputStream(contentFullPath, CREATE, TRUNCATE_EXISTING)
-                : null;
-        if (outputStream == null) {
-            throw new FileNotFoundException();
-        }
+        Path contentFullPath = Path.of(BASE_PATH, contentPath);
+        Files.createDirectories(contentFullPath.getParent());
+        OutputStream outputStream = Files.newOutputStream(contentFullPath, CREATE, TRUNCATE_EXISTING);
         writeContent(inputStream, outputStream);
     }
 
@@ -39,8 +37,8 @@ public class ContentService {
             String appPath = "/WEB-INF" + contentPath.replaceFirst("/app", "");
             inputStream = ContentService.class.getClassLoader().getResourceAsStream(appPath);
         } else {
-            Path contentFullPath = getAbsolutePath(contentPath);
-            inputStream = Files.exists(contentFullPath) ? Files.newInputStream(contentFullPath) : null;
+            Path contentFullPath = Path.of(BASE_PATH, contentPath);
+            inputStream = Files.newInputStream(contentFullPath);
         }
         if (inputStream == null) {
             throw new FileNotFoundException();
@@ -55,10 +53,5 @@ public class ContentService {
                 outputStream.write(currentByte);
             }
         }
-    }
-
-    private Path getAbsolutePath(String contentPath) {
-        String basePath = "/Users/andrey.s.eliseev/Downloads";
-        return Path.of(basePath, contentPath);
     }
 }

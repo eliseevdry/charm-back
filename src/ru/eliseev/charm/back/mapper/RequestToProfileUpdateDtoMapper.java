@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -33,10 +34,6 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
         if (!isBlank(id)) {
             dto.setId(Long.parseLong(id));
         }
-        String email = req.getParameter("email");
-        if (!isBlank(email)) {
-            dto.setEmail(email);
-        }
         dto.setName(req.getParameter("name"));
         dto.setSurname(req.getParameter("surname"));
         String birthDate = req.getParameter("birthDate");
@@ -52,7 +49,10 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
         if (!isBlank(status)) {
             dto.setStatus(Status.valueOf(status));
         }
-        dto.setPhoto(req.getPart("photo"));
+        Part photo = req.getPart("photo");
+        if (photo != null && !isBlank(photo.getSubmittedFileName())) {
+            dto.setPhoto(photo);
+        }
         return dto;
     }
 }

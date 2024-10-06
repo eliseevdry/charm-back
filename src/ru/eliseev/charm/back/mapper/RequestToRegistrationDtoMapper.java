@@ -23,6 +23,7 @@ public class RequestToRegistrationDtoMapper implements Mapper<HttpServletRequest
     public RegistrationDto map(HttpServletRequest req, RegistrationDto dto) {
         dto.setEmail(req.getParameter("email"));
         dto.setPassword(req.getParameter("password"));
+        dto.setConfirm(req.getParameter("confirm"));
         return dto;
     }
 }

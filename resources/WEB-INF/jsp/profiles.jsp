@@ -25,7 +25,7 @@
                         <td><h4>${profile.surname}</h4></td>
                         <td><h4>${profile.age}</h4></td>
                         <td>
-                            <form action="/profile" method="post">
+                            <form action="/profile" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="_method" value="put"/>
                                 <input type="hidden" name="id" value="${profile.id}">
                                 <select name="status">

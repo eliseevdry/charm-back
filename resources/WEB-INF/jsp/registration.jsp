@@ -18,6 +18,10 @@
                         <td><h3>${wordBundle.getWord("password")}</h3></td>
                         <td><input type="password" name="password"></td>
                     </tr>
+                    <tr>
+                        <td><h3>${wordBundle.getWord("confirm-password")}</h3></td>
+                        <td><input type="password" name="confirm"></td>
+                    </tr>
                 </table>
                 <table>
                     <tr class="hiddenRow">

@@ -27,7 +27,7 @@ public class RegistrationValidator implements Validator<RegistrationDto> {
         } else if (dao.getAllEmails().contains(dto.getEmail())) {
             result.add("error.email.exist");
         }
-        if (isBlank(dto.getPassword())) {
+        if (isBlank(dto.getPassword()) || isBlank(dto.getConfirm()) || !dto.getPassword().equals(dto.getConfirm())) {
             result.add("error.password.invalid");
         }
         return result;
