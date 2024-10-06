@@ -2,16 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
-        <title>Charm Email</title>
+        <title>Charm Credentials</title>
         <%@ include file="style.html" %>
     </head>
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <h3 style="color: red">${wordBundle.getWord("email-warning")}</h3>
+            <small style="color: red">${wordBundle.getWord("email-warning")}</small>
             <table>
                 <tr class="hiddenRow">
-                    <form method="post" action="/email?id=${profile.id}" enctype="multipart/form-data">
+                    <form method="post" action="/credentials?id=${profile.id}" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="put"/>
                         <input type="hidden" name="id" value="${profile.id}">
                         <table>
@@ -19,12 +19,24 @@
                                 <td><h3>${wordBundle.getWord("email")}</h3></td>
                                 <td><input type="email" name="email" value="${profile.email}"></td>
                             </tr>
+                            <tr>
+                                <td><h3>${wordBundle.getWord("new-password")}</h3></td>
+                                <td><input type="password" name="newPassword"></td>
+                            </tr>
+                            <tr>
+                                <td><h3>${wordBundle.getWord("confirm-password")}</h3></td>
+                                <td><input type="password" name="confirm"></td>
+                            </tr>
+                            <tr>
+                                <td><h3>${wordBundle.getWord("password")}</h3></td>
+                                <td><input type="password" name="password"></td>
+                            </tr>
                         </table>
                         <table>
                             <tr class="hiddenRow">
                                 <td>
                                     <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
-                                           class="icon"/>
+                                           class="icon" onclick="return confirm()"/>
                                 </td>
                             </tr>
                         </table>
@@ -39,15 +51,14 @@
                     </div>
                 </tr>
                 <tr class="hiddenRow">
-                    <form method="post" action="/registration">
+                    <form method="post" action="/profile">
                         <input type="hidden" name="_method" value="delete"/>
                         <input type="hidden" name="id" value="${profile.id}">
-                        <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"/>
+                        <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"
+                               onclick="return confirm()"/>
                     </form>
                 </tr>
             </table>
-
-
         </div>
         <%@ include file="footer.jsp" %>
     </body>

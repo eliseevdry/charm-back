@@ -5,9 +5,11 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.ProfileDao;
+import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.dto.RegistrationDto;
+import ru.eliseev.charm.back.mapper.CredentialsDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
@@ -22,12 +24,14 @@ public class ProfileService {
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
-    
+
     private final ContentService contentService = ContentService.getInstance();
 
     private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
 
     private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
+
+    private final CredentialsDtoToProfileMapper credentialsDtoToProfileMapper = CredentialsDtoToProfileMapper.getInstance();
 
     private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
 
@@ -52,9 +56,18 @@ public class ProfileService {
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();
-            contentService.upload("/profile/" + dto.getId() + "/" + photo.getSubmittedFileName(), photo.getInputStream());
+            if (photo != null) {
+                contentService.upload(
+                        "/profiles/" + dto.getId() + "/" + photo.getSubmittedFileName(),
+                        photo.getInputStream()
+                );
+            }
             dao.update(profileUpdateDtoToProfileMapper.map(dto, optProfile.get()));
         }
+    }
+
+    public void update(CredentialsDto dto) {
+        dao.findById(dto.getId()).ifPresent(profile -> dao.update(credentialsDtoToProfileMapper.map(dto, profile)));
     }
 
     public boolean delete(Long id) {

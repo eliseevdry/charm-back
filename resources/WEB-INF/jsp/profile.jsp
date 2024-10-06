@@ -45,10 +45,10 @@
                         <td><h3>${wordBundle.getWord("photo")}</h3></td>
                         <td>
                             <c:if test="${profile.photo != null}">
-                                <img src="content/profile/${requestScope.profile.id}/${requestScope.profile.photo}" alt="" height="300">
+                                <img src="content/profiles/${profile.id}/${profile.photo}" height="500">
+                                <br>
                             </c:if>
-                            <br>
-                            <input type="button" value="${wordBundle.getWord('update')}" onclick="document.getElementById('file').click();" />
+                            <input type="button" value="${wordBundle.getWord('upload')}" onclick="document.getElementById('file').click();" />
                             <input type="file" name="photo" id="file" style="display:none;">
                         </td>
                     </tr>
@@ -56,10 +56,10 @@
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit" class="icon" />
+                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit" class="icon"/>
                         </td>
                         <td>
-                            <a href="/email?id=${profile.id}"><img src="content/app/img/key.png" alt="" width="75"></a>
+                            <a href="/credentials?id=${profile.id}"><img src="content/app/img/at-sign.png" width="75"></a>
                         </td>
                     </tr>
                 </table>
