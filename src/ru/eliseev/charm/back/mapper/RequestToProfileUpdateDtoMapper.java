@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -52,7 +53,10 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
         if (!isBlank(status)) {
             dto.setStatus(Status.valueOf(status));
         }
-        dto.setPhoto(req.getPart("photo"));
+        Part photo = req.getPart("photo");
+        if (photo != null && !isBlank(photo.getSubmittedFileName())) {
+            dto.setPhoto(photo);
+        }
         return dto;
     }
 }

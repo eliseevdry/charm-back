@@ -8,7 +8,7 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <h3 style="color: red">${wordBundle.getWord("email-warning")}</h3>
+            <small style="color: red">${wordBundle.getWord("email-warning")}</small>
             <table>
                 <tr class="hiddenRow">
                     <form method="post" action="/email?id=${profile.id}" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
                             <tr class="hiddenRow">
                                 <td>
                                     <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
-                                           class="icon"/>
+                                           class="icon" onclick="return confirm()"/>
                                 </td>
                             </tr>
                         </table>
@@ -42,7 +42,8 @@
                     <form method="post" action="/registration">
                         <input type="hidden" name="_method" value="delete"/>
                         <input type="hidden" name="id" value="${profile.id}">
-                        <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"/>
+                        <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"
+                               onclick="return confirm()"/>
                     </form>
                 </tr>
             </table>

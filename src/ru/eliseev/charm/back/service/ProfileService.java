@@ -22,7 +22,7 @@ public class ProfileService {
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
-    
+
     private final ContentService contentService = ContentService.getInstance();
 
     private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
@@ -52,7 +52,12 @@ public class ProfileService {
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();
-            contentService.upload("/profile/" + dto.getId() + "/" + photo.getSubmittedFileName(), photo.getInputStream());
+            if (photo != null) {
+                contentService.upload(
+                        "/profiles/" + dto.getId() + "/" + photo.getSubmittedFileName(),
+                        photo.getInputStream()
+                );
+            }
             dao.update(profileUpdateDtoToProfileMapper.map(dto, optProfile.get()));
         }
     }
