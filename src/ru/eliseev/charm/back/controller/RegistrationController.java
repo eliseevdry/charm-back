@@ -36,24 +36,10 @@ public class RegistrationController extends HttpServlet {
         if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-            resp.sendRedirect(String.format("/profile?id=%s", id));
+            resp.sendRedirect("/login");
         } else {
             req.setAttribute("errors", validationResult.getErrors());
             doGet(req, resp);
         }
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sId = req.getParameter("id");
-        boolean success = false;
-        if (!sId.isBlank()) {
-            success = service.delete(Long.parseLong(sId));
-        }
-        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-        if (success) {
-            log.info("Profile with id {} has been deleted", sId);
-        }
-        resp.sendRedirect("/registration");
     }
 }

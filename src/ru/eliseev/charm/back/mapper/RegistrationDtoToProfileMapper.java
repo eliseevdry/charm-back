@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.model.Role;
 import ru.eliseev.charm.back.model.Status;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -25,6 +26,7 @@ public class RegistrationDtoToProfileMapper implements Mapper<RegistrationDto, P
         profile.setEmail(dto.getEmail());
         profile.setPassword(dto.getPassword());
         profile.setStatus(Status.INACTIVE);
+        profile.setRole(Role.USER);
         return profile;
     }
 }

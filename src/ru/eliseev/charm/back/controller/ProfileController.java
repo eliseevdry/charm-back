@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
@@ -20,6 +21,7 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/profile")
 @MultipartConfig
+@Slf4j
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
@@ -60,5 +62,19 @@ public class ProfileController extends HttpServlet {
             req.setAttribute("errors", validationResult.getErrors());
             doGet(req, resp);
         }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String sId = req.getParameter("id");
+        boolean success = false;
+        if (!sId.isBlank()) {
+            success = service.delete(Long.parseLong(sId));
+        }
+        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        if (success) {
+            log.info("Profile with id {} has been deleted", sId);
+        }
+        resp.sendRedirect("/registration");
     }
 }

@@ -14,6 +14,7 @@ public class Profile {
     private LocalDate birthDate;
     private String about;
     private Gender gender;
-    private Status status;
     private String photo;
+    private Status status;
+    private Role role;
 }

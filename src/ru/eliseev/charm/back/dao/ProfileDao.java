@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.dao;
 
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.model.Role;
 import ru.eliseev.charm.back.model.Status;
 
 import java.time.LocalDate;
@@ -32,6 +33,7 @@ public class ProfileDao {
         profile.setAbout("I am QA");
         profile.setGender(Gender.MALE);
         profile.setStatus(Status.ACTIVE);
+        profile.setRole(Role.ADMIN);
         this.storage.put(1L, profile);
         Profile profile1 = new Profile();
         profile1.setId(2L);
@@ -43,6 +45,7 @@ public class ProfileDao {
         profile1.setAbout("I am Java Dev");
         profile1.setGender(Gender.FEMALE);
         profile1.setStatus(Status.INACTIVE);
+        profile1.setRole(Role.USER);
         this.storage.put(2L, profile1);
         this.idStorage = new AtomicLong(3L);
     }
@@ -79,5 +82,9 @@ public class ProfileDao {
 
     public Set<String> getAllEmails() {
         return storage.values().stream().map(Profile::getEmail).collect(Collectors.toSet());
+    }
+
+    public Optional<Profile> findByEmail(String email) {
+        return storage.values().stream().filter(it -> it.getEmail().equals(email)).findFirst();
     }
 }

@@ -39,7 +39,7 @@
                     </div>
                 </tr>
                 <tr class="hiddenRow">
-                    <form method="post" action="/registration">
+                    <form method="post" action="/profile">
                         <input type="hidden" name="_method" value="delete"/>
                         <input type="hidden" name="id" value="${profile.id}">
                         <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"

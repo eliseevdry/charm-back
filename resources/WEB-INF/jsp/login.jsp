@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
-        <title>Charm Registration</title>
+        <title>Charm Login</title>
         <%@ include file="style.html" %>
     </head>
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <form method="post" action="/registration">
+            <form method="post" action="/login">
                 <table>
                     <tr>
                         <td><h3>${wordBundle.getWord("email")}</h3></td>
@@ -18,15 +18,14 @@
                         <td><h3>${wordBundle.getWord("password")}</h3></td>
                         <td><input type="password" name="password"></td>
                     </tr>
-                    <tr>
-                        <td><h3>${wordBundle.getWord("password")} - 2</h3></td>
-                        <td><input type="password" name="password2"></td>
-                    </tr>
                 </table>
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
+                            <a href="/registration"><img src="content/app/img/person.png" alt="" width="75"></a>
+                        </td>
+                        <td>
+                            <input type="image" src="content/app/img/arrow-right.png" width="75" alt="submit"
                                    class="icon"/>
                         </td>
                     </tr>

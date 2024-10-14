@@ -8,7 +8,9 @@ import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.dto.RegistrationDto;
+import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
+import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
@@ -26,6 +28,8 @@ public class ProfileService {
     private final ContentService contentService = ContentService.getInstance();
 
     private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
+
+    private final ProfileToUserDetailsMapper profileToUserDetailsMapper = ProfileToUserDetailsMapper.getInstance();
 
     private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
 
@@ -64,5 +68,9 @@ public class ProfileService {
 
     public boolean delete(Long id) {
         return dao.delete(id);
+    }
+
+    public Optional<UserDetails> getUserDetails(String email) {
+        return dao.findByEmail(email).map(profileToUserDetailsMapper::map);
     }
 }
