@@ -36,7 +36,7 @@ public class RegistrationController extends HttpServlet {
         if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-            resp.sendRedirect(String.format("/profile?id=%s", id));
+            resp.sendRedirect("/login");
         } else {
             req.setAttribute("errors", validationResult.getErrors());
             doGet(req, resp);
