@@ -1,12 +1,15 @@
 package ru.eliseev.charm.back.dto;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CredentialsDto {
-    private Long id;
-    private String email;
-    private String newPassword;
-    private String confirmNewPassword;
-    private String currentPassword;
+    Long id;
+    String email;
+    String newPassword;
+    String confirmNewPassword;
+    String currentPassword;
 }
