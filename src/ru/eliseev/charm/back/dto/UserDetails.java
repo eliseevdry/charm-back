@@ -1,11 +1,14 @@
 package ru.eliseev.charm.back.dto;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import ru.eliseev.charm.back.model.Role;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDetails {
-    private Long id;
-    private String email;
-    private Role role;
+    Long id;
+    String email;
+    Role role;
 }

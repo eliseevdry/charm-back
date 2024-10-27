@@ -1,20 +1,23 @@
 package ru.eliseev.charm.back.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Profile {
-    private Long id;
-    private String email;
-    private String password;
-    private String name;
-    private String surname;
-    private LocalDate birthDate;
-    private String about;
-    private Gender gender;
-    private String photo;
-    private Status status;
-    private Role role;
+    Long id;
+    String email;
+    String password;
+    String name;
+    String surname;
+    LocalDate birthDate;
+    String about;
+    Gender gender;
+    String photo;
+    Status status;
+    Role role;
 }

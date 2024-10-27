@@ -4,7 +4,7 @@
     <table>
         <tr class="hiddenRow">
             <td>
-                <a href="/"><img src="content/app/img/heart.png" width="75"></a>
+                <a href="/login"><img src="content/app/img/heart.png" width="75"></a>
             </td>
             <td>
                 <form method="post" action="/lang">

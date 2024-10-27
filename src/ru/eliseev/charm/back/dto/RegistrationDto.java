@@ -1,10 +1,13 @@
 package ru.eliseev.charm.back.dto;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegistrationDto {
-    private String email;
-    private String password;
-    private String confirm;
+    String email;
+    String password;
+    String confirm;
 }
