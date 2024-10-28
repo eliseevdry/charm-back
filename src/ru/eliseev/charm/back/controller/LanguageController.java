@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/lang")
+import static ru.eliseev.charm.back.utils.UrlUtils.LANG_URL;
+
+@WebServlet(LANG_URL)
 public class LanguageController extends HttpServlet {
 
     @Override

@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
+import ru.eliseev.charm.back.dto.UserDetails;
+import ru.eliseev.charm.back.mapper.ProfileGetDtoToPdfMapper;
 import ru.eliseev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
 import ru.eliseev.charm.back.service.ProfileService;
 import ru.eliseev.charm.back.validator.ProfileUpdateValidator;
@@ -18,8 +20,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
+import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet("/profile")
+@WebServlet(PROFILE_URL)
 @MultipartConfig
 @Slf4j
 public class ProfileController extends HttpServlet {
@@ -32,21 +38,18 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sId = req.getParameter("id");
-        String forwardUri = null;
         if (sId != null) {
-            Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
-            if (optProfileDto.isPresent()) {
-                req.setAttribute("profile", optProfileDto.get());
-                forwardUri = "/WEB-INF/jsp/profile.jsp";
+            Optional<ProfileGetDto> optProfileGetDto = service.findById(Long.parseLong(sId));
+            if (optProfileGetDto.isPresent()) {
+                ProfileGetDto profileGetDto = optProfileGetDto.get();
+                req.setAttribute("profile", profileGetDto);
+                req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, resp);
+            } else {
+                resp.sendError(SC_NOT_FOUND);
             }
         } else {
             req.setAttribute("profiles", service.findAll());
-            forwardUri = "/WEB-INF/jsp/profiles.jsp";
-        }
-        if (forwardUri == null) {
-            resp.sendError(SC_NOT_FOUND);
-        } else {
-            req.getRequestDispatcher(forwardUri).forward(req, resp);
+            req.getRequestDispatcher(getJspPath("/profiles")).forward(req, resp);
         }
     }
 
@@ -67,14 +70,16 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String sId = req.getParameter("id");
-        boolean success = false;
-        if (!sId.isBlank()) {
-            success = service.delete(Long.parseLong(sId));
-        }
-        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-        if (success) {
+        if (!isBlank(sId) && service.delete(Long.parseLong(sId))) {
             log.info("Profile with id {} has been deleted", sId);
+            UserDetails userDetails = (UserDetails) req.getSession().getAttribute("userDetails");
+            if (sId.equals(userDetails.getId().toString())) {
+                req.getSession().invalidate();
+            }
+            resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            resp.sendRedirect(REGISTRATION_URL);
+        } else {
+            resp.sendError(SC_NOT_FOUND);
         }
-        resp.sendRedirect("/registration");
     }
 }

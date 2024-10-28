@@ -14,7 +14,11 @@ import ru.eliseev.charm.back.validator.ValidationResult;
 
 import java.io.IOException;
 
-@WebServlet("/registration")
+import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
+
+@WebServlet(REGISTRATION_URL)
 @Slf4j
 public class RegistrationController extends HttpServlet {
 
@@ -26,7 +30,7 @@ public class RegistrationController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher(getJspPath(REGISTRATION_URL)).forward(req, resp);
     }
 
     @Override
@@ -36,7 +40,7 @@ public class RegistrationController extends HttpServlet {
         if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-            resp.sendRedirect("/login");
+            resp.sendRedirect(LOGIN_URL);
         } else {
             req.setAttribute("errors", validationResult.getErrors());
             doGet(req, resp);

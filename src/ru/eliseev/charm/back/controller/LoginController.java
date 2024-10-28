@@ -16,7 +16,11 @@ import ru.eliseev.charm.back.validator.ValidationResult;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/login")
+import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
+
+@WebServlet(LOGIN_URL)
 @Slf4j
 public class LoginController extends HttpServlet {
 
@@ -28,7 +32,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+        req.getRequestDispatcher(getJspPath(LOGIN_URL)).forward(req, resp);
     }
 
     @Override
@@ -40,9 +44,9 @@ public class LoginController extends HttpServlet {
             if (userDetailsOpt.isPresent()) {
                 UserDetails userDetails = userDetailsOpt.get();
                 req.getSession().setAttribute("userDetails", userDetails);
-                resp.sendRedirect(String.format("/profile?id=%s", userDetails.getId()));
+                resp.sendRedirect(String.format(PROFILE_URL + "?id=%s", userDetails.getId()));
             } else {
-                resp.sendRedirect("/login");
+                resp.sendRedirect(LOGIN_URL);
             }
         } else {
             req.setAttribute("errors", validationResult.getErrors());

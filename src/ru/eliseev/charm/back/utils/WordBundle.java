@@ -1,4 +1,4 @@
-package ru.eliseev.charm.back.service;
+package ru.eliseev.charm.back.utils;
 
 import java.util.Locale;
 import java.util.MissingResourceException;

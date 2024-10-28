@@ -6,8 +6,8 @@ import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
 
-import static ru.eliseev.charm.back.utils.StringUtils.VALID_EMAIL_ADDRESS_REGEX;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CredentialsValidator implements Validator<CredentialsDto> {
@@ -27,15 +27,15 @@ public class CredentialsValidator implements Validator<CredentialsDto> {
         if (!dto.getCurrentPassword().equals(profile.getPassword())) {
             result.add("error.password.invalid");
         }
-        if (!isBlank(dto.getEmail())) {
-            if (!VALID_EMAIL_ADDRESS_REGEX.matcher(dto.getEmail()).matches()) {
+        if (dto.getEmail() != null) {
+            if (!isValidEmail(dto.getEmail())) {
                 result.add("error.email.invalid");
             }
             if (dao.getAllEmails().contains(dto.getEmail())) {
                 result.add("error.email.exist");
             }
         }
-        if (!isBlank(dto.getNewPassword()) && !dto.getNewPassword().equals(dto.getConfirmNewPassword())) {
+        if (!isValidPassword(dto.getNewPassword()) && !dto.getNewPassword().equals(dto.getConfirmNewPassword())) {
             result.add("error.password.invalid");
         }
         return result;
