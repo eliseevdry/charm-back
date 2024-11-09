@@ -17,8 +17,10 @@ import java.util.List;
 import static jakarta.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 import static ru.eliseev.charm.back.utils.UrlUtils.ENTRY_PATHS;
+import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_REST_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.PRIVATE_PATHS;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebFilter(value = "/*")
 public class AuthFilter implements Filter {
@@ -29,12 +31,12 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) servletResponse;
         String requestURI = req.getRequestURI();
         UserDetails userDetails = (UserDetails) req.getSession().getAttribute("userDetails");
-        if (PRIVATE_PATHS.stream().anyMatch(requestURI::startsWith)) {
+        if (!LOGIN_REST_URL.equals(requestURI) && PRIVATE_PATHS.stream().anyMatch(requestURI::startsWith)) {
             if (userDetails == null) {
                 res.sendError(SC_UNAUTHORIZED);
-            } else if (
-                    userDetails.getId().toString().equals(req.getParameter("id")) ||
-                    userDetails.getRole() == Role.ADMIN
+            } else if ((!requestURI.startsWith(REST_URL) &&
+                        userDetails.getId().toString().equals(req.getParameter("id"))) ||
+                       userDetails.getRole() == Role.ADMIN
             ) {
                 filterChain.doFilter(req, res);
             } else {

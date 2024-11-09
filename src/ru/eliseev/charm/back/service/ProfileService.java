@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
+import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.CredentialsDtoToProfileMapper;
+import ru.eliseev.charm.back.mapper.ProfileFullUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
@@ -36,6 +38,8 @@ public class ProfileService {
     private final ProfileToUserDetailsMapper profileToUserDetailsMapper = ProfileToUserDetailsMapper.getInstance();
 
     private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
+
+    private final ProfileFullUpdateDtoToProfileMapper profileFullUpdateDtoToProfileMapper = ProfileFullUpdateDtoToProfileMapper.getInstance();
 
     private final CredentialsDtoToProfileMapper credentialsDtoToProfileMapper = CredentialsDtoToProfileMapper.getInstance();
 
@@ -69,6 +73,21 @@ public class ProfileService {
                 );
             }
             dao.update(profileUpdateDtoToProfileMapper.map(dto, optProfile.get()));
+        }
+    }
+
+    @SneakyThrows
+    public void update(ProfileFullUpdateDto dto) {
+        Optional<Profile> optProfile = dao.findById(dto.getId());
+        if (optProfile.isPresent()) {
+            Part photo = dto.getPhoto();
+            if (photo != null) {
+                contentService.upload(
+                        getProfilePhotoPath(dto.getId(), photo.getSubmittedFileName()),
+                        photo.getInputStream()
+                );
+            }
+            dao.update(profileFullUpdateDtoToProfileMapper.map(dto, optProfile.get()));
         }
     }
 
