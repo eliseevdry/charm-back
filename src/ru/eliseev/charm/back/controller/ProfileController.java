@@ -1,5 +1,8 @@
 package ru.eliseev.charm.back.controller;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ import ru.eliseev.charm.back.validator.ProfileUpdateValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
@@ -25,13 +29,15 @@ import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet(PROFILE_URL)
+@WebServlet(PROFILE_URL + "/*")
 @MultipartConfig
 @Slf4j
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
+
+    private final ProfileGetDtoToPdfMapper profileGetDtoToPdfMapper = ProfileGetDtoToPdfMapper.getInstance();
 
     private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
 
@@ -42,8 +48,21 @@ public class ProfileController extends HttpServlet {
             Optional<ProfileGetDto> optProfileGetDto = service.findById(Long.parseLong(sId));
             if (optProfileGetDto.isPresent()) {
                 ProfileGetDto profileGetDto = optProfileGetDto.get();
-                req.setAttribute("profile", profileGetDto);
-                req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, resp);
+                if (req.getRequestURI().equals("/profile/pdf")) {
+                    resp.setHeader("Content-Disposition", "attachment; filename=\"resume.pdf\"");
+                    resp.setContentType("application/pdf");
+                    resp.setCharacterEncoding("UTF-8");
+                    try (OutputStream outputStream = resp.getOutputStream()) {
+                        Document pdf = new Document();
+                        PdfWriter.getInstance(pdf, outputStream);
+                        profileGetDtoToPdfMapper.map(profileGetDto, pdf);
+                    } catch (DocumentException e) {
+                        throw new IOException(e);
+                    }
+                } else {
+                    req.setAttribute("profile", profileGetDto);
+                    req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, resp);
+                }
             } else {
                 resp.sendError(SC_NOT_FOUND);
             }
