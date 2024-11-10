@@ -13,4 +13,14 @@ public class StringUtils {
     public static boolean isBlank(String str) {
         return str == null || str.isBlank();
     }
+
+    public static boolean isValidEmail(String email) {
+        if (isBlank(email)) return false;
+        return VALID_EMAIL_ADDRESS_REGEX.matcher(email).matches();
+    }
+
+    public static boolean isValidPassword(String password) {
+        if (isBlank(password)) return false;
+        return !password.isBlank();
+    }
 }

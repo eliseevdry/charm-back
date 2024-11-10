@@ -12,19 +12,16 @@ import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.model.Role;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
+import static ru.eliseev.charm.back.utils.UrlUtils.ENTRY_PATHS;
+import static ru.eliseev.charm.back.utils.UrlUtils.PRIVATE_PATHS;
+import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 
 @WebFilter(value = "/*")
 public class AuthFilter implements Filter {
-
-    private static final Set<String> PRIVATE_PATHS = Set.of("/profile", "/credentials");
-
-    private static final Set<String> ADMIN_PATHS = Set.of("/profile");
-
-    private static final Set<String> ENTRY_PATHS = Set.of("/login", "/registration");
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -37,17 +34,20 @@ public class AuthFilter implements Filter {
                 res.sendError(SC_UNAUTHORIZED);
             } else if (
                     userDetails.getId().toString().equals(req.getParameter("id")) ||
-                    (userDetails.getRole() == Role.ADMIN && ADMIN_PATHS.contains(requestURI))
+                    userDetails.getRole() == Role.ADMIN
             ) {
                 filterChain.doFilter(req, res);
             } else {
+                String message =
+                        String.format("User with id %s and role %s try to use %s endpoint with query parameter %s",
+                                userDetails.getId(), userDetails.getRole(), requestURI, req.getParameter("id"));
+                req.setAttribute("errors", List.of(message));
                 res.sendError(SC_FORBIDDEN);
             }
         } else if (userDetails != null && ENTRY_PATHS.contains(requestURI)) {
-            res.sendRedirect("/profile?id=" + userDetails.getId());
+            res.sendRedirect(PROFILE_URL + "?id=" + userDetails.getId());
         } else {
             filterChain.doFilter(req, res);
         }
-
     }
 }

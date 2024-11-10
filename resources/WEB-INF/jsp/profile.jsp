@@ -45,7 +45,7 @@
                         <td><h3>${wordBundle.getWord("photo")}</h3></td>
                         <td>
                             <c:if test="${profile.photo != null}">
-                                <img src="content/profiles/${profile.id}/${profile.photo}" height="500">
+                                <img src="content${profile.photo}" height="500">
                                 <br>
                             </c:if>
                             <input type="button" value="${wordBundle.getWord('upload')}" onclick="document.getElementById('file').click();" />
@@ -60,6 +60,9 @@
                         </td>
                         <td>
                             <a href="/credentials?id=${profile.id}"><img src="content/app/img/at-sign.png" width="75"></a>
+                        </td>
+                        <td>
+                            <a href="/profile/pdf?id=${profile.id}"><img src="content/app/img/id.png" alt="" width="75"></a>
                         </td>
                     </tr>
                 </table>

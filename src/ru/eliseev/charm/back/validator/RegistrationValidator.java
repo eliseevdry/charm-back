@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 
-import static ru.eliseev.charm.back.utils.StringUtils.VALID_EMAIL_ADDRESS_REGEX;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegistrationValidator implements Validator<RegistrationDto> {
@@ -22,12 +22,12 @@ public class RegistrationValidator implements Validator<RegistrationDto> {
     @Override
     public ValidationResult validate(RegistrationDto dto) {
         ValidationResult result = new ValidationResult();
-        if (isBlank(dto.getEmail()) || !VALID_EMAIL_ADDRESS_REGEX.matcher(dto.getEmail()).matches()) {
+        if (!isValidEmail(dto.getEmail())) {
             result.add("error.email.invalid");
         } else if (dao.getAllEmails().contains(dto.getEmail())) {
             result.add("error.email.exist");
         }
-        if (isBlank(dto.getPassword()) || isBlank(dto.getConfirm()) || !dto.getPassword().equals(dto.getConfirm())) {
+        if (!isValidPassword(dto.getPassword()) || !dto.getPassword().equals(dto.getConfirm())) {
             result.add("error.password.invalid");
         }
         return result;

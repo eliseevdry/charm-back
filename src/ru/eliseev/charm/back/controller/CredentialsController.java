@@ -19,8 +19,11 @@ import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.UrlUtils.CREDENTIALS_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
+import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet("/credentials")
+@WebServlet(CREDENTIALS_URL)
 @MultipartConfig
 @Slf4j
 public class CredentialsController extends HttpServlet {
@@ -39,7 +42,7 @@ public class CredentialsController extends HttpServlet {
             Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
             if (optProfileDto.isPresent()) {
                 req.setAttribute("profile", optProfileDto.get());
-                forwardUri = "/WEB-INF/jsp/credentials.jsp";
+                forwardUri = getJspPath(CREDENTIALS_URL);
             }
         }
         if (forwardUri == null) {
@@ -58,7 +61,7 @@ public class CredentialsController extends HttpServlet {
             if (!isBlank(dto.getEmail())) {
                 log.warn("Profile with id {} changed email to {}", dto.getId(), dto.getEmail());
             }
-            resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
+            resp.sendRedirect(String.format(PROFILE_URL + "?id=%s", dto.getId()));
         } else {
             req.setAttribute("errors", validationResult.getErrors());
             doGet(req, resp);

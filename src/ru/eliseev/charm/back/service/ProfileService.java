@@ -20,6 +20,8 @@ import ru.eliseev.charm.back.model.Profile;
 import java.util.List;
 import java.util.Optional;
 
+import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
 
@@ -62,7 +64,7 @@ public class ProfileService {
             Part photo = dto.getPhoto();
             if (photo != null) {
                 contentService.upload(
-                        "/profiles/" + dto.getId() + "/" + photo.getSubmittedFileName(),
+                        getProfilePhotoPath(dto.getId(), photo.getSubmittedFileName()),
                         photo.getInputStream()
                 );
             }

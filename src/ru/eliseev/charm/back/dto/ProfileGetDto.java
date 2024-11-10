@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.model.Role;
 import ru.eliseev.charm.back.model.Status;
 
 import java.time.LocalDate;
@@ -21,4 +22,5 @@ public class ProfileGetDto {
     Gender gender;
     Status status;
     String photo;
+    Role role;
 }
