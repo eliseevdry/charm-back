@@ -4,11 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.LoginDto;
-import ru.eliseev.charm.back.model.Profile;
 
-import java.util.Optional;
-
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -28,11 +24,8 @@ public class LoginValidator implements Validator<LoginDto> {
         if (!isValidEmail(dto.getEmail())) {
             result.add("error.email.invalid");
         }
-        Optional<Profile> profile = dao.findByEmail(dto.getEmail());
-        if (profile.isEmpty()) {
+        if (!dao.existByEmail(dto.getEmail())) {
             result.add("error.email.missing");
-        } else if (isBlank(dto.getPassword()) || !dto.getPassword().equals(profile.get().getPassword())) {
-            result.add("error.password.invalid");
         }
         return result;
     }

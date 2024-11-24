@@ -20,6 +20,7 @@ import java.util.Locale;
 import static jakarta.servlet.DispatcherType.FORWARD;
 import static jakarta.servlet.DispatcherType.REQUEST;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {
@@ -38,23 +39,26 @@ public class HiddenHttpMethodFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
 
-        if (request.getDispatcherType() != REQUEST && request instanceof HttpMethodRequestWrapper wrapper) {
-            request = (HttpServletRequest) wrapper.getRequest();
+        if (req.getDispatcherType() != REQUEST && req instanceof HttpMethodRequestWrapper wrapper) {
+            req = (HttpServletRequest) wrapper.getRequest();
         } else {
-            String paramValue = request.getParameter(METHOD_PARAM);
+            String paramValue = req.getParameter(METHOD_PARAM);
 
-            if ("POST".equals(request.getMethod()) && !isBlank(paramValue)) {
+            if ("POST".equals(req.getMethod()) && !isBlank(paramValue)) {
                 String method = paramValue.toUpperCase(Locale.ENGLISH);
-                request = new HttpMethodRequestWrapper(request, method);
+                req = new HttpMethodRequestWrapper(req, method);
             }
         }
-
-        filterChain.doFilter(request, response);
+        if (req.getRequestURI().startsWith(REST_URL)) {
+            res.setContentType("application/json");
+        }
+        res.setCharacterEncoding("UTF-8");
+        filterChain.doFilter(req, res);
     }
 
     /**

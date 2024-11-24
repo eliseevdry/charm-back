@@ -25,6 +25,7 @@ import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.UrlUtils.PDF_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
@@ -42,17 +43,16 @@ public class ProfileController extends HttpServlet {
     private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String sId = req.getParameter("id");
         if (sId != null) {
             Optional<ProfileGetDto> optProfileGetDto = service.findById(Long.parseLong(sId));
             if (optProfileGetDto.isPresent()) {
                 ProfileGetDto profileGetDto = optProfileGetDto.get();
-                if (req.getRequestURI().equals("/profile/pdf")) {
-                    resp.setHeader("Content-Disposition", "attachment; filename=\"resume.pdf\"");
-                    resp.setContentType("application/pdf");
-                    resp.setCharacterEncoding("UTF-8");
-                    try (OutputStream outputStream = resp.getOutputStream()) {
+                if (req.getRequestURI().equals(PROFILE_URL + PDF_URL)) {
+                    res.setHeader("Content-Disposition", "attachment; filename=\"resume.pdf\"");
+                    res.setContentType("application/pdf");
+                    try (OutputStream outputStream = res.getOutputStream()) {
                         Document pdf = new Document();
                         PdfWriter.getInstance(pdf, outputStream);
                         profileGetDtoToPdfMapper.map(profileGetDto, pdf);
@@ -61,33 +61,33 @@ public class ProfileController extends HttpServlet {
                     }
                 } else {
                     req.setAttribute("profile", profileGetDto);
-                    req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, resp);
+                    req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, res);
                 }
             } else {
-                resp.sendError(SC_NOT_FOUND);
+                res.sendError(SC_NOT_FOUND);
             }
         } else {
             req.setAttribute("profiles", service.findAll());
-            req.getRequestDispatcher(getJspPath("/profiles")).forward(req, resp);
+            req.getRequestDispatcher(getJspPath("/profiles")).forward(req, res);
         }
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
         ValidationResult validationResult = profileUpdateValidator.validate(dto);
         if (validationResult.isValid()) {
             service.update(dto);
             String referer = req.getHeader("referer");
-            resp.sendRedirect(referer);
+            res.sendRedirect(referer);
         } else {
             req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
+            doGet(req, res);
         }
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String sId = req.getParameter("id");
         if (!isBlank(sId) && service.delete(Long.parseLong(sId))) {
             log.info("Profile with id {} has been deleted", sId);
@@ -95,10 +95,10 @@ public class ProfileController extends HttpServlet {
             if (sId.equals(userDetails.getId().toString())) {
                 req.getSession().invalidate();
             }
-            resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-            resp.sendRedirect(REGISTRATION_URL);
+            res.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            res.sendRedirect(REGISTRATION_URL);
         } else {
-            resp.sendError(SC_NOT_FOUND);
+            res.sendError(SC_NOT_FOUND);
         }
     }
 }

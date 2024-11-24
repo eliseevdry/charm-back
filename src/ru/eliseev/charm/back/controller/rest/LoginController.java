@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_REST_URL;
 
 @WebServlet(LOGIN_REST_URL)
@@ -33,25 +32,27 @@ public class LoginController extends HttpServlet {
     private final JsonMapper jsonMapper = JsonMapper.getInstance();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try (BufferedReader reader = req.getReader()) {
             LoginDto dto = jsonMapper.readValue(reader, LoginDto.class);
             ValidationResult validationResult = loginValidator.validate(dto);
             if (validationResult.isValid()) {
-                Optional<UserDetails> userDetailsOpt = service.getUserDetails(dto.getEmail());
+                Optional<UserDetails> userDetailsOpt = service.login(dto);
                 if (userDetailsOpt.isPresent()) {
                     UserDetails userDetails = userDetailsOpt.get();
                     req.getSession().setAttribute("userDetails", userDetails);
                 } else {
-                    resp.sendError(SC_NOT_FOUND);
+                    validationResult.add("error.password.invalid");
+                    req.setAttribute("errors", validationResult.getErrors());
+                    res.sendError(SC_BAD_REQUEST);
                 }
             } else {
                 req.setAttribute("errors", validationResult.getErrors());
-                resp.sendError(SC_BAD_REQUEST);
+                res.sendError(SC_BAD_REQUEST);
             }
         } catch (DatabindException ex) {
             req.setAttribute("errors", List.of(ex.getLocalizedMessage(), ex.getOriginalMessage()));
-            resp.sendError(SC_BAD_REQUEST);
+            res.sendError(SC_BAD_REQUEST);
         }
     }
 }

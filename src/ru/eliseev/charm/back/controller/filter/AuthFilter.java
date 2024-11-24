@@ -26,9 +26,9 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 public class AuthFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) servletRequest;
-        HttpServletResponse res = (HttpServletResponse) servletResponse;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
         String requestURI = req.getRequestURI();
         UserDetails userDetails = (UserDetails) req.getSession().getAttribute("userDetails");
         if (!LOGIN_REST_URL.equals(requestURI) && PRIVATE_PATHS.stream().anyMatch(requestURI::startsWith)) {

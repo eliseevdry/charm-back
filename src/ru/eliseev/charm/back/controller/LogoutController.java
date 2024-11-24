@@ -16,8 +16,8 @@ import static ru.eliseev.charm.back.utils.UrlUtils.LOGOUT_URL;
 public class LogoutController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         req.getSession().invalidate();
-        resp.sendRedirect(LOGIN_URL);
+        res.sendRedirect(LOGIN_URL);
     }
 }
