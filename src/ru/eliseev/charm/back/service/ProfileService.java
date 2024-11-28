@@ -4,6 +4,7 @@ import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import ru.eliseev.charm.back.dao.InMemoryProfileDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.dto.LoginDto;
@@ -30,7 +31,7 @@ public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+    private final ProfileDao dao = InMemoryProfileDao.getInstance();
 
     private final ContentService contentService = ContentService.getInstance();
 

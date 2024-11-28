@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.validator;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.eliseev.charm.back.dao.InMemoryProfileDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
@@ -12,7 +13,7 @@ import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CredentialsValidator implements Validator<CredentialsDto> {
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+    private final ProfileDao dao = InMemoryProfileDao.getInstance();
 
     private static final CredentialsValidator INSTANCE = new CredentialsValidator();
 

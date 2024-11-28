@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.validator;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.eliseev.charm.back.dao.InMemoryProfileDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.LoginDto;
 
@@ -10,7 +11,7 @@ import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginValidator implements Validator<LoginDto> {
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+    private final ProfileDao dao = InMemoryProfileDao.getInstance();
 
     private static final LoginValidator INSTANCE = new LoginValidator();
 
