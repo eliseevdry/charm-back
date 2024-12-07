@@ -9,10 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 public class ProfileDao {
 
@@ -65,6 +63,17 @@ public class ProfileDao {
         return Optional.ofNullable(storage.get(id));
     }
 
+    public Optional<Profile> findByEmailAndPassword(String email, String password) {
+        return storage.values().stream()
+                .filter(it -> it.getEmail().equals(email) && it.getPassword().equals(password))
+                .findAny();
+    }
+
+    public boolean existByEmail(String email) {
+        if (email == null) return false;
+        return storage.values().stream().anyMatch(p -> email.equals(p.getEmail()));
+    }
+
     public List<Profile> findAll() {
         return new ArrayList<>(storage.values());
     }
@@ -78,13 +87,5 @@ public class ProfileDao {
     public boolean delete(Long id) {
         if (id == null) return false;
         return storage.remove(id) != null;
-    }
-
-    public Set<String> getAllEmails() {
-        return storage.values().stream().map(Profile::getEmail).collect(Collectors.toSet());
-    }
-
-    public Optional<Profile> findByEmail(String email) {
-        return storage.values().stream().filter(it -> it.getEmail().equals(email)).findFirst();
     }
 }

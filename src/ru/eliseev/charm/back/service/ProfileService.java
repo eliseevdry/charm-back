@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
+import ru.eliseev.charm.back.dto.LoginDto;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
@@ -57,6 +58,10 @@ public class ProfileService {
         return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
 
+    public Optional<UserDetails> login(LoginDto dto) {
+        return dao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).map(profileToUserDetailsMapper::map);
+    }
+
     public List<ProfileGetDto> findAll() {
         return dao.findAll().stream().map(profileToProfileGetDtoMapper::map).toList();
     }
@@ -97,9 +102,5 @@ public class ProfileService {
 
     public boolean delete(Long id) {
         return dao.delete(id);
-    }
-
-    public Optional<UserDetails> getUserDetails(String email) {
-        return dao.findByEmail(email).map(profileToUserDetailsMapper::map);
     }
 }

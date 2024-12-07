@@ -18,13 +18,13 @@ public class ContentController extends HttpServlet {
     private final ContentService contentService = ContentService.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String contentPath = req.getRequestURI().replaceFirst(CONTENT_URL, "");
-        resp.setContentType("application/octet-stream");
+        res.setContentType("application/octet-stream");
         try {
-            contentService.download(contentPath, resp.getOutputStream());
+            contentService.download(contentPath, res.getOutputStream());
         } catch (FileNotFoundException e) {
-            resp.sendError(SC_NOT_FOUND);
+            res.sendError(SC_NOT_FOUND);
         }
     }
 }

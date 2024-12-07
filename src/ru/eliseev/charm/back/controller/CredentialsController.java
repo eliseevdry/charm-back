@@ -35,7 +35,7 @@ public class CredentialsController extends HttpServlet {
     private final CredentialsValidator credentialsValidator = CredentialsValidator.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String sId = req.getParameter("id");
         String forwardUri = null;
         if (sId != null) {
@@ -46,14 +46,14 @@ public class CredentialsController extends HttpServlet {
             }
         }
         if (forwardUri == null) {
-            resp.sendError(SC_NOT_FOUND);
+            res.sendError(SC_NOT_FOUND);
         } else {
-            req.getRequestDispatcher(forwardUri).forward(req, resp);
+            req.getRequestDispatcher(forwardUri).forward(req, res);
         }
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         CredentialsDto dto = requestToCredentialsDtoMapper.map(req);
         ValidationResult validationResult = credentialsValidator.validate(dto);
         if (validationResult.isValid()) {
@@ -61,10 +61,10 @@ public class CredentialsController extends HttpServlet {
             if (!isBlank(dto.getEmail())) {
                 log.warn("Profile with id {} changed email to {}", dto.getId(), dto.getEmail());
             }
-            resp.sendRedirect(String.format(PROFILE_URL + "?id=%s", dto.getId()));
+            res.sendRedirect(String.format(PROFILE_URL + "?id=%s", dto.getId()));
         } else {
             req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
+            doGet(req, res);
         }
     }
 }

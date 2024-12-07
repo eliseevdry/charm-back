@@ -29,21 +29,21 @@ public class RegistrationController extends HttpServlet {
     private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(getJspPath(REGISTRATION_URL)).forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher(getJspPath(REGISTRATION_URL)).forward(req, res);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         RegistrationDto dto = requestToRegistrationDtoMapper.map(req);
         ValidationResult validationResult = registrationValidator.validate(dto);
         if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-            resp.sendRedirect(LOGIN_URL);
+            res.sendRedirect(LOGIN_URL);
         } else {
             req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
+            doGet(req, res);
         }
     }
 }

@@ -30,7 +30,7 @@ public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDt
             if (!isValidEmail(dto.getEmail())) {
                 result.add("error.email.invalid");
             }
-            if (dao.getAllEmails().contains(dto.getEmail())) {
+            if (dao.existByEmail(dto.getEmail())) {
                 result.add("error.email.exist");
             }
         }

@@ -43,29 +43,27 @@ public class ProfileController extends HttpServlet {
     private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try (PrintWriter writer = resp.getWriter()) {
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        try (PrintWriter writer = res.getWriter()) {
             String sId = req.getParameter("id");
             if (sId != null) {
                 Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
                 if (optProfileDto.isPresent()) {
                     jsonMapper.writeValue(writer, optProfileDto.get());
                 } else {
-                    resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    res.sendError(HttpServletResponse.SC_NOT_FOUND);
                 }
             } else {
                 jsonMapper.writeValue(writer, service.findAll());
             }
         } catch (DatabindException ex) {
             req.setAttribute("errors", List.of(ex.getMessage()));
-            resp.sendError(SC_BAD_REQUEST);
+            res.sendError(SC_BAD_REQUEST);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try (BufferedReader reader = req.getReader()) {
             RegistrationDto dto = jsonMapper.readValue(reader, RegistrationDto.class);
             ValidationResult validationResult = registrationValidator.validate(dto);
@@ -74,16 +72,16 @@ public class ProfileController extends HttpServlet {
                 log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
             } else {
                 req.setAttribute("errors", validationResult.getErrors());
-                resp.sendError(SC_BAD_REQUEST);
+                res.sendError(SC_BAD_REQUEST);
             }
         } catch (DatabindException ex) {
             req.setAttribute("errors", List.of(ex.getLocalizedMessage(), ex.getOriginalMessage()));
-            resp.sendError(SC_BAD_REQUEST);
+            res.sendError(SC_BAD_REQUEST);
         }
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         Part json = req.getPart("json");
         if (json != null) {
             Part photo = req.getPart("photo");
@@ -99,28 +97,28 @@ public class ProfileController extends HttpServlet {
                     service.update(dto);
                 } else {
                     req.setAttribute("errors", validationResult.getErrors());
-                    resp.sendError(SC_BAD_REQUEST);
+                    res.sendError(SC_BAD_REQUEST);
                 }
             } catch (DatabindException ex) {
                 req.setAttribute("errors", List.of(ex.getLocalizedMessage(), ex.getOriginalMessage()));
-                resp.sendError(SC_BAD_REQUEST);
+                res.sendError(SC_BAD_REQUEST);
             }
         } else {
-            resp.sendError(SC_NOT_FOUND);
+            res.sendError(SC_NOT_FOUND);
         }
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String sId = req.getParameter("id");
         if (!isBlank(sId) && service.delete(Long.parseLong(sId))) {
             UserDetails userDetails = (UserDetails) req.getSession().getAttribute("userDetails");
             if (sId.equals(userDetails.getId().toString())) {
                 req.getSession().invalidate();
             }
-            resp.setStatus(SC_NO_CONTENT);
+            res.setStatus(SC_NO_CONTENT);
         } else {
-            resp.sendError(SC_NOT_FOUND);
+            res.sendError(SC_NOT_FOUND);
         }
 
     }

@@ -31,26 +31,28 @@ public class LoginController extends HttpServlet {
     private final LoginValidator loginValidator = LoginValidator.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(getJspPath(LOGIN_URL)).forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher(getJspPath(LOGIN_URL)).forward(req, res);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         LoginDto dto = requestToLoginDtoMapper.map(req);
         ValidationResult validationResult = loginValidator.validate(dto);
         if (validationResult.isValid()) {
-            Optional<UserDetails> userDetailsOpt = service.getUserDetails(dto.getEmail());
+            Optional<UserDetails> userDetailsOpt = service.login(dto);
             if (userDetailsOpt.isPresent()) {
                 UserDetails userDetails = userDetailsOpt.get();
                 req.getSession().setAttribute("userDetails", userDetails);
-                resp.sendRedirect(String.format(PROFILE_URL + "?id=%s", userDetails.getId()));
+                res.sendRedirect(String.format(PROFILE_URL + "?id=%s", userDetails.getId()));
             } else {
-                resp.sendRedirect(LOGIN_URL);
+                validationResult.add("error.password.invalid");
+                req.setAttribute("errors", validationResult.getErrors());
+                doGet(req, res);
             }
         } else {
             req.setAttribute("errors", validationResult.getErrors());
-            doGet(req, resp);
+            doGet(req, res);
         }
     }
 }

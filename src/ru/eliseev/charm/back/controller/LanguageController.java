@@ -14,14 +14,14 @@ import static ru.eliseev.charm.back.utils.UrlUtils.LANG_URL;
 public class LanguageController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String lang = "ru".equals(req.getParameter("lang")) ? "ru" : "en";
 
         Cookie cookie = new Cookie("lang", lang);
 
-        resp.addCookie(cookie);
+        res.addCookie(cookie);
         String referer = req.getHeader("referer");
 
-        resp.sendRedirect(referer);
+        res.sendRedirect(referer);
     }
 }
