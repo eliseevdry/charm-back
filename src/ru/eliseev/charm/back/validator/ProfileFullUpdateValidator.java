@@ -1,18 +1,18 @@
 package ru.eliseev.charm.back.validator;
 
+import static ru.eliseev.charm.back.utils.DateTimeUtils.isValidAge;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 
-import static ru.eliseev.charm.back.utils.DateTimeUtils.isValidAge;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+	private final ProfileDao dao = ProfileDao.getInstance();
 
     private static final ProfileFullUpdateValidator INSTANCE = new ProfileFullUpdateValidator();
 

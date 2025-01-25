@@ -1,6 +1,10 @@
 package ru.eliseev.charm.back.service;
 
+import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
+
 import jakarta.servlet.http.Part;
+import java.util.List;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -20,17 +24,12 @@ import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
 
-import java.util.List;
-import java.util.Optional;
-
-import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+	private final ProfileDao dao = ProfileDao.getInstance();
 
     private final ContentService contentService = ContentService.getInstance();
 
