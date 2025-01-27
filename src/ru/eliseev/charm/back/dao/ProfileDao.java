@@ -3,6 +3,7 @@ package ru.eliseev.charm.back.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,15 +32,14 @@ public class ProfileDao {
 	}
 
 	public Profile save(Profile profile) {
+		//language=POSTGRES-PSQL
+		String sql = "INSERT INTO profile (email, password) VALUES (?, ?)";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "INSERT INTO profile (email, password) VALUES ('%s', '%s')";
+			 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			stmt.setString(1, profile.getEmail());
+			stmt.setString(2, profile.getPassword());
 
-			int insertCount = stmt.executeUpdate(
-					String.format(sql, profile.getEmail(), profile.getPassword()),
-					Statement.RETURN_GENERATED_KEYS
-			);
+			int insertCount = stmt.executeUpdate();
 			log.debug("Insert count: {}", insertCount);
 
 			ResultSet rs = stmt.getGeneratedKeys();
@@ -53,12 +53,13 @@ public class ProfileDao {
 	}
 
 	public Optional<Profile> findById(Long id) {
+		//language=POSTGRES-PSQL
+		String sql = "SELECT * FROM profile WHERE id = ?";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "SELECT * FROM profile WHERE id = %s";
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setLong(1, id);
 
-			ResultSet rs = stmt.executeQuery(String.format(sql, id));
+			ResultSet rs = stmt.executeQuery();
 
 			Profile profile = null;
 			if (rs.next()) {
@@ -71,12 +72,14 @@ public class ProfileDao {
 	}
 
 	public Optional<Profile> findByEmailAndPassword(String email, String password) {
+		//language=POSTGRES-PSQL
+		String sql = "SELECT * FROM profile WHERE email = ? AND password = ?";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "SELECT * FROM profile WHERE email = '%s' AND password = '%s'";
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, email);
+			stmt.setString(2, password);
 
-			ResultSet rs = stmt.executeQuery(String.format(sql, email, password));
+			ResultSet rs = stmt.executeQuery();
 
 			Profile profile = null;
 			if (rs.next()) {
@@ -89,12 +92,13 @@ public class ProfileDao {
 	}
 
 	public boolean existByEmail(String email) {
+		//language=POSTGRES-PSQL
+		String sql = "SELECT * FROM profile WHERE email = ?";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "SELECT * FROM profile WHERE email = '%s'";
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, email);
 
-			ResultSet rs = stmt.executeQuery(String.format(sql, email));
+			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -102,12 +106,11 @@ public class ProfileDao {
 	}
 
 	public List<Profile> findAll() {
+		//language=POSTGRES-PSQL
+		String sql = "SELECT * FROM profile";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "SELECT * FROM profile";
-
-			ResultSet rs = stmt.executeQuery(sql);
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			ResultSet rs = stmt.executeQuery();
 
 			List<Profile> profiles = new ArrayList<>();
 			while (rs.next()) {
@@ -120,49 +123,53 @@ public class ProfileDao {
 	}
 
 	public void update(Profile profile) {
+		List<Object> args = new ArrayList<>();
+		StringBuilder queryBuilder = new StringBuilder("UPDATE profile SET email = ?, password = ?");
+		args.add(profile.getEmail());
+		args.add(profile.getPassword());
+
+		if (profile.getName() != null) {
+			queryBuilder.append(", name = ?");
+			args.add(profile.getName());
+		}
+		if (profile.getSurname() != null) {
+			queryBuilder.append(", surname = ?");
+			args.add(profile.getSurname());
+		}
+		if (profile.getBirthDate() != null) {
+			queryBuilder.append(", birth_date = ?");
+			args.add(Date.valueOf(profile.getBirthDate()));
+		}
+		if (profile.getAbout() != null) {
+			queryBuilder.append(", about = ?");
+			args.add(profile.getAbout());
+		}
+		if (profile.getGender() != null) {
+			queryBuilder.append(", gender = ?");
+			args.add(profile.getGender().toString());
+		}
+		if (profile.getStatus() != null) {
+			queryBuilder.append(", status = ?");
+			args.add(profile.getStatus().toString());
+		}
+		if (profile.getPhoto() != null) {
+			queryBuilder.append(", photo = ?");
+			args.add(profile.getPhoto());
+		}
+
+		queryBuilder.append(" WHERE id = ?");
+		args.add(profile.getId());
+
+		String sql = queryBuilder.toString();
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			List<Object> args = new ArrayList<>();
-			StringBuilder queryBuilder = new StringBuilder("UPDATE profile SET email = '%s', password = '%s'");
-			args.add(profile.getEmail());
-			args.add(profile.getPassword());
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			if (profile.getName() != null) {
-				queryBuilder.append(", name = '%s'");
-				args.add(profile.getName());
-			}
-			if (profile.getSurname() != null) {
-				queryBuilder.append(", surname = '%s'");
-				args.add(profile.getSurname());
-			}
-			if (profile.getBirthDate() != null) {
-				queryBuilder.append(", birth_date = '%s'");
-				args.add(Date.valueOf(profile.getBirthDate()));
-			}
-			if (profile.getAbout() != null) {
-				queryBuilder.append(", about = '%s'");
-				args.add(profile.getAbout());
-			}
-			if (profile.getGender() != null) {
-				queryBuilder.append(", gender = '%s'");
-				args.add(profile.getGender());
-			}
-			if (profile.getStatus() != null) {
-				queryBuilder.append(", status = '%s'");
-				args.add(profile.getStatus());
-			}
-			if (profile.getPhoto() != null) {
-				queryBuilder.append(", photo = '%s'");
-				args.add(profile.getPhoto());
+			for (int i = 0; i < args.size(); i++) {
+				stmt.setObject(i + 1, args.get(i));
 			}
 
-			queryBuilder.append(" WHERE id = %s");
-			args.add(profile.getId());
-
-			String sql = queryBuilder.toString().formatted(args.toArray());
-			log.debug("Final update sql: {}", sql);
-
-			int updateCount = stmt.executeUpdate(sql);
+			log.debug("Final update sql: {}", stmt);
+			int updateCount = stmt.executeUpdate();
 			log.debug("Update count: {}", updateCount);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -170,12 +177,13 @@ public class ProfileDao {
 	}
 
 	public boolean delete(Long id) {
+		//language=POSTGRES-PSQL
+		String sql = "DELETE FROM profile WHERE id = ?";
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			 Statement stmt = conn.createStatement()) {
-			//language=POSTGRES-PSQL
-			String sql = "DELETE FROM profile WHERE id = %s".formatted(id);
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setLong(1, id);
 
-			int deleteCount = stmt.executeUpdate(sql);
+			int deleteCount = stmt.executeUpdate();
 			log.debug("Delete count: {}", deleteCount);
 			return deleteCount > 0;
 		} catch (SQLException e) {
