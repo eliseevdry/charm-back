@@ -1,0 +1,7 @@
+settapp:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/charm_repository
+    username: postgres
+    password: postgres
+    driver: org.postgresql.Driver
+  base-content-path: /Users/andrey.s.eliseev/Downloads
