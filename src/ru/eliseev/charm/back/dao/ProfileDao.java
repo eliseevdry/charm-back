@@ -16,18 +16,20 @@ import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.model.Role;
 import ru.eliseev.charm.back.model.Status;
+import ru.eliseev.charm.back.utils.ConfigFileUtils;
 
 @Slf4j
 public class ProfileDao {
 
 	private static final ProfileDao INSTANCE = new ProfileDao();
-	private static final String URL = "jdbc:postgresql://localhost:5432/charm_repository";
-	private static final String USER = "postgres";
-	private static final String PASSWORD = "postgres";
+	private static final String URL = ConfigFileUtils.get("app.datasource.url");
+	private static final String USER = ConfigFileUtils.get("app.datasource.username");
+	private static final String PASSWORD = ConfigFileUtils.get("app.datasource.password");
+	private static final String DRIVER = ConfigFileUtils.get("app.datasource.driver");
 
 	@SneakyThrows
 	public static ProfileDao getInstance() {
-		Class.forName("org.postgresql.Driver");
+		Class.forName(DRIVER);
 		return INSTANCE;
 	}
 

@@ -1,8 +1,7 @@
 package ru.eliseev.charm.back.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.Set;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UrlUtils {
@@ -17,7 +16,7 @@ public class UrlUtils {
     public static final String PDF_URL = "/pdf";
     public static final String REST_URL = "/api/v1";
     public static final String LOGIN_REST_URL = REST_URL + LOGIN_URL;
-    public static final String BASE_CONTENT_PATH = "/Users/andrey.s.eliseev/Downloads";
+    public static final String BASE_CONTENT_PATH = ConfigFileUtils.get("app.base-content-path");
 
     public static final Set<String> PRIVATE_PATHS = Set.of(PROFILE_URL, CREDENTIALS_URL, REST_URL);
 
