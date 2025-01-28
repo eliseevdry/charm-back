@@ -1,4 +1,4 @@
-settapp:
+app:
   datasource:
     url: jdbc:postgresql://localhost:5432/charm_repository
     username: postgres
