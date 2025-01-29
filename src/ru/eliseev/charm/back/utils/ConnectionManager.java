@@ -2,8 +2,11 @@ package ru.eliseev.charm.back.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import lombok.experimental.UtilityClass;
+import ru.eliseev.charm.back.dto.Query;
 
 @UtilityClass
 public class ConnectionManager {
@@ -30,5 +33,14 @@ public class ConnectionManager {
 
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASSWORD);
+	}
+
+	public static PreparedStatement getPreparedStmt(Connection conn, Query query) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(query.sql());
+		List<Object> args = query.args();
+		for (int i = 0; i < args.size(); i++) {
+			stmt.setObject(i + 1, args.get(i));
+		}
+		return stmt;
 	}
 }
