@@ -4,11 +4,42 @@
     <head>
         <title>Charm Profiles</title>
         <%@ include file="style.html" %>
+        <c:url var="baseUrl" value="${requestScope['javax.servlet.forward.servlet_path']}">
+            <c:param name="emailStartWith" value="${filter.emailStartWith}"/>
+            <c:param name="nameStartWith" value="${filter.nameStartWith}"/>
+            <c:param name="surnameStartWith" value="${filter.surnameStartWith}"/>
+            <c:param name="status" value="${filter.status}"/>
+            <c:param name="gteAge" value="${filter.gteAge}"/>
+            <c:param name="ltAge" value="${filter.ltAge}"/>
+            <c:param name="sort" value="id"/>
+        </c:url>
+        <c:url var="sortUrlWithId" value="${baseUrl}">
+            <c:param name="sort" value="id"/>
+        </c:url>
+        <c:url var="sortUrlWithEmail" value="${baseUrl}">
+            <c:param name="sort" value="email"/>
+        </c:url>
+        <c:url var="sortUrlWithName" value="${baseUrl}">
+            <c:param name="sort" value="name"/>
+        </c:url>
+        <c:url var="sortUrlWithSurname" value="${baseUrl}">
+            <c:param name="sort" value="surname"/>
+        </c:url>
+        <c:url var="sortUrlWithAge" value="${baseUrl}">
+            <c:param name="sort" value="birth_date"/>
+        </c:url>
+        <c:url var="sortUrlWithStatus" value="${baseUrl}">
+            <c:param name="sort" value="status"/>
+        </c:url>
+        <c:url var="sortUrlWithRole" value="${baseUrl}">
+            <c:param name="sort" value="role"/>
+        </c:url>
     </head>
     <body>
         <%@ include file="header.jsp" %>
         <div>
             <form action="/profiles" method="get">
+                <input type="hidden" name="sort" value="${filter.sort}">
                 <table>
                     <tr class="hiddenRow">
                         <td>
@@ -73,12 +104,76 @@
             </form>
             <table>
                 <tr>
-                    <td><h3>id</h3></td>
-                    <td><h3>${wordBundle.getWord("email")}</h3></td>
-                    <td><h3>${wordBundle.getWord("name")}</h3></td>
-                    <td><h3>${wordBundle.getWord("surname")}</h3></td>
-                    <td><h3>${wordBundle.getWord("age")}</h3></td>
-                    <td><h3>${wordBundle.getWord("status")}</h3></td>
+                    <td>
+                        <a href="${sortUrlWithId}" class="hiddenLink">
+                            <h3>
+                                id
+                                <c:if test="${filter.sort == 'id' or filter.sort == null}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithEmail}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("email")}
+                                <c:if test="${filter.sort == 'email'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithName}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("name")}
+                                <c:if test="${filter.sort == 'name'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithSurname}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("surname")}
+                                <c:if test="${filter.sort == 'surname'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithAge}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("age")}
+                                <c:if test="${filter.sort == 'birth_date'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithStatus}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("status")}
+                                <c:if test="${filter.sort == 'status'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${sortUrlWithRole}" class="hiddenLink">
+                            <h3>
+                                ${wordBundle.getWord("role")}
+                                <c:if test="${filter.sort == 'role'}">
+                                    ^
+                                </c:if>
+                            </h3>
+                        </a>
+                    </td>
                 </tr>
                 <c:forEach var="profile" items="${profiles}">
                     <tr>
@@ -104,9 +199,12 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-                                <button type="submit">${wordBundle.getWord("save")}</button>
+                                <c:if test="${profile.role != 'ADMIN'}">
+                                    <button type="submit">${wordBundle.getWord("save")}</button>
+                                </c:if>
                             </form>
                         </td>
+                        <td><h4>${profile.role}</h4></td>
                     </tr>
                 </c:forEach>
             </table>

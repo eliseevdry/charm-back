@@ -1,5 +1,10 @@
 package ru.eliseev.charm.back.controller.filter;
 
+import static jakarta.servlet.DispatcherType.FORWARD;
+import static jakarta.servlet.DispatcherType.REQUEST;
+import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -11,21 +16,17 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
-import ru.eliseev.charm.back.model.Gender;
-import ru.eliseev.charm.back.model.Status;
-
 import java.io.IOException;
 import java.util.Locale;
-
-import static jakarta.servlet.DispatcherType.FORWARD;
-import static jakarta.servlet.DispatcherType.REQUEST;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
-import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
+import ru.eliseev.charm.back.dao.ProfileDao;
+import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.model.Status;
 
 @WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {
 
     private static final String METHOD_PARAM = "_method";
+    private final ProfileDao profileDao = ProfileDao.getInstance();
 
     @Override
     public void init(FilterConfig filterConfig) {
@@ -35,6 +36,9 @@ public class HiddenHttpMethodFilter implements Filter {
         }
         if (servletContext.getAttribute("statuses") == null) {
             servletContext.setAttribute("statuses", Status.values());
+        }
+        if (servletContext.getAttribute("profileSortableColumns") == null) {
+            servletContext.setAttribute("profileSortableColumns", profileDao.getSortableColumns());
         }
     }
 
