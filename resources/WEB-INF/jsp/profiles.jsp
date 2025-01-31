@@ -8,6 +8,69 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
+            <form action="/profiles" method="get">
+                <table>
+                    <tr class="hiddenRow">
+                        <td>
+                            <input type="image" src="content/app/img/filter.png" width="75" alt="submit" class="icon"/>
+                        </td>
+                        <td>
+                            <table>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("email")}</td>
+                                    <td><input type="text" name="emailStartWith" value="${filter.emailStartWith}"
+                                               class="filterInput"></td>
+                                </tr>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("name")}</td>
+                                    <td><input type="text" name="nameStartWith" value="${filter.nameStartWith}"
+                                               class="filterInput"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("surname")}</td>
+                                    <td><input type="text" name="surnameStartWith" value="${filter.surnameStartWith}"
+                                               class="filterInput"></td>
+                                </tr>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("status")}</td>
+                                    <td>
+                                        <select name="status" class="filterInput">
+                                            <option selected value></option>
+                                            <c:forEach var="statusVar" items="${applicationScope.statuses}">
+                                                <c:if test="${statusVar == filter.status}">
+                                                    <option value="${statusVar}" selected>
+                                                        ${wordBundle.getWord(statusVar)}
+                                                    </option>
+                                                </c:if>
+                                                <c:if test="${statusVar != filter.status}">
+                                                    <option value="${statusVar}">${wordBundle.getWord(statusVar)}
+                                                    </option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("age")}</td>
+                                    <td><input type="number" name="gteAge" min="18" max="100" value="${filter.gteAge}"
+                                               style="width: 50px;"></td>
+                                    <td>-</td>
+                                    <td><input type="number" name="ltAge" min="18" max="100" value="${filter.ltAge}"
+                                               style="width: 50px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </form>
             <table>
                 <tr>
                     <td><h3>id</h3></td>
@@ -28,12 +91,17 @@
                             <form action="/profile" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="_method" value="put"/>
                                 <input type="hidden" name="id" value="${profile.id}">
-                                <select name="status">
-                                    <option value="${profile.status}" selected hidden>
-                                        ${wordBundle.getWord(profile.status)}
-                                    </option>
-                                    <c:forEach var="status" items="${applicationScope.statuses}">
-                                        <option value="${status}">${wordBundle.getWord(status)}</option>
+                                <select name="status" class="filterInput">
+                                    <c:forEach var="statusVar" items="${applicationScope.statuses}">
+                                        <c:if test="${statusVar == profile.status}">
+                                            <option value="${statusVar}" selected>
+                                                ${wordBundle.getWord(statusVar)}
+                                            </option>
+                                        </c:if>
+                                        <c:if test="${statusVar != profile.status}">
+                                            <option value="${statusVar}">${wordBundle.getWord(statusVar)}
+                                            </option>
+                                        </c:if>
                                     </c:forEach>
                                 </select>
                                 <button type="submit">${wordBundle.getWord("save")}</button>

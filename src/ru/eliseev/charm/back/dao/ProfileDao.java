@@ -5,7 +5,6 @@ import static ru.eliseev.charm.back.utils.ConnectionManager.MAX_ROWS;
 import static ru.eliseev.charm.back.utils.ConnectionManager.QUERY_TIMEOUT;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,55 +14,54 @@ import java.util.List;
 import java.util.Optional;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.dto.ProfileFilter;
+import ru.eliseev.charm.back.dto.ProfileSelectQueryBuilder;
+import ru.eliseev.charm.back.dto.ProfileUpdateQueryBuilder;
+import ru.eliseev.charm.back.dto.Query;
+import ru.eliseev.charm.back.mapper.ResultSetToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
-import ru.eliseev.charm.back.model.Role;
-import ru.eliseev.charm.back.model.Status;
 import ru.eliseev.charm.back.utils.ConnectionManager;
 
 @Slf4j
 public class ProfileDao {
 
+	//language=POSTGRES-PSQL
+	public static final String INSERT = "INSERT INTO profile (email, password) VALUES (?, ?)";
+
 	private static final ProfileDao INSTANCE = new ProfileDao();
+
+	private final ResultSetToProfileMapper mapper = ResultSetToProfileMapper.getInstance();
 
 	@SneakyThrows
 	public static ProfileDao getInstance() {
 		return INSTANCE;
 	}
 
-	public Profile save(Profile profile) {
-		//language=POSTGRES-PSQL
-		String sql = "INSERT INTO profile (email, password) VALUES (?, ?)";
+	public Long save(String email, String password) {
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-			stmt.setString(1, profile.getEmail());
-			stmt.setString(2, profile.getPassword());
+			 PreparedStatement stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
+			stmt.setString(1, email);
+			stmt.setString(2, password);
 
-			int insertCount = stmt.executeUpdate();
-			log.debug("Insert count: {}", insertCount);
+			stmt.executeUpdate();
 
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();
-
-			profile.setId(rs.getLong("id"));
-			return profile;
+			return rs.getLong("id");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public Optional<Profile> findById(Long id) {
-		//language=POSTGRES-PSQL
-		String sql = "SELECT * FROM profile WHERE id = ?";
+		Query query = new ProfileSelectQueryBuilder().addIdFilter(id).build();
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setLong(1, id);
-
+			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
 
 			Profile profile = null;
 			if (rs.next()) {
-				profile = mapToProfile(rs);
+				profile = mapper.map(rs);
 			}
 			return Optional.ofNullable(profile);
 		} catch (SQLException e) {
@@ -72,18 +70,16 @@ public class ProfileDao {
 	}
 
 	public Optional<Profile> findByEmailAndPassword(String email, String password) {
-		//language=POSTGRES-PSQL
-		String sql = "SELECT * FROM profile WHERE email = ? AND password = ?";
+		Query query = new ProfileSelectQueryBuilder()
+							  .addEmailFilter(email)
+							  .addPasswordFilter(password)
+							  .build();
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, email);
-			stmt.setString(2, password);
-
+			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
-
 			Profile profile = null;
 			if (rs.next()) {
-				profile = mapToProfile(rs);
+				profile = mapper.map(rs);
 			}
 			return Optional.ofNullable(profile);
 		} catch (SQLException e) {
@@ -92,12 +88,9 @@ public class ProfileDao {
 	}
 
 	public boolean existByEmail(String email) {
-		//language=POSTGRES-PSQL
-		String sql = "SELECT * FROM profile WHERE email = ?";
+		Query query = new ProfileSelectQueryBuilder().addEmailFilter(email).build();
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, email);
-
+			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		} catch (SQLException e) {
@@ -105,20 +98,25 @@ public class ProfileDao {
 		}
 	}
 
-	public List<Profile> findAll() {
-		//language=POSTGRES-PSQL
-		String sql = "SELECT * FROM profile";
+	public List<Profile> findAll(ProfileFilter filter) {
+		Query query = new ProfileSelectQueryBuilder()
+							  .addEmailStartWithFilter(filter.getEmailStartWith())
+							  .addNameStartWith(filter.getNameStartWith())
+							  .addSurnameStartWith(filter.getSurnameStartWith())
+							  .addStatus(filter.getStatus())
+							  .addLTAge(filter.getLtAge())
+							  .addGTEAge(filter.getGteAge())
+							  .build();
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			stmt.setFetchSize(FETCH_SIZE);
 			stmt.setMaxRows(MAX_ROWS);
 			stmt.setQueryTimeout(QUERY_TIMEOUT);
-			
 			ResultSet rs = stmt.executeQuery();
 
 			List<Profile> profiles = new ArrayList<>();
 			while (rs.next()) {
-				profiles.add(mapToProfile(rs));
+				profiles.add(mapper.map(rs));
 			}
 			return profiles;
 		} catch (SQLException e) {
@@ -127,54 +125,20 @@ public class ProfileDao {
 	}
 
 	public void update(Profile profile) {
-		List<Object> args = new ArrayList<>();
-		StringBuilder queryBuilder = new StringBuilder("UPDATE profile SET email = ?, password = ?");
-		args.add(profile.getEmail());
-		args.add(profile.getPassword());
-
-		if (profile.getName() != null) {
-			queryBuilder.append(", name = ?");
-			args.add(profile.getName());
-		}
-		if (profile.getSurname() != null) {
-			queryBuilder.append(", surname = ?");
-			args.add(profile.getSurname());
-		}
-		if (profile.getBirthDate() != null) {
-			queryBuilder.append(", birth_date = ?");
-			args.add(Date.valueOf(profile.getBirthDate()));
-		}
-		if (profile.getAbout() != null) {
-			queryBuilder.append(", about = ?");
-			args.add(profile.getAbout());
-		}
-		if (profile.getGender() != null) {
-			queryBuilder.append(", gender = ?");
-			args.add(profile.getGender().toString());
-		}
-		if (profile.getStatus() != null) {
-			queryBuilder.append(", status = ?");
-			args.add(profile.getStatus().toString());
-		}
-		if (profile.getPhoto() != null) {
-			queryBuilder.append(", photo = ?");
-			args.add(profile.getPhoto());
-		}
-
-		queryBuilder.append(" WHERE id = ?");
-		args.add(profile.getId());
-
-		String sql = queryBuilder.toString();
+		Query query = new ProfileUpdateQueryBuilder()
+							  .addEmail(profile.getEmail())
+							  .addPassword(profile.getPassword())
+							  .addName(profile.getName())
+							  .addSurname(profile.getSurname())
+							  .addBirthDate(profile.getBirthDate())
+							  .addAbout(profile.getAbout())
+							  .addGender(profile.getGender())
+							  .addStatus(profile.getStatus())
+							  .addPhoto(profile.getPhoto())
+							  .build(profile.getId());
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-			for (int i = 0; i < args.size(); i++) {
-				stmt.setObject(i + 1, args.get(i));
-			}
-
-			log.debug("Final update sql: {}", stmt);
-			int updateCount = stmt.executeUpdate();
-			log.debug("Update count: {}", updateCount);
+			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -193,33 +157,5 @@ public class ProfileDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	private Profile mapToProfile(ResultSet rs) throws SQLException {
-		Profile result = new Profile();
-		result.setId(rs.getLong("id"));
-		result.setEmail(rs.getString("email"));
-		result.setPassword(rs.getString("password"));
-		result.setName(rs.getString("name"));
-		result.setSurname(rs.getString("surname"));
-		Date birthDate = rs.getDate("birth_date");
-		if (birthDate != null) {
-			result.setBirthDate(birthDate.toLocalDate());
-		}
-		result.setAbout(rs.getString("about"));
-		String gender = rs.getString("gender");
-		if (gender != null) {
-			result.setGender(Gender.valueOf(gender));
-		}
-		result.setPhoto(rs.getString("photo"));
-		String status = rs.getString("status");
-		if (status != null) {
-			result.setStatus(Status.valueOf(status));
-		}
-		String role = rs.getString("role");
-		if (role != null) {
-			result.setRole(Role.valueOf(role));
-		}
-		return result;
 	}
 }
