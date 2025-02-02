@@ -14,4 +14,5 @@ public class ProfileFilter {
     Integer ltAge;
     Integer gteAge;
     Status status;
+    String sort;
 }

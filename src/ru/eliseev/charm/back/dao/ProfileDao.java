@@ -106,6 +106,7 @@ public class ProfileDao {
 							  .addStatus(filter.getStatus())
 							  .addLTAge(filter.getLtAge())
 							  .addGTEAge(filter.getGteAge())
+							  .addSortedColumn(filter.getSort())
 							  .build();
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
@@ -154,6 +155,21 @@ public class ProfileDao {
 			int deleteCount = stmt.executeUpdate();
 			log.debug("Delete count: {}", deleteCount);
 			return deleteCount > 0;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<String> getSortableColumns() {
+		try (Connection conn = ConnectionManager.getConnection()) {
+			ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
+			List<String> result = new ArrayList<>();
+			while (rs.next()) {
+				if ("sortable".equals(rs.getString("REMARKS"))) {
+					result.add(rs.getString("COLUMN_NAME"));
+				}
+			}
+			return result;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

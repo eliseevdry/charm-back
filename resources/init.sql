@@ -13,6 +13,15 @@ CREATE TABLE profile(
     created_date TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
+COMMENT ON COLUMN profile.id IS 'sortable';
+COMMENT ON COLUMN profile.email IS 'sortable';
+COMMENT ON COLUMN profile."name" IS 'sortable';
+COMMENT ON COLUMN profile.surname IS 'sortable';
+COMMENT ON COLUMN profile.birth_date IS 'sortable';
+COMMENT ON COLUMN profile.gender IS 'sortable';
+COMMENT ON COLUMN profile.status IS 'sortable';
+COMMENT ON COLUMN profile.role IS 'sortable';
+
 INSERT INTO profile(email, password, "name", surname, birth_date, about, gender, status, role)
 VALUES ('admin@charm.ru', 'qwerty', 'Admin', NULL, NULL, NULL, NULL, 'INACTIVE', 'ADMIN'),
 ('ivanov@mail.ru', '123', 'Ivan', 'Ivanov', '2001-12-03', 'I am QA', 'MALE', 'ACTIVE', 'USER'),
