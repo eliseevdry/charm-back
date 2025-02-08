@@ -3,7 +3,6 @@ package ru.eliseev.charm.back.mapper;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.ProfileFilter;
@@ -50,11 +49,8 @@ public class RequestToProfileFilterMapper implements Mapper<HttpServletRequest, 
 		filter.setStatus(status);
 
 		String sortArg = req.getParameter("sort");
-		List<String> profileSortableColumns =
-				(List<String>) req.getServletContext().getAttribute("profileSortableColumns");
-		if (profileSortableColumns.contains(sortArg)) {
-			filter.setSort(sortArg);
-		}
+		String sort = isBlank(sortArg) ? null : sortArg;
+		filter.setSort(sort);
 
 		return filter;
 	}

@@ -32,6 +32,8 @@ public class ProfileDao {
 
 	private final ResultSetToProfileMapper mapper = ResultSetToProfileMapper.getInstance();
 
+	private List<String> sortableColumns;
+
 	@SneakyThrows
 	public static ProfileDao getInstance() {
 		return INSTANCE;
@@ -106,7 +108,7 @@ public class ProfileDao {
 							  .addStatus(filter.getStatus())
 							  .addLTAge(filter.getLtAge())
 							  .addGTEAge(filter.getGteAge())
-							  .addSortedColumn(filter.getSort())
+							  .addSortedColumn(getSortColumn(filter.getSort()))
 							  .build();
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
@@ -160,18 +162,23 @@ public class ProfileDao {
 		}
 	}
 
-	public List<String> getSortableColumns() {
-		try (Connection conn = ConnectionManager.getConnection()) {
-			ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
-			List<String> result = new ArrayList<>();
-			while (rs.next()) {
-				if ("sortable".equals(rs.getString("REMARKS"))) {
-					result.add(rs.getString("COLUMN_NAME"));
+	private String getSortColumn(String sort) {
+		if (sortableColumns == null) {
+			try (Connection conn = ConnectionManager.getConnection()) {
+				ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
+				sortableColumns = new ArrayList<>();
+				while (rs.next()) {
+					if ("sortable".equals(rs.getString("REMARKS"))) {
+						sortableColumns.add(rs.getString("COLUMN_NAME"));
+					}
 				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
 			}
-			return result;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
 		}
+		if (sort != null && sortableColumns.contains(sort)) {
+			return sort;
+		}
+		return "id";
 	}
 }

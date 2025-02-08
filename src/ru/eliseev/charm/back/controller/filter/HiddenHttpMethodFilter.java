@@ -37,9 +37,6 @@ public class HiddenHttpMethodFilter implements Filter {
         if (servletContext.getAttribute("statuses") == null) {
             servletContext.setAttribute("statuses", Status.values());
         }
-        if (servletContext.getAttribute("profileSortableColumns") == null) {
-            servletContext.setAttribute("profileSortableColumns", profileDao.getSortableColumns());
-        }
     }
 
     @Override
