@@ -1,8 +1,7 @@
 package ru.eliseev.charm.back.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.regex.Pattern;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class StringUtils {
