@@ -1,5 +1,8 @@
 package ru.eliseev.charm.back.dto;
 
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_SORTED_COLUMN;
 import static ru.eliseev.charm.back.utils.DateTimeUtils.getPastDate;
 
 import java.sql.Date;
@@ -108,9 +111,18 @@ public class ProfileSelectQueryBuilder {
 
 	public ProfileSelectQueryBuilder addSortedColumn(String column) {
 		if (column == null) {
-			column = "id";
+			column = DEFAULT_SORTED_COLUMN;
 		}
 		sb.append(" ORDER BY ").append(column);
+		return this;
+	}
+
+	public ProfileSelectQueryBuilder addPageAndPageSize(Integer page, Integer pageSize) {
+		int limit = pageSize == null ? DEFAULT_PAGE_SIZE : pageSize;
+		int offset = page == null ? limit * (DEFAULT_PAGE - 1) : limit * (page - 1);
+		sb.append(" OFFSET ? LIMIT ?");
+		args.add(offset);
+		args.add(limit);
 		return this;
 	}
 

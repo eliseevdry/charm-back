@@ -90,12 +90,30 @@
                         <td>
                             <table>
                                 <tr class="hiddenRow">
-                                    <td>${wordBundle.getWord("age")}</td>
+                                    <td>${wordBundle.getWord("age-from")}</td>
                                     <td><input type="number" name="gteAge" min="18" max="100" value="${filter.gteAge}"
                                                style="width: 50px;"></td>
-                                    <td>-</td>
+                                    <td>${wordBundle.getWord("age-to")}</td>
                                     <td><input type="number" name="ltAge" min="18" max="100" value="${filter.ltAge}"
                                                style="width: 50px;"></td>
+                                </tr>
+                                <tr class="hiddenRow">
+                                    <td>${wordBundle.getWord("page")}</td>
+                                    <td><input type="number" name="page" min="1" value="${filter.page}"
+                                               style="width: 50px;"></td>
+                                    <td>${wordBundle.getWord("page-size")}</td>
+                                    <td>
+                                        <select name="pageSize" class="filterInput">
+                                            <c:forEach var="size" items="${applicationScope.availablePageSizes}">
+                                                <c:if test="${size == filter.pageSize}">
+                                                    <option value="${size}" selected>${size}</option>
+                                                </c:if>
+                                                <c:if test="${size != filter.pageSize}">
+                                                    <option value="${size}">${size}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
                                 </tr>
                             </table>
                         </td>

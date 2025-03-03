@@ -1,5 +1,8 @@
 package ru.eliseev.charm.back.mapper;
 
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_SORTED_COLUMN;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,8 +52,16 @@ public class RequestToProfileFilterMapper implements Mapper<HttpServletRequest, 
 		filter.setStatus(status);
 
 		String sortArg = req.getParameter("sort");
-		String sort = isBlank(sortArg) ? null : sortArg;
+		String sort = isBlank(sortArg) ? DEFAULT_SORTED_COLUMN : sortArg;
 		filter.setSort(sort);
+
+		String pageArg = req.getParameter("page");
+		Integer page = isBlank(pageArg) ? DEFAULT_PAGE : Integer.parseInt(pageArg);
+		filter.setPage(page);
+
+		String pageSizeArg = req.getParameter("pageSize");
+		Integer pageSize = isBlank(pageSizeArg) ? DEFAULT_PAGE_SIZE : Integer.parseInt(pageSizeArg);
+		filter.setPageSize(pageSize);
 
 		return filter;
 	}
