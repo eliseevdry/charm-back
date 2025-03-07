@@ -12,14 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.mapper.JsonMapper;
 import ru.eliseev.charm.back.mapper.RequestToProfileFilterMapper;
 import ru.eliseev.charm.back.service.ProfileService;
 
 @WebServlet(REST_URL + PROFILES_URL)
-@Slf4j
 public class ProfilesController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();

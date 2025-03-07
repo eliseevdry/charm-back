@@ -22,7 +22,6 @@ import ru.eliseev.charm.back.mapper.ProfileFullUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
-import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -43,8 +42,6 @@ public class ProfileService {
     private final ProfileFullUpdateDtoToProfileMapper profileFullUpdateDtoToProfileMapper = ProfileFullUpdateDtoToProfileMapper.getInstance();
 
     private final CredentialsDtoToProfileMapper credentialsDtoToProfileMapper = CredentialsDtoToProfileMapper.getInstance();
-
-    private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
 
     public static ProfileService getInstance() {
         return INSTANCE;

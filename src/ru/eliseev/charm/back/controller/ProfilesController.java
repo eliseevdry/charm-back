@@ -9,13 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.mapper.RequestToProfileFilterMapper;
 import ru.eliseev.charm.back.service.ProfileService;
 
 @WebServlet(PROFILES_URL)
-@Slf4j
 public class ProfilesController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final RequestToProfileFilterMapper requestToProfileFilterMapper = RequestToProfileFilterMapper.getInstance();

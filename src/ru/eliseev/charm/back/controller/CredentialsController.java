@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +23,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @WebServlet(CREDENTIALS_URL)
-@MultipartConfig
 @Slf4j
 public class CredentialsController extends HttpServlet {
 

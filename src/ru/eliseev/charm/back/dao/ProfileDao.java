@@ -108,9 +108,7 @@ public class ProfileDao {
 							  .addStatus(filter.getStatus())
 							  .addLTAge(filter.getLtAge())
 							  .addGTEAge(filter.getGteAge())
-							  .addSortedColumn(getSortColumn(filter.getSort()))
-							  .addPageAndPageSize(filter.getPage(), filter.getPageSize())
-							  .build();
+							  .build(getSortColumn(filter.getSort()), filter.getPage(), filter.getPageSize());
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			stmt.setFetchSize(FETCH_SIZE);

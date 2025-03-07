@@ -15,7 +15,7 @@ public class ConnectionManager {
 	private static final String PASSWORD = ConfigFileUtils.get("app.datasource.password");
 	private static final String DRIVER = ConfigFileUtils.get("app.datasource.driver");
 	private static final String FETCH_SIZE_STR = ConfigFileUtils.get("app.datasource.fetch-size");
-	public static final int FETCH_SIZE = Integer.parseInt(FETCH_SIZE_STR != null ? FETCH_SIZE_STR : "100");
+	public static final int FETCH_SIZE = Integer.parseInt(FETCH_SIZE_STR != null ? FETCH_SIZE_STR : "0");
 	private static final String MAX_ROWS_STR = ConfigFileUtils.get("app.datasource.max-rows");
 	public static final int MAX_ROWS = Integer.parseInt(MAX_ROWS_STR != null ? MAX_ROWS_STR : "1000");
 	private static final String QUERY_TIMEOUT_STR = ConfigFileUtils.get("app.datasource.query-timeout");
