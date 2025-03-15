@@ -58,6 +58,13 @@ public class ProfileService {
         return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
 
+	public List<ProfileGetDto> findMatches(Long id, ProfileFilter filter) {
+		if (id == null) {
+			return List.of();
+		}
+		return dao.findMatches(id, filter).stream().map(profileToProfileGetDtoMapper::map).toList();
+	}
+
     public Optional<UserDetails> login(LoginDto dto) {
         return dao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).map(profileToUserDetailsMapper::map);
     }
