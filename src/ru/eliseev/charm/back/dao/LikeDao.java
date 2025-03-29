@@ -18,6 +18,7 @@ public class LikeDao {
 		return INSTANCE;
 	}
 
+	@SneakyThrows
 	public void like(Long fromProfileId, Long toProfileId, boolean isLike) {
 		//language=POSTGRES-PSQL
 		String select = """
@@ -32,9 +33,16 @@ public class LikeDao {
 							ON CONFLICT (from_profile, to_profile)
 							DO UPDATE SET "like" = ?, match = ?
 				""";
-		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement selectStmt = conn.prepareStatement(select);
-			 PreparedStatement insertStmt = conn.prepareStatement(insert)) {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		PreparedStatement insertStmt = null;
+		try {
+			conn = ConnectionManager.getConnection();
+			conn.setAutoCommit(false);
+			
+			selectStmt = conn.prepareStatement(select);
+			insertStmt = conn.prepareStatement(insert);
+
 			boolean isMatch = false;
 			if (isLike) {
 				selectStmt.setLong(1, toProfileId);
@@ -53,8 +61,25 @@ public class LikeDao {
 				fillInsert(insertStmt, fromProfileId, toProfileId, isLike, false);
 				insertStmt.executeUpdate();
 			}
+
+			conn.commit();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			if (conn != null) {
+				conn.rollback();
+			}
+			throw e;
+		} finally {
+			// rs.close()
+			if (selectStmt != null) {
+				selectStmt.close();
+			}
+			if (insertStmt != null) {
+				insertStmt.close();
+			}
+			if (conn != null) {
+				conn.setAutoCommit(true);
+				conn.close();
+			}
 		}
 	}
 
