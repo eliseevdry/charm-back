@@ -23,9 +23,10 @@ COMMENT ON COLUMN profile.status IS 'sortable';
 COMMENT ON COLUMN profile.role IS 'sortable';
 
 CREATE TABLE "like"(
-    from_profile BIGINT NOT NULL REFERENCES profile (id),
-    to_profile BIGINT NOT NULL REFERENCES profile (id),
+    from_profile BIGINT NOT NULL REFERENCES profile (id) ON DELETE CASCADE,
+    to_profile BIGINT NOT NULL REFERENCES profile (id) ON DELETE CASCADE,
     "like" BOOLEAN NOT NULL,
-    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    match BOOLEAN NOT NULL,
+    created_date TIMESTAMP NOT NULL DEFAULT current_timestamp,
     PRIMARY KEY (from_profile, to_profile)
 );

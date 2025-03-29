@@ -109,24 +109,25 @@ public class ProfileSelectQueryBuilder {
 		return this;
 	}
 
-	public ProfileSelectQueryBuilder addSortedColumn(String column) {
-		if (column == null) {
-			column = DEFAULT_SORTED_COLUMN;
-		}
-		sb.append(" ORDER BY ").append(column);
-		return this;
+	public Query build() {
+		int limit = DEFAULT_PAGE_SIZE;
+		int offset = limit * (DEFAULT_PAGE - 1);
+
+		sb.append(" ORDER BY id ASC OFFSET ? LIMIT ?");
+		args.add(offset);
+		args.add(limit);
+		return new Query(sb.toString(), args);
 	}
 
-	public ProfileSelectQueryBuilder addPageAndPageSize(Integer page, Integer pageSize) {
+	public Query build(String sort, Integer page, Integer pageSize) {
+		sb.append(" ORDER BY ").append(sort == null ? DEFAULT_SORTED_COLUMN : sort);
+
 		int limit = pageSize == null ? DEFAULT_PAGE_SIZE : pageSize;
 		int offset = page == null ? limit * (DEFAULT_PAGE - 1) : limit * (page - 1);
+
 		sb.append(" OFFSET ? LIMIT ?");
 		args.add(offset);
 		args.add(limit);
-		return this;
-	}
-
-	public Query build() {
 		return new Query(sb.toString(), args);
 	}
 }

@@ -22,7 +22,6 @@ import ru.eliseev.charm.back.mapper.ProfileFullUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
-import ru.eliseev.charm.back.mapper.RegistrationDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -44,8 +43,6 @@ public class ProfileService {
 
     private final CredentialsDtoToProfileMapper credentialsDtoToProfileMapper = CredentialsDtoToProfileMapper.getInstance();
 
-    private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
-
     public static ProfileService getInstance() {
         return INSTANCE;
     }
@@ -60,6 +57,13 @@ public class ProfileService {
         }
         return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
+
+	public List<ProfileGetDto> findMatches(Long id, ProfileFilter filter) {
+		if (id == null) {
+			return List.of();
+		}
+		return dao.findMatches(id, filter).stream().map(profileToProfileGetDtoMapper::map).toList();
+	}
 
     public Optional<UserDetails> login(LoginDto dto) {
         return dao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).map(profileToUserDetailsMapper::map);

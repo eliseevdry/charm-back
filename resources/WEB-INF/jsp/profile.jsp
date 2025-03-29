@@ -64,6 +64,9 @@
                         <td>
                             <a href="/profile/pdf?id=${profile.id}"><img src="content/app/img/id.png" alt="" width="75"></a>
                         </td>
+                        <td>
+                            <a href="/matches"><img src="content/app/img/flame.png" width="75"></a>
+                        </td>
                     </tr>
                 </table>
             </form>

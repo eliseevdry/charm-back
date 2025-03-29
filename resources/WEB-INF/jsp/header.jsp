@@ -8,14 +8,14 @@
             </td>
             <td>
                 <form method="post" action="/lang">
-                    <button type="submit" name="lang" value="ru" class="langButton">
+                    <button type="submit" name="lang" value="ru" class="hiddenButton">
                         <img src="content/app/img/ru.png" class="langImg">
                     </button>
                 </form>
             </td>
             <td>
                 <form method="post" action="/lang">
-                    <button type="submit" name="lang" value="en" class="langButton">
+                    <button type="submit" name="lang" value="en" class="hiddenButton">
                         <img src="content/app/img/en.png" class="langImg">
                     </button>
                 </form>
