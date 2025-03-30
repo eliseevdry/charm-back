@@ -10,7 +10,19 @@ import ru.eliseev.charm.back.utils.ConnectionManager;
 
 @Slf4j
 public class LikeDao {
-
+	//language=POSTGRES-PSQL
+	private static final String SELECT = """
+						SELECT l.*
+						FROM "like" l
+						WHERE l.from_profile = ? AND l.to_profile = ?
+			""";
+	//language=POSTGRES-PSQL
+	private static final String INSERT = """
+						INSERT INTO "like" (from_profile, to_profile, "like", match)
+						VALUES (?, ?, ?, ?)
+						ON CONFLICT (from_profile, to_profile)
+						DO UPDATE SET "like" = ?, match = ?
+			""";
 	private static final LikeDao INSTANCE = new LikeDao();
 
 	@SneakyThrows
@@ -20,28 +32,15 @@ public class LikeDao {
 
 	@SneakyThrows
 	public void like(Long fromProfileId, Long toProfileId, boolean isLike) {
-		//language=POSTGRES-PSQL
-		String select = """
-							SELECT l.*
-							FROM "like" l
-							WHERE l.from_profile = ? AND l.to_profile = ?
-				""";
-		//language=POSTGRES-PSQL
-		String insert = """
-							INSERT INTO "like" (from_profile, to_profile, "like", match)
-							VALUES (?, ?, ?, ?)
-							ON CONFLICT (from_profile, to_profile)
-							DO UPDATE SET "like" = ?, match = ?
-				""";
 		Connection conn = null;
 		PreparedStatement selectStmt = null;
 		PreparedStatement insertStmt = null;
 		try {
 			conn = ConnectionManager.getConnection();
 			conn.setAutoCommit(false);
-			
-			selectStmt = conn.prepareStatement(select);
-			insertStmt = conn.prepareStatement(insert);
+
+			selectStmt = conn.prepareStatement(SELECT);
+			insertStmt = conn.prepareStatement(INSERT);
 
 			boolean isMatch = false;
 			if (isLike) {
@@ -54,9 +53,10 @@ public class LikeDao {
 			}
 			if (isMatch) {
 				fillInsert(insertStmt, fromProfileId, toProfileId, true, true);
-				insertStmt.executeUpdate();
+				insertStmt.addBatch();
 				fillInsert(insertStmt, toProfileId, fromProfileId, true, true);
-				insertStmt.executeUpdate();
+				insertStmt.addBatch();
+				insertStmt.executeBatch();
 			} else {
 				fillInsert(insertStmt, fromProfileId, toProfileId, isLike, false);
 				insertStmt.executeUpdate();

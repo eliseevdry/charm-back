@@ -120,112 +120,126 @@
                     </tr>
                 </table>
             </form>
-            <table>
-                <tr>
-                    <td>
-                        <a href="${sortUrlWithId}" class="hiddenLink">
-                            <h3>
-                                id
-                                <c:if test="${filter.sort == 'id' or filter.sort == null}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithEmail}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("email")}
-                                <c:if test="${filter.sort == 'email'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithName}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("name")}
-                                <c:if test="${filter.sort == 'name'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithSurname}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("surname")}
-                                <c:if test="${filter.sort == 'surname'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithAge}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("age")}
-                                <c:if test="${filter.sort == 'birth_date'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithStatus}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("status")}
-                                <c:if test="${filter.sort == 'status'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="${sortUrlWithRole}" class="hiddenLink">
-                            <h3>
-                                ${wordBundle.getWord("role")}
-                                <c:if test="${filter.sort == 'role'}">
-                                    ^
-                                </c:if>
-                            </h3>
-                        </a>
-                    </td>
-                </tr>
-                <c:forEach var="profile" items="${profiles}">
+            <form action="/profiles" method="post">
+                <input type="hidden" name="_method" value="put"/>
+                <table>
                     <tr>
-                        <td><h4>${profile.id}</h4></td>
-                        <td><h4>${profile.email}</h4></td>
-                        <td><h4>${profile.name}</h4></td>
-                        <td><h4>${profile.surname}</h4></td>
-                        <td><h4>${profile.age}</h4></td>
                         <td>
-                            <form action="/profile" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="_method" value="put"/>
-                                <input type="hidden" name="id" value="${profile.id}">
-                                <select name="status" class="filterInput">
-                                    <c:forEach var="statusVar" items="${applicationScope.statuses}">
-                                        <c:if test="${statusVar == profile.status}">
-                                            <option value="${statusVar}" selected>
-                                                ${wordBundle.getWord(statusVar)}
-                                            </option>
-                                        </c:if>
-                                        <c:if test="${statusVar != profile.status}">
-                                            <option value="${statusVar}">${wordBundle.getWord(statusVar)}
-                                            </option>
-                                        </c:if>
-                                    </c:forEach>
-                                </select>
-                                <c:if test="${profile.role != 'ADMIN'}">
-                                    <button type="submit">${wordBundle.getWord("save")}</button>
-                                </c:if>
-                            </form>
+                            <a href="${sortUrlWithId}" class="hiddenLink">
+                                <h3>
+                                    id
+                                    <c:if test="${filter.sort == 'id' or filter.sort == null}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
                         </td>
-                        <td><h4>${profile.role}</h4></td>
+                        <td>
+                            <a href="${sortUrlWithEmail}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("email")}
+                                    <c:if test="${filter.sort == 'email'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${sortUrlWithName}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("name")}
+                                    <c:if test="${filter.sort == 'name'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${sortUrlWithSurname}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("surname")}
+                                    <c:if test="${filter.sort == 'surname'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${sortUrlWithAge}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("age")}
+                                    <c:if test="${filter.sort == 'birth_date'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${sortUrlWithStatus}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("status")}
+                                    <c:if test="${filter.sort == 'status'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${sortUrlWithRole}" class="hiddenLink">
+                                <h3>
+                                    ${wordBundle.getWord("role")}
+                                    <c:if test="${filter.sort == 'role'}">
+                                        ^
+                                    </c:if>
+                                </h3>
+                            </a>
+                        </td>
                     </tr>
-                </c:forEach>
-            </table>
+                    <c:forEach var="profile" items="${profiles}">
+                        <tr>
+                            <td><h4>${profile.id}</h4></td>
+                            <td><h4>${profile.email}</h4></td>
+                            <td><h4>${profile.name}</h4></td>
+                            <td><h4>${profile.surname}</h4></td>
+                            <td><h4>${profile.age}</h4></td>
+                            <td>
+                                <c:if test="${profile.role == 'ADMIN'}">
+                                    <h4>${wordBundle.getWord(profile.status)}</h4>
+                                </c:if>
+                                <c:if test="${profile.role != 'ADMIN'}">
+                                    <select name="statusesWithIds" class="filterInput">
+                                        <c:forEach var="statusVar" items="${applicationScope.statuses}">
+                                            <c:if test="${statusVar == profile.status}">
+                                                <option value="skip" selected>
+                                                    ${wordBundle.getWord(statusVar)}
+                                                </option>
+                                            </c:if>
+                                            <c:if test="${statusVar != profile.status}">
+                                                <option value="${statusVar}_${profile.id}">
+                                                    ${wordBundle.getWord(statusVar)}
+                                                </option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </c:if>
+                            </td>
+                            <td><h4>${profile.role}</h4></td>
+                        </tr>
+                    </c:forEach>
+                    <tr class="hiddenRow">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
+                                   class="icon"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <%@ include file="footer.jsp" %>
     </body>

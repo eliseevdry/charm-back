@@ -15,6 +15,7 @@ import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
+import ru.eliseev.charm.back.dto.ProfileUpdateStatusDto;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.CredentialsDtoToProfileMapper;
@@ -86,6 +87,14 @@ public class ProfileService {
             }
             dao.update(profileUpdateDtoToProfileMapper.map(dto, optProfile.get()));
         }
+    }
+
+    @SneakyThrows
+    public void updateStatuses(List<ProfileUpdateStatusDto> dtos) {
+        if (dtos.isEmpty()) {
+            return;
+        }
+        dao.updateStatuses(dtos);
     }
 
     @SneakyThrows

@@ -6,6 +6,7 @@ import static ru.eliseev.charm.back.utils.ConnectionManager.FETCH_SIZE;
 import static ru.eliseev.charm.back.utils.ConnectionManager.MAX_ROWS;
 import static ru.eliseev.charm.back.utils.ConnectionManager.QUERY_TIMEOUT;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,17 +14,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileSelectQueryBuilder;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateQueryBuilder;
+import ru.eliseev.charm.back.dto.ProfileUpdateStatusDto;
 import ru.eliseev.charm.back.dto.Query;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileMapper;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileSimpleDtoMapper;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.model.Status;
 import ru.eliseev.charm.back.utils.ConnectionManager;
 
 @Slf4j
@@ -31,6 +37,8 @@ public class ProfileDao {
 
 	//language=POSTGRES-PSQL
 	public static final String INSERT = "INSERT INTO profile (email, password) VALUES (?, ?)";
+	//language=POSTGRES-PSQL
+	public static final String UPDATE_STATUSES = "UPDATE profile SET status = ? WHERE id IN (select unnest(?))";
 	//language=POSTGRES-PSQL
 	public static final String DELETE = "DELETE FROM profile WHERE id = ?";
 	//language=POSTGRES-PSQL
@@ -182,6 +190,50 @@ public class ProfileDao {
 		}
 	}
 
+	@SneakyThrows
+	public void updateStatuses(List<ProfileUpdateStatusDto> dtos) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = ConnectionManager.getConnection();
+			conn.setAutoCommit(false);
+
+			stmt = conn.prepareStatement(UPDATE_STATUSES);
+
+			Map<Status, Set<Long>> updateMap =
+					dtos.stream().collect(Collectors.groupingBy(
+									ProfileUpdateStatusDto::getStatus,
+									Collectors.mapping(ProfileUpdateStatusDto::getId, Collectors.toSet())
+							)
+					);
+
+			for (Map.Entry<Status, Set<Long>> entry : updateMap.entrySet()) {
+				Long[] idArray = entry.getValue().toArray(new Long[0]);
+				Array sqlArray = conn.createArrayOf("BIGINT", idArray);
+				stmt.setString(1, entry.getKey().toString());
+				stmt.setArray(2, sqlArray);
+				stmt.addBatch();
+			}
+
+			stmt.executeBatch();
+
+			conn.commit();
+		} catch (SQLException e) {
+			if (conn != null) {
+				conn.rollback();
+			}
+			throw e;
+		} finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.setAutoCommit(true);
+				conn.close();
+			}
+		}
+	}
+
 	public boolean delete(Long id) {
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(DELETE)) {
@@ -224,7 +276,7 @@ public class ProfileDao {
 			stmt.setObject(1, userId);
 			stmt.setInt(2, offset);
 			stmt.setInt(3, limit);
-			
+
 			ResultSet rs = stmt.executeQuery();
 
 			List<Profile> profiles = new ArrayList<>();
