@@ -45,19 +45,19 @@ public class ProfileDao {
 	public static final String SUITABLE = """
 			SELECT * FROM (
 				WITH current_user_profile AS (
-					SELECT id, gender, birth_date
-					FROM profile
-					WHERE id = ?
-				)
-				SELECT DISTINCT p.id, p.name, p.surname, p.birth_date, p.about, p.photo
-				FROM profile p
-					CROSS JOIN current_user_profile cup
-					LEFT JOIN "like" l on p.id = l.to_profile
-				WHERE (l.from_profile IS NULL OR l.from_profile != cup.id)
-					AND p.id != cup.id
-					AND p.gender = CASE WHEN cup.gender = 'MALE' THEN 'FEMALE' ELSE 'MALE' END
-					AND p.birth_date BETWEEN (cup.birth_date - INTERVAL '5 years') AND (cup.birth_date + INTERVAL '5 years')
-					AND p.status = 'ACTIVE'
+			 					SELECT id, gender, birth_date
+			 					FROM profile
+			 					WHERE id = ?
+			 				)
+			 				SELECT p.id, p.name, p.surname, p.birth_date, p.about, p.photo
+			 				FROM profile p
+			 					CROSS JOIN current_user_profile cup
+			 					LEFT JOIN "like" l ON l.from_profile = cup.id AND l.to_profile = p.id
+			 				WHERE l.from_profile IS NULL
+			 					AND p.id != cup.id
+			 				    AND p.status = 'ACTIVE'
+			 					AND p.gender = CASE WHEN cup.gender = 'MALE' THEN 'FEMALE' ELSE 'MALE' END
+			 					AND p.birth_date BETWEEN (cup.birth_date - INTERVAL '5 years') AND (cup.birth_date + INTERVAL '5 years')
 			) ORDER BY RANDOM() LIMIT ?
 			""";
 	//language=POSTGRES-PSQL

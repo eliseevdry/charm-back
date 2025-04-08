@@ -1,485 +1,259 @@
-INSERT INTO profile (email, password, name, surname, birth_date, about, gender, status, role) VALUES
-('admin@charm.ru', 'qwerty', 'Admin', NULL, NULL, NULL, NULL, 'INACTIVE', 'ADMIN'),
-('ivanov@mail.ru', '123', 'Ivan', 'Ivanov', '2001-12-03', 'I am QA', 'MALE', 'ACTIVE', 'USER'),
-('sidorova@mail.ru', '456', 'Elena', 'Sidorova', '1999-09-01', 'I am Java Dev', 'FEMALE', 'ACTIVE', 'USER'),
-('user1@example.com', 'password1', 'Иван', 'Иванов', '1990-01-01', 'Привет, я Иван!', 'MALE', 'ACTIVE', 'USER'),
-('user2@example.com', 'password2', 'Мария', 'Петрова', '1995-05-15', 'Привет, я Мария!', 'FEMALE', 'INACTIVE', 'ADMIN'),
-('user3@example.com', 'password3', 'Алексей', 'Сидоров', '1985-12-31', 'Привет, я Алексей!', 'MALE', 'ACTIVE', 'USER'),
-('user4@example.com', 'password4', 'Ольга', 'Козлова', '1992-07-20', 'Привет, я Ольга!', 'FEMALE', 'INACTIVE', 'USER'),
-('user5@example.com', 'password5', 'Дмитрий', 'Федоров', '1988-11-11', 'Привет, я Дмитрий!', 'MALE', 'ACTIVE', 'USER'),
-('user6@example.com', 'password6', 'Елена', 'Смирнова', '1991-03-22', 'Привет, я Елена!', 'FEMALE', 'INACTIVE', 'USER'),
-('user7@example.com', 'password7', 'Сергей', 'Васильев', '1987-09-10', 'Привет, я Сергей!', 'MALE', 'ACTIVE', 'USER'),
-('user8@example.com', 'password8', 'Анна', 'Павлова', '1994-06-05', 'Привет, я Анна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user9@example.com', 'password9', 'Павел', 'Семенов', '1986-04-18', 'Привет, я Павел!', 'MALE', 'ACTIVE', 'USER'),
-('user10@example.com', 'password10', 'Татьяна', 'Григорьева', '1993-08-25', 'Привет, я Татьяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user11@example.com', 'password11', 'Николай', 'Борисов', '1989-02-14', 'Привет, я Николай!', 'MALE', 'ACTIVE', 'USER'),
-('user12@example.com', 'password12', 'Юлия', 'Михайлова', '1996-12-30', 'Привет, я Юлия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user13@example.com', 'password13', 'Андрей', 'Кузнецов', '1984-07-07', 'Привет, я Андрей!', 'MALE', 'ACTIVE', 'USER'),
-('user14@example.com', 'password14', 'Екатерина', 'Новикова', '1997-10-12', 'Привет, я Екатерина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user15@example.com', 'password15', 'Владимир', 'Морозов', '1983-05-19', 'Привет, я Владимир!', 'MALE', 'ACTIVE', 'USER'),
-('user16@example.com', 'password16', 'Оксана', 'Волкова', '1998-09-03', 'Привет, я Оксана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user17@example.com', 'password17', 'Артем', 'Алексеев', '1982-11-28', 'Привет, я Артем!', 'MALE', 'ACTIVE', 'USER'),
-('user18@example.com', 'password18', 'Наталья', 'Лебедева', '1999-04-16', 'Привет, я Наталья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user19@example.com', 'password19', 'Игорь', 'Соколов', '1981-08-22', 'Привет, я Игорь!', 'MALE', 'ACTIVE', 'USER'),
-('user20@example.com', 'password20', 'Людмила', 'Козлова', '2000-01-07', 'Привет, я Людмила!', 'FEMALE', 'INACTIVE', 'USER'),
-('user21@example.com', 'password21', 'Виктор', 'Егоров', '1980-03-14', 'Привет, я Виктор!', 'MALE', 'ACTIVE', 'USER'),
-('user22@example.com', 'password22', 'Светлана', 'Орлова', '2001-06-29', 'Привет, я Светлана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user23@example.com', 'password23', 'Геннадий', 'Андреев', '1979-12-25', 'Привет, я Геннадий!', 'MALE', 'ACTIVE', 'USER'),
-('user24@example.com', 'password24', 'Алина', 'Макарова', '2002-02-18', 'Привет, я Алина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user25@example.com', 'password25', 'Роман', 'Николаев', '1978-10-11', 'Привет, я Роман!', 'MALE', 'ACTIVE', 'USER'),
-('user26@example.com', 'password26', 'Валентина', 'Захарова', '2003-07-04', 'Привет, я Валентина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user27@example.com', 'password27', 'Анатолий', 'Степанов', '1977-04-30', 'Привет, я Анатолий!', 'MALE', 'ACTIVE', 'USER'),
-('user28@example.com', 'password28', 'Галина', 'Медведева', '2004-09-23', 'Привет, я Галина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user29@example.com', 'password29', 'Валерий', 'Козлов', '1976-01-15', 'Привет, я Валерий!', 'MALE', 'ACTIVE', 'USER'),
-('user30@example.com', 'password30', 'Лариса', 'Семенова', '2005-05-10', 'Привет, я Лариса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user31@example.com', 'password31', 'Борис', 'Павлов', '1975-08-05', 'Привет, я Борис!', 'MALE', 'ACTIVE', 'USER'),
-('user32@example.com', 'password32', 'Инна', 'Громова', '1991-12-20', 'Привет, я Инна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user33@example.com', 'password33', 'Константин', 'Титов', '1974-03-17', 'Привет, я Константин!', 'MALE', 'ACTIVE', 'USER'),
-('user34@example.com', 'password34', 'Вера', 'Крылова', '1992-11-08', 'Привет, я Вера!', 'FEMALE', 'INACTIVE', 'USER'),
-('user35@example.com', 'password35', 'Станислав', 'Комаров', '1973-06-02', 'Привет, я Станислав!', 'MALE', 'ACTIVE', 'USER'),
-('user36@example.com', 'password36', 'Маргарита', 'Белова', '1993-04-27', 'Привет, я Маргарита!', 'FEMALE', 'INACTIVE', 'USER'),
-('user37@example.com', 'password37', 'Вячеслав', 'Щербаков', '1972-09-19', 'Привет, я Вячеслав!', 'MALE', 'ACTIVE', 'USER'),
-('user38@example.com', 'password38', 'Регина', 'Маркова', '1994-02-14', 'Привет, я Регина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user39@example.com', 'password39', 'Григорий', 'Блинов', '1971-12-09', 'Привет, я Григорий!', 'MALE', 'ACTIVE', 'USER'),
-('user40@example.com', 'password40', 'Эльвира', 'Карпова', '1995-07-03', 'Привет, я Эльвира!', 'FEMALE', 'INACTIVE', 'USER'),
-('user41@example.com', 'password41', 'Руслан', 'Афанасьев', '1970-05-28', 'Привет, я Руслан!', 'MALE', 'ACTIVE', 'USER'),
-('user42@example.com', 'password42', 'Жанна', 'Власова', '1996-10-22', 'Привет, я Жанна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user43@example.com', 'password43', 'Федор', 'Маслов', '1969-08-16', 'Привет, я Федор!', 'MALE', 'ACTIVE', 'USER'),
-('user44@example.com', 'password44', 'Клавдия', 'Исаева', '1997-01-11', 'Привет, я Клавдия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user45@example.com', 'password45', 'Семен', 'Тихонов', '1968-04-05', 'Привет, я Семен!', 'MALE', 'ACTIVE', 'USER'),
-('user46@example.com', 'password46', 'Лидия', 'Фомина', '1998-09-29', 'Привет, я Лидия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user47@example.com', 'password47', 'Василий', 'Давыдов', '1967-02-23', 'Привет, я Василий!', 'MALE', 'ACTIVE', 'USER'),
-('user48@example.com', 'password48', 'Алла', 'Жукова', '1999-06-18', 'Привет, я Алла!', 'FEMALE', 'INACTIVE', 'USER'),
-('user49@example.com', 'password49', 'Леонид', 'Романов', '1966-11-12', 'Привет, я Леонид!', 'MALE', 'ACTIVE', 'USER'),
-('user50@example.com', 'password50', 'Варвара', 'Сорокина', '2000-03-07', 'Привет, я Варвара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user51@example.com', 'password51', 'Михаил', 'Кудрявцев', '1965-10-01', 'Привет, я Михаил!', 'MALE', 'ACTIVE', 'USER'),
-('user52@example.com', 'password52', 'Зоя', 'Терентьева', '2001-12-26', 'Привет, я Зоя!', 'FEMALE', 'INACTIVE', 'USER'),
-('user53@example.com', 'password53', 'Денис', 'Баранов', '1964-07-21', 'Привет, я Денис!', 'MALE', 'ACTIVE', 'USER'),
-('user54@example.com', 'password54', 'Ксения', 'Герасимова', '2002-05-15', 'Привет, я Ксения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user55@example.com', 'password55', 'Аркадий', 'Шаров', '1963-02-09', 'Привет, я Аркадий!', 'MALE', 'ACTIVE', 'USER'),
-('user56@example.com', 'password56', 'Нина', 'Ефимова', '2003-08-03', 'Привет, я Нина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user57@example.com', 'password57', 'Тимофей', 'Колесников', '1962-12-28', 'Привет, я Тимофей!', 'MALE', 'ACTIVE', 'USER'),
-('user58@example.com', 'password58', 'Раиса', 'Соловьева', '2004-04-22', 'Привет, я Раиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user59@example.com', 'password59', 'Юрий', 'Тарасов', '1961-09-16', 'Привет, я Юрий!', 'MALE', 'ACTIVE', 'USER'),
-('user60@example.com', 'password60', 'Антонина', 'Воронова', '2005-01-10', 'Привет, я Антонина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user61@example.com', 'password61', 'Вадим', 'Ермаков', '1960-06-05', 'Привет, я Вадим!', 'MALE', 'ACTIVE', 'USER'),
-('user62@example.com', 'password62', 'Любовь', 'Андреева', '2005-10-30', 'Привет, я Любовь!', 'FEMALE', 'INACTIVE', 'USER'),
-('user63@example.com', 'password63', 'Георгий', 'Горбунов', '1959-03-25', 'Привет, я Георгий!', 'MALE', 'ACTIVE', 'USER'),
-('user64@example.com', 'password64', 'Евгения', 'Орехова', '2005-07-19', 'Привет, я Евгения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user65@example.com', 'password65', 'Степан', 'Котов', '1958-12-13', 'Привет, я Степан!', 'MALE', 'ACTIVE', 'USER'),
-('user66@example.com', 'password66', 'Зинаида', 'Шестакова', '2005-05-08', 'Привет, я Зинаида!', 'FEMALE', 'INACTIVE', 'USER'),
-('user67@example.com', 'password67', 'Филипп', 'Бобылев', '1957-08-02', 'Привет, я Филипп!', 'MALE', 'ACTIVE', 'USER'),
-('user68@example.com', 'password68', 'Агата', 'Кондратьева', '2005-01-26', 'Привет, я Агата!', 'FEMALE', 'INACTIVE', 'USER'),
-('user69@example.com', 'password69', 'Илья', 'Гаврилов', '1956-04-21', 'Привет, я Илья!', 'MALE', 'ACTIVE', 'USER'),
-('user70@example.com', 'password70', 'Тамара', 'Рябова', '2005-09-15', 'Привет, я Тамара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user71@example.com', 'password71', 'Кирилл', 'Лазарев', '1955-02-09', 'Привет, я Кирилл!', 'MALE', 'ACTIVE', 'USER'),
-('user72@example.com', 'password72', 'Владислав', 'Ершов', '2005-06-04', 'Привет, я Владислав!', 'MALE', 'INACTIVE', 'USER'),
-('user73@example.com', 'password73', 'Ангелина', 'Трофимова', '1954-11-28', 'Привет, я Ангелина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user74@example.com', 'password74', 'Арсений', 'Кузьмин', '2005-03-23', 'Привет, я Арсений!', 'MALE', 'INACTIVE', 'USER'),
-('user75@example.com', 'password75', 'Кира', 'Максимова', '1953-08-17', 'Привет, я Кира!', 'FEMALE', 'ACTIVE', 'USER'),
-('user76@example.com', 'password76', 'Матвей', 'Осипов', '2005-01-11', 'Привет, я Матвей!', 'MALE', 'INACTIVE', 'USER'),
-('user77@example.com', 'password77', 'Нонна', 'Федотова', '1952-05-06', 'Привет, я Нонна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user78@example.com', 'password78', 'Дарья', 'Дорофеева', '2005-10-30', 'Привет, я Дарья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user79@example.com', 'password79', 'Глеб', 'Некрасов', '1951-12-24', 'Привет, я Глеб!', 'MALE', 'ACTIVE', 'USER'),
-('user80@example.com', 'password80', 'Эмма', 'Сазонова', '1990-04-19', 'Привет, я Эмма!', 'FEMALE', 'INACTIVE', 'USER'),
-('user81@example.com', 'password81', 'Ростислав', 'Бирюков', '1950-07-13', 'Привет, я Ростислав!', 'MALE', 'ACTIVE', 'USER'),
-('user82@example.com', 'password82', 'Лилия', 'Селезнева', '1990-11-07', 'Привет, я Лилия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user83@example.com', 'password83', 'Всеволод', 'Панфилов', '1949-02-01', 'Привет, я Всеволод!', 'MALE', 'ACTIVE', 'USER'),
-('user84@example.com', 'password84', 'Майя', 'Кононова', '1990-06-26', 'Привет, я Майя!', 'FEMALE', 'INACTIVE', 'USER'),
-('user85@example.com', 'password85', 'Савва', 'Гордеев', '1948-09-20', 'Привет, я Савва!', 'MALE', 'ACTIVE', 'USER'),
-('user86@example.com', 'password86', 'Ульяна', 'Лыткина', '1990-01-14', 'Привет, я Ульяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user87@example.com', 'password87', 'Прохор', 'Вишняков', '1947-04-09', 'Привет, я Прохор!', 'MALE', 'ACTIVE', 'USER'),
-('user88@example.com', 'password88', 'Евдокия', 'Евсеева', '1990-08-03', 'Привет, я Евдокия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user89@example.com', 'password89', 'Тарас', 'Лаврентьев', '1946-12-28', 'Привет, я Тарас!', 'MALE', 'ACTIVE', 'USER'),
-('user90@example.com', 'password90', 'Арина', 'Зимина', '1990-05-23', 'Привет, я Арина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user91@example.com', 'password91', 'Марк', 'Субботин', '1945-10-17', 'Привет, я Марк!', 'MALE', 'ACTIVE', 'USER'),
-('user92@example.com', 'password92', 'Кристина', 'Фокина', '1990-02-10', 'Привет, я Кристина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user93@example.com', 'password93', 'Демьян', 'Демин', '1944-05-05', 'Привет, я Демьян!', 'MALE', 'ACTIVE', 'USER'),
-('user94@example.com', 'password94', 'Алиса', 'Ситникова', '1990-09-29', 'Привет, я Алиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user95@example.com', 'password95', 'Артемий', 'Кошелев', '1943-12-23', 'Привет, я Артемий!', 'MALE', 'ACTIVE', 'USER'),
-('user96@example.com', 'password96', 'Василиса', 'Харитонова', '1990-04-18', 'Привет, я Василиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user97@example.com', 'password97', 'Серафим', 'Шубин', '1942-07-12', 'Привет, я Серафим!', 'MALE', 'ACTIVE', 'USER'),
-('user98@example.com', 'password98', 'Мирослава', 'Голубева', '1990-11-06', 'Привет, я Мирослава!', 'FEMALE', 'INACTIVE', 'USER'),
-('user99@example.com', 'password99', 'Тимофей', 'Беляков', '1941-02-01', 'Привет, я Тимофей!', 'MALE', 'ACTIVE', 'USER'),
-('user100@example.com', 'password100', 'Елизавета', 'Мельникова', '1990-06-26', 'Привет, я Елизавета!', 'FEMALE', 'INACTIVE', 'USER'),
-('user101@example.com', 'password101', 'Игнат', 'Кудряшов', '1940-09-20', 'Привет, я Игнат!', 'MALE', 'ACTIVE', 'USER'),
-('user102@example.com', 'password102', 'Варвара', 'Тихомирова', '1990-01-14', 'Привет, я Варвара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user103@example.com', 'password103', 'Лука', 'Большаков', '1939-04-09', 'Привет, я Лука!', 'MALE', 'ACTIVE', 'USER'),
-('user104@example.com', 'password104', 'Анфиса', 'Широкова', '1990-08-03', 'Привет, я Анфиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user105@example.com', 'password105', 'Родион', 'Филиппов', '1938-12-28', 'Привет, я Родион!', 'MALE', 'ACTIVE', 'USER'),
-('user106@example.com', 'password106', 'Клавдия', 'Пономарева', '1990-05-23', 'Привет, я Клавдия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user107@example.com', 'password107', 'Святослав', 'Мартынов', '1937-10-17', 'Привет, я Святослав!', 'MALE', 'ACTIVE', 'USER'),
-('user108@example.com', 'password108', 'Евлампия', 'Воронцова', '1990-02-10', 'Привет, я Евлампия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user109@example.com', 'password109', 'Гордей', 'Овчинников', '1936-05-05', 'Привет, я Гордей!', 'MALE', 'ACTIVE', 'USER'),
-('user110@example.com', 'password110', 'Алевтина', 'Соболева', '1990-09-29', 'Привет, я Алевтина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user111@example.com', 'password111', 'Мирон', 'Куликов', '1935-12-23', 'Привет, я Мирон!', 'MALE', 'ACTIVE', 'USER'),
-('user112@example.com', 'password112', 'Людмила', 'Нестерова', '1990-04-18', 'Привет, я Людмила!', 'FEMALE', 'INACTIVE', 'USER'),
-('user113@example.com', 'password113', 'Арсений', 'Мамонтов', '1934-07-12', 'Привет, я Арсений!', 'MALE', 'ACTIVE', 'USER'),
-('user114@example.com', 'password114', 'Агафья', 'Гущина', '1990-11-06', 'Привет, я Агафья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user115@example.com', 'password115', 'Ефим', 'Лукин', '1933-02-01', 'Привет, я Ефим!', 'MALE', 'ACTIVE', 'USER'),
-('user116@example.com', 'password116', 'Евдокия', 'Калинина', '1990-06-26', 'Привет, я Евдокия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user117@example.com', 'password117', 'Василий', 'Носков', '1932-09-20', 'Привет, я Василий!', 'MALE', 'ACTIVE', 'USER'),
-('user118@example.com', 'password118', 'Зинаида', 'Муравьева', '1990-01-14', 'Привет, я Зинаида!', 'FEMALE', 'INACTIVE', 'USER'),
-('user119@example.com', 'password119', 'Фома', 'Родионов', '1931-04-09', 'Привет, я Фома!', 'MALE', 'ACTIVE', 'USER'),
-('user120@example.com', 'password120', 'Ангелина', 'Самсонова', '1989-08-03', 'Привет, я Ангелина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user121@example.com', 'password121', 'Еремей', 'Мясников', '1930-12-28', 'Привет, я Еремей!', 'MALE', 'ACTIVE', 'USER'),
-('user122@example.com', 'password122', 'Евгения', 'Лихачева', '1989-05-23', 'Привет, я Евгения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user123@example.com', 'password123', 'Семен', 'Буров', '1929-10-17', 'Привет, я Семен!', 'MALE', 'ACTIVE', 'USER'),
-('user124@example.com', 'password124', 'Арина', 'Кулешова', '1989-02-10', 'Привет, я Арина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user125@example.com', 'password125', 'Трофим', 'Зыков', '1928-05-05', 'Привет, я Трофим!', 'MALE', 'ACTIVE', 'USER'),
-('user126@example.com', 'password126', 'Кира', 'Владимирова', '1989-09-29', 'Привет, я Кира!', 'FEMALE', 'INACTIVE', 'USER'),
-('user127@example.com', 'password127', 'Аркадий', 'Корчагин', '1927-12-23', 'Привет, я Аркадий!', 'MALE', 'ACTIVE', 'USER'),
-('user128@example.com', 'password128', 'Лариса', 'Ермакова', '1989-04-18', 'Привет, я Лариса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user129@example.com', 'password129', 'Марфа', 'Фролова', '1926-07-12', 'Привет, я Марфа!', 'FEMALE', 'ACTIVE', 'USER'),
-('user130@example.com', 'password130', 'Герасим', 'Степанов', '1989-11-06', 'Привет, я Герасим!', 'MALE', 'INACTIVE', 'USER'),
-('user131@example.com', 'password131', 'Александра', 'Горшкова', '1925-02-01', 'Привет, я Александра!', 'FEMALE', 'ACTIVE', 'USER'),
-('user132@example.com', 'password132', 'Евсей', 'Одинцов', '1989-06-26', 'Привет, я Евсей!', 'MALE', 'INACTIVE', 'USER'),
-('user133@example.com', 'password133', 'Антонина', 'Сазонова', '1924-09-20', 'Привет, я Антонина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user134@example.com', 'password134', 'Платон', 'Яковлев', '1989-01-14', 'Привет, я Платон!', 'MALE', 'INACTIVE', 'USER'),
-('user135@example.com', 'password135', 'Евдокия', 'Крылова', '1923-04-09', 'Привет, я Евдокия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user136@example.com', 'password136', 'Артем', 'Тихонов', '1989-08-03', 'Привет, я Артем!', 'MALE', 'INACTIVE', 'USER'),
-('user137@example.com', 'password137', 'Василиса', 'Белоусова', '1922-12-28', 'Привет, я Василиса!', 'FEMALE', 'ACTIVE', 'USER'),
-('user138@example.com', 'password138', 'Егор', 'Козлов', '1989-05-23', 'Привет, я Егор!', 'MALE', 'INACTIVE', 'USER'),
-('user139@example.com', 'password139', 'Анна', 'Маркова', '1921-10-17', 'Привет, я Анна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user140@example.com', 'password140', 'Дмитрий', 'Семенов', '1988-02-10', 'Привет, я Дмитрий!', 'MALE', 'INACTIVE', 'USER'),
-('user141@example.com', 'password141', 'Елена', 'Виноградова', '1920-05-05', 'Привет, я Елена!', 'FEMALE', 'ACTIVE', 'USER'),
-('user142@example.com', 'password142', 'Никита', 'Федоров', '1988-09-29', 'Привет, я Никита!', 'MALE', 'INACTIVE', 'USER'),
-('user143@example.com', 'password143', 'Ольга', 'Кузнецова', '1919-12-23', 'Привет, я Ольга!', 'FEMALE', 'ACTIVE', 'USER'),
-('user144@example.com', 'password144', 'Степан', 'Ильин', '1988-04-18', 'Привет, я Степан!', 'MALE', 'INACTIVE', 'USER'),
-('user145@example.com', 'password145', 'Таисия', 'Зайцева', '1918-07-12', 'Привет, я Таисия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user146@example.com', 'password146', 'Тимофей', 'Сорокин', '1988-11-06', 'Привет, я Тимофей!', 'MALE', 'INACTIVE', 'USER'),
-('user147@example.com', 'password147', 'Ульяна', 'Максимова', '1917-02-01', 'Привет, я Ульяна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user148@example.com', 'password148', 'Федор', 'Орлов', '1988-06-26', 'Привет, я Федор!', 'MALE', 'INACTIVE', 'USER'),
-('user149@example.com', 'password149', 'Юлия', 'Андреева', '1916-09-20', 'Привет, я Юлия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user150@example.com', 'password150', 'Яков', 'Григорьев', '1988-01-14', 'Привет, я Яков!', 'MALE', 'INACTIVE', 'USER'),
-('user151@example.com', 'password151', 'Алексей', 'Павлов', '1915-04-09', 'Привет, я Алексей!', 'MALE', 'ACTIVE', 'USER'),
-('user152@example.com', 'password152', 'Алина', 'Семенова', '1988-08-03', 'Привет, я Алина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user153@example.com', 'password153', 'Артем', 'Васильев', '1914-12-28', 'Привет, я Артем!', 'MALE', 'ACTIVE', 'USER'),
-('user154@example.com', 'password154', 'Валерия', 'Козлова', '1988-05-23', 'Привет, я Валерия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user155@example.com', 'password155', 'Виктор', 'Николаев', '1913-10-17', 'Привет, я Виктор!', 'MALE', 'ACTIVE', 'USER'),
-('user156@example.com', 'password156', 'Галина', 'Морозова', '1988-02-10', 'Привет, я Галина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user157@example.com', 'password157', 'Денис', 'Волков', '1912-05-05', 'Привет, я Денис!', 'MALE', 'ACTIVE', 'USER'),
-('user158@example.com', 'password158', 'Екатерина', 'Алексеева', '1988-09-29', 'Привет, я Екатерина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user159@example.com', 'password159', 'Игорь', 'Лебедев', '1911-12-23', 'Привет, я Игорь!', 'MALE', 'ACTIVE', 'USER'),
-('user160@example.com', 'password160', 'Ксения', 'Соколова', '1987-04-18', 'Привет, я Ксения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user161@example.com', 'password161', 'Максим', 'Кузнецов', '1910-07-12', 'Привет, я Максим!', 'MALE', 'ACTIVE', 'USER'),
-('user162@example.com', 'password162', 'Надежда', 'Новикова', '1987-11-06', 'Привет, я Надежда!', 'FEMALE', 'INACTIVE', 'USER'),
-('user163@example.com', 'password163', 'Олег', 'Федотов', '1909-02-01', 'Привет, я Олег!', 'MALE', 'ACTIVE', 'USER'),
-('user164@example.com', 'password164', 'Полина', 'Михайлова', '1987-06-26', 'Привет, я Полина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user165@example.com', 'password165', 'Роман', 'Белов', '1908-09-20', 'Привет, я Роман!', 'MALE', 'ACTIVE', 'USER'),
-('user166@example.com', 'password166', 'Светлана', 'Титова', '1987-01-14', 'Привет, я Светлана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user167@example.com', 'password167', 'Тимур', 'Комаров', '1907-04-09', 'Привет, я Тимур!', 'MALE', 'ACTIVE', 'USER'),
-('user168@example.com', 'password168', 'Ульяна', 'Орлова', '1987-08-03', 'Привет, я Ульяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user169@example.com', 'password169', 'Филипп', 'Андреев', '1906-12-28', 'Привет, я Филипп!', 'MALE', 'ACTIVE', 'USER'),
-('user170@example.com', 'password170', 'Элина', 'Макарова', '1987-05-23', 'Привет, я Элина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user171@example.com', 'password171', 'Юрий', 'Захаров', '1905-10-17', 'Привет, я Юрий!', 'MALE', 'ACTIVE', 'USER'),
-('user172@example.com', 'password172', 'Яна', 'Иванова', '1987-02-10', 'Привет, я Яна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user173@example.com', 'password173', 'Анатолий', 'Морозов', '1904-05-05', 'Привет, я Анатолий!', 'MALE', 'ACTIVE', 'USER'),
-('user174@example.com', 'password174', 'Борис', 'Смирнов', '1987-09-29', 'Привет, я Борис!', 'MALE', 'INACTIVE', 'USER'),
-('user175@example.com', 'password175', 'Валентина', 'Козлова', '1903-12-23', 'Привет, я Валентина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user176@example.com', 'password176', 'Геннадий', 'Волков', '1987-04-18', 'Привет, я Геннадий!', 'MALE', 'INACTIVE', 'USER'),
-('user177@example.com', 'password177', 'Дарья', 'Новикова', '1902-07-12', 'Привет, я Дарья!', 'FEMALE', 'ACTIVE', 'USER'),
-('user178@example.com', 'password178', 'Евгений', 'Федотов', '1987-11-06', 'Привет, я Евгений!', 'MALE', 'INACTIVE', 'USER'),
-('user179@example.com', 'password179', 'Жанна', 'Михайлова', '1901-02-01', 'Привет, я Жанна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user180@example.com', 'password180', 'Захар', 'Белов', '1986-06-26', 'Привет, я Захар!', 'MALE', 'INACTIVE', 'USER'),
-('user181@example.com', 'password181', 'Ирина', 'Титова', '1900-09-20', 'Привет, я Ирина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user182@example.com', 'password182', 'Кирилл', 'Комаров', '1986-01-14', 'Привет, я Кирилл!', 'MALE', 'INACTIVE', 'USER'),
-('user183@example.com', 'password183', 'Лариса', 'Орлова', '1899-04-09', 'Привет, я Лариса!', 'FEMALE', 'ACTIVE', 'USER'),
-('user184@example.com', 'password184', 'Михаил', 'Андреев', '1986-08-03', 'Привет, я Михаил!', 'MALE', 'INACTIVE', 'USER'),
-('user185@example.com', 'password185', 'Наталья', 'Макарова', '1898-12-28', 'Привет, я Наталья!', 'FEMALE', 'ACTIVE', 'USER'),
-('user186@example.com', 'password186', 'Оксана', 'Захарова', '1986-05-23', 'Привет, я Оксана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user187@example.com', 'password187', 'Павел', 'Иванов', '1897-10-17', 'Привет, я Павел!', 'MALE', 'ACTIVE', 'USER'),
-('user188@example.com', 'password188', 'Раиса', 'Смирнова', '1986-02-10', 'Привет, я Раиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user189@example.com', 'password189', 'Сергей', 'Козлов', '1896-05-05', 'Привет, я Сергей!', 'MALE', 'ACTIVE', 'USER'),
-('user190@example.com', 'password190', 'Тамара', 'Волкова', '1986-09-29', 'Привет, я Тамара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user191@example.com', 'password191', 'Ульяна', 'Новикова', '1895-12-23', 'Привет, я Ульяна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user192@example.com', 'password192', 'Федор', 'Федотов', '1986-04-18', 'Привет, я Федор!', 'MALE', 'INACTIVE', 'USER'),
-('user193@example.com', 'password193', 'Харитон', 'Михайлов', '1894-07-12', 'Привет, я Харитон!', 'MALE', 'ACTIVE', 'USER'),
-('user194@example.com', 'password194', 'Цветана', 'Белова', '1986-11-06', 'Привет, я Цветана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user195@example.com', 'password195', 'Чеслав', 'Титов', '1893-02-01', 'Привет, я Чеслав!', 'MALE', 'ACTIVE', 'USER'),
-('user196@example.com', 'password196', 'Шарлотта', 'Комарова', '1986-06-26', 'Привет, я Шарлотта!', 'FEMALE', 'INACTIVE', 'USER'),
-('user197@example.com', 'password197', 'Эдуард', 'Орлов', '1892-09-20', 'Привет, я Эдуард!', 'MALE', 'ACTIVE', 'USER'),
-('user198@example.com', 'password198', 'Юлианна', 'Андреева', '1986-01-14', 'Привет, я Юлианна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user199@example.com', 'password199', 'Ярослав', 'Макаров', '1891-04-09', 'Привет, я Ярослав!', 'MALE', 'ACTIVE', 'USER'),
-('user200@example.com', 'password200', 'Анжела', 'Захарова', '1985-08-03', 'Привет, я Анжела!', 'FEMALE', 'INACTIVE', 'USER'),
-('user201@example.com', 'password201', 'Иван', 'Иванов', '1950-01-01', 'Привет, я Иван!', 'MALE', 'ACTIVE', 'USER'),
-('user202@example.com', 'password202', 'Мария', 'Петрова', '1951-05-15', 'Привет, я Мария!', 'FEMALE', 'INACTIVE', 'USER'),
-('user203@example.com', 'password203', 'Алексей', 'Сидоров', '1952-12-31', 'Привет, я Алексей!', 'MALE', 'ACTIVE', 'USER'),
-('user204@example.com', 'password204', 'Ольга', 'Козлова', '1953-07-20', 'Привет, я Ольга!', 'FEMALE', 'INACTIVE', 'USER'),
-('user205@example.com', 'password205', 'Дмитрий', 'Федоров', '1954-11-11', 'Привет, я Дмитрий!', 'MALE', 'ACTIVE', 'USER'),
-('user206@example.com', 'password206', 'Елена', 'Смирнова', '1955-03-22', 'Привет, я Елена!', 'FEMALE', 'INACTIVE', 'USER'),
-('user207@example.com', 'password207', 'Сергей', 'Васильев', '1956-09-10', 'Привет, я Сергей!', 'MALE', 'ACTIVE', 'USER'),
-('user208@example.com', 'password208', 'Анна', 'Павлова', '1957-06-05', 'Привет, я Анна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user209@example.com', 'password209', 'Павел', 'Семенов', '1958-04-18', 'Привет, я Павел!', 'MALE', 'ACTIVE', 'USER'),
-('user210@example.com', 'password210', 'Татьяна', 'Григорьева', '1959-08-25', 'Привет, я Татьяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user211@example.com', 'password211', 'Николай', 'Борисов', '1960-02-14', 'Привет, я Николай!', 'MALE', 'ACTIVE', 'USER'),
-('user212@example.com', 'password212', 'Юлия', 'Михайлова', '1961-12-30', 'Привет, я Юлия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user213@example.com', 'password213', 'Андрей', 'Кузнецов', '1962-07-07', 'Привет, я Андрей!', 'MALE', 'ACTIVE', 'USER'),
-('user214@example.com', 'password214', 'Екатерина', 'Новикова', '1963-10-12', 'Привет, я Екатерина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user215@example.com', 'password215', 'Владимир', 'Морозов', '1964-05-19', 'Привет, я Владимир!', 'MALE', 'ACTIVE', 'USER'),
-('user216@example.com', 'password216', 'Оксана', 'Волкова', '1965-09-03', 'Привет, я Оксана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user217@example.com', 'password217', 'Артем', 'Алексеев', '1966-11-28', 'Привет, я Артем!', 'MALE', 'ACTIVE', 'USER'),
-('user218@example.com', 'password218', 'Наталья', 'Лебедева', '1967-04-16', 'Привет, я Наталья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user219@example.com', 'password219', 'Игорь', 'Соколов', '1968-08-22', 'Привет, я Игорь!', 'MALE', 'ACTIVE', 'USER'),
-('user220@example.com', 'password220', 'Людмила', 'Козлова', '1969-01-07', 'Привет, я Людмила!', 'FEMALE', 'INACTIVE', 'USER'),
-('user221@example.com', 'password221', 'Виктор', 'Егоров', '1970-03-14', 'Привет, я Виктор!', 'MALE', 'ACTIVE', 'USER'),
-('user222@example.com', 'password222', 'Светлана', 'Орлова', '1971-06-29', 'Привет, я Светлана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user223@example.com', 'password223', 'Геннадий', 'Андреев', '1972-12-25', 'Привет, я Геннадий!', 'MALE', 'ACTIVE', 'USER'),
-('user224@example.com', 'password224', 'Алина', 'Макарова', '1973-02-18', 'Привет, я Алина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user225@example.com', 'password225', 'Роман', 'Николаев', '1974-10-11', 'Привет, я Роман!', 'MALE', 'ACTIVE', 'USER'),
-('user226@example.com', 'password226', 'Валентина', 'Захарова', '1975-07-04', 'Привет, я Валентина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user227@example.com', 'password227', 'Анатолий', 'Степанов', '1976-04-30', 'Привет, я Анатолий!', 'MALE', 'ACTIVE', 'USER'),
-('user228@example.com', 'password228', 'Галина', 'Медведева', '1977-09-23', 'Привет, я Галина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user229@example.com', 'password229', 'Валерий', 'Козлов', '1978-01-15', 'Привет, я Валерий!', 'MALE', 'ACTIVE', 'USER'),
-('user230@example.com', 'password230', 'Лариса', 'Семенова', '1979-05-10', 'Привет, я Лариса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user231@example.com', 'password231', 'Борис', 'Павлов', '1980-08-05', 'Привет, я Борис!', 'MALE', 'ACTIVE', 'USER'),
-('user232@example.com', 'password232', 'Инна', 'Громова', '1981-12-20', 'Привет, я Инна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user233@example.com', 'password233', 'Константин', 'Титов', '1982-03-17', 'Привет, я Константин!', 'MALE', 'ACTIVE', 'USER'),
-('user234@example.com', 'password234', 'Вера', 'Крылова', '1983-11-08', 'Привет, я Вера!', 'FEMALE', 'INACTIVE', 'USER'),
-('user235@example.com', 'password235', 'Станислав', 'Комаров', '1984-06-02', 'Привет, я Станислав!', 'MALE', 'ACTIVE', 'USER'),
-('user236@example.com', 'password236', 'Маргарита', 'Белова', '1985-04-27', 'Привет, я Маргарита!', 'FEMALE', 'INACTIVE', 'USER'),
-('user237@example.com', 'password237', 'Вячеслав', 'Щербаков', '1986-09-19', 'Привет, я Вячеслав!', 'MALE', 'ACTIVE', 'USER'),
-('user238@example.com', 'password238', 'Регина', 'Маркова', '1987-02-14', 'Привет, я Регина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user239@example.com', 'password239', 'Григорий', 'Блинов', '1988-12-09', 'Привет, я Григорий!', 'MALE', 'ACTIVE', 'USER'),
-('user240@example.com', 'password240', 'Эльвира', 'Карпова', '1989-07-03', 'Привет, я Эльвира!', 'FEMALE', 'INACTIVE', 'USER'),
-('user241@example.com', 'password241', 'Руслан', 'Афанасьев', '1990-05-28', 'Привет, я Руслан!', 'MALE', 'ACTIVE', 'USER'),
-('user242@example.com', 'password242', 'Жанна', 'Власова', '1991-10-22', 'Привет, я Жанна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user243@example.com', 'password243', 'Федор', 'Маслов', '1992-08-16', 'Привет, я Федор!', 'MALE', 'ACTIVE', 'USER'),
-('user244@example.com', 'password244', 'Клавдия', 'Исаева', '1993-01-11', 'Привет, я Клавдия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user245@example.com', 'password245', 'Семен', 'Тихонов', '1994-04-05', 'Привет, я Семен!', 'MALE', 'ACTIVE', 'USER'),
-('user246@example.com', 'password246', 'Лидия', 'Фомина', '1995-09-29', 'Привет, я Лидия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user247@example.com', 'password247', 'Василий', 'Давыдов', '1996-02-23', 'Привет, я Василий!', 'MALE', 'ACTIVE', 'USER'),
-('user248@example.com', 'password248', 'Алла', 'Жукова', '1997-06-18', 'Привет, я Алла!', 'FEMALE', 'INACTIVE', 'USER'),
-('user249@example.com', 'password249', 'Леонид', 'Романов', '1998-11-12', 'Привет, я Леонид!', 'MALE', 'ACTIVE', 'USER'),
-('user250@example.com', 'password250', 'Варвара', 'Сорокина', '1999-03-07', 'Привет, я Варвара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user251@example.com', 'password251', 'Михаил', 'Кудрявцев', '2000-10-01', 'Привет, я Михаил!', 'MALE', 'ACTIVE', 'USER'),
-('user252@example.com', 'password252', 'Зоя', 'Терентьева', '2001-12-26', 'Привет, я Зоя!', 'FEMALE', 'INACTIVE', 'USER'),
-('user253@example.com', 'password253', 'Денис', 'Баранов', '2002-07-21', 'Привет, я Денис!', 'MALE', 'ACTIVE', 'USER'),
-('user254@example.com', 'password254', 'Ксения', 'Герасимова', '2003-05-15', 'Привет, я Ксения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user255@example.com', 'password255', 'Аркадий', 'Шаров', '2004-02-09', 'Привет, я Аркадий!', 'MALE', 'ACTIVE', 'USER'),
-('user256@example.com', 'password256', 'Нина', 'Ефимова', '2005-08-03', 'Привет, я Нина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user257@example.com', 'password257', 'Тимофей', 'Колесников', '1950-12-28', 'Привет, я Тимофей!', 'MALE', 'ACTIVE', 'USER'),
-('user258@example.com', 'password258', 'Раиса', 'Соловьева', '1951-04-22', 'Привет, я Раиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user259@example.com', 'password259', 'Юрий', 'Тарасов', '1952-09-16', 'Привет, я Юрий!', 'MALE', 'ACTIVE', 'USER'),
-('user260@example.com', 'password260', 'Антонина', 'Воронова', '1953-01-10', 'Привет, я Антонина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user261@example.com', 'password261', 'Вадим', 'Ермаков', '1954-06-05', 'Привет, я Вадим!', 'MALE', 'ACTIVE', 'USER'),
-('user262@example.com', 'password262', 'Любовь', 'Андреева', '1955-10-30', 'Привет, я Любовь!', 'FEMALE', 'INACTIVE', 'USER'),
-('user263@example.com', 'password263', 'Георгий', 'Горбунов', '1956-03-25', 'Привет, я Георгий!', 'MALE', 'ACTIVE', 'USER'),
-('user264@example.com', 'password264', 'Евгения', 'Орехова', '1957-07-19', 'Привет, я Евгения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user265@example.com', 'password265', 'Степан', 'Котов', '1958-12-13', 'Привет, я Степан!', 'MALE', 'ACTIVE', 'USER'),
-('user266@example.com', 'password266', 'Зинаида', 'Шестакова', '1959-05-08', 'Привет, я Зинаида!', 'FEMALE', 'INACTIVE', 'USER'),
-('user267@example.com', 'password267', 'Филипп', 'Бобылев', '1960-08-02', 'Привет, я Филипп!', 'MALE', 'ACTIVE', 'USER'),
-('user268@example.com', 'password268', 'Агата', 'Кондратьева', '1961-01-26', 'Привет, я Агата!', 'FEMALE', 'INACTIVE', 'USER'),
-('user269@example.com', 'password269', 'Илья', 'Гаврилов', '1962-04-21', 'Привет, я Илья!', 'MALE', 'ACTIVE', 'USER'),
-('user270@example.com', 'password270', 'Тамара', 'Рябова', '1963-09-15', 'Привет, я Тамара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user271@example.com', 'password271', 'Кирилл', 'Лазарев', '1964-02-09', 'Привет, я Кирилл!', 'MALE', 'ACTIVE', 'USER'),
-('user272@example.com', 'password272', 'Владислав', 'Ершов', '1965-06-04', 'Привет, я Владислав!', 'MALE', 'INACTIVE', 'USER'),
-('user273@example.com', 'password273', 'Ангелина', 'Трофимова', '1966-11-28', 'Привет, я Ангелина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user274@example.com', 'password274', 'Арсений', 'Кузьмин', '1967-03-23', 'Привет, я Арсений!', 'MALE', 'INACTIVE', 'USER'),
-('user275@example.com', 'password275', 'Кира', 'Максимова', '1968-08-17', 'Привет, я Кира!', 'FEMALE', 'ACTIVE', 'USER'),
-('user276@example.com', 'password276', 'Матвей', 'Осипов', '1969-01-11', 'Привет, я Матвей!', 'MALE', 'INACTIVE', 'USER'),
-('user277@example.com', 'password277', 'Нонна', 'Федотова', '1970-05-06', 'Привет, я Нонна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user278@example.com', 'password278', 'Дарья', 'Дорофеева', '1971-10-30', 'Привет, я Дарья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user279@example.com', 'password279', 'Глеб', 'Некрасов', '1972-12-24', 'Привет, я Глеб!', 'MALE', 'ACTIVE', 'USER'),
-('user280@example.com', 'password280', 'Эмма', 'Сазонова', '1973-04-19', 'Привет, я Эмма!', 'FEMALE', 'INACTIVE', 'USER'),
-('user281@example.com', 'password281', 'Ростислав', 'Бирюков', '1974-07-13', 'Привет, я Ростислав!', 'MALE', 'ACTIVE', 'USER'),
-('user282@example.com', 'password282', 'Лилия', 'Селезнева', '1975-11-07', 'Привет, я Лилия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user283@example.com', 'password283', 'Всеволод', 'Панфилов', '1976-02-01', 'Привет, я Всеволод!', 'MALE', 'ACTIVE', 'USER'),
-('user284@example.com', 'password284', 'Майя', 'Кононова', '1977-06-26', 'Привет, я Майя!', 'FEMALE', 'INACTIVE', 'USER'),
-('user285@example.com', 'password285', 'Савва', 'Гордеев', '1978-09-20', 'Привет, я Савва!', 'MALE', 'ACTIVE', 'USER'),
-('user286@example.com', 'password286', 'Ульяна', 'Лыткина', '1979-01-14', 'Привет, я Ульяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user287@example.com', 'password287', 'Прохор', 'Вишняков', '1980-04-09', 'Привет, я Прохор!', 'MALE', 'ACTIVE', 'USER'),
-('user288@example.com', 'password288', 'Евдокия', 'Евсеева', '1981-08-03', 'Привет, я Евдокия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user289@example.com', 'password289', 'Тарас', 'Лаврентьев', '1982-12-28', 'Привет, я Тарас!', 'MALE', 'ACTIVE', 'USER'),
-('user290@example.com', 'password290', 'Арина', 'Зимина', '1983-05-23', 'Привет, я Арина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user291@example.com', 'password291', 'Марк', 'Субботин', '1984-10-17', 'Привет, я Марк!', 'MALE', 'ACTIVE', 'USER'),
-('user292@example.com', 'password292', 'Кристина', 'Фокина', '1985-02-10', 'Привет, я Кристина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user293@example.com', 'password293', 'Демьян', 'Демин', '1986-05-05', 'Привет, я Демьян!', 'MALE', 'ACTIVE', 'USER'),
-('user294@example.com', 'password294', 'Алиса', 'Ситникова', '1987-09-29', 'Привет, я Алиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user295@example.com', 'password295', 'Артемий', 'Кошелев', '1988-12-23', 'Привет, я Артемий!', 'MALE', 'ACTIVE', 'USER'),
-('user296@example.com', 'password296', 'Василиса', 'Харитонова', '1989-04-18', 'Привет, я Василиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user297@example.com', 'password297', 'Серафим', 'Шубин', '1990-07-12', 'Привет, я Серафим!', 'MALE', 'ACTIVE', 'USER'),
-('user298@example.com', 'password298', 'Мирослава', 'Голубева', '1991-11-06', 'Привет, я Мирослава!', 'FEMALE', 'INACTIVE', 'USER'),
-('user299@example.com', 'password299', 'Тимофей', 'Беляков', '1992-02-01', 'Привет, я Тимофей!', 'MALE', 'ACTIVE', 'USER'),
-('user300@example.com', 'password300', 'Елизавета', 'Мельникова', '1993-06-26', 'Привет, я Елизавета!', 'FEMALE', 'INACTIVE', 'USER'),
-('user301@example.com', 'password301', 'Игнат', 'Кудряшов', '1994-09-20', 'Привет, я Игнат!', 'MALE', 'ACTIVE', 'USER'),
-('user302@example.com', 'password302', 'Варвара', 'Тихомирова', '1995-01-14', 'Привет, я Варвара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user303@example.com', 'password303', 'Лука', 'Большаков', '1996-04-09', 'Привет, я Лука!', 'MALE', 'ACTIVE', 'USER'),
-('user304@example.com', 'password304', 'Анфиса', 'Широкова', '1997-08-03', 'Привет, я Анфиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user305@example.com', 'password305', 'Родион', 'Филиппов', '1998-12-28', 'Привет, я Родион!', 'MALE', 'ACTIVE', 'USER'),
-('user306@example.com', 'password306', 'Клавдия', 'Пономарева', '1999-05-23', 'Привет, я Клавдия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user307@example.com', 'password307', 'Святослав', 'Мартынов', '2000-10-17', 'Привет, я Святослав!', 'MALE', 'ACTIVE', 'USER'),
-('user308@example.com', 'password308', 'Евлампия', 'Воронцова', '2001-02-10', 'Привет, я Евлампия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user309@example.com', 'password309', 'Гордей', 'Овчинников', '2002-05-05', 'Привет, я Гордей!', 'MALE', 'ACTIVE', 'USER'),
-('user310@example.com', 'password310', 'Алевтина', 'Соболева', '2003-09-29', 'Привет, я Алевтина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user311@example.com', 'password311', 'Мирон', 'Куликов', '2004-12-23', 'Привет, я Мирон!', 'MALE', 'ACTIVE', 'USER'),
-('user312@example.com', 'password312', 'Людмила', 'Нестерова', '2005-04-18', 'Привет, я Людмила!', 'FEMALE', 'INACTIVE', 'USER'),
-('user313@example.com', 'password313', 'Арсений', 'Мамонтов', '1950-07-12', 'Привет, я Арсений!', 'MALE', 'ACTIVE', 'USER'),
-('user314@example.com', 'password314', 'Агафья', 'Гущина', '1951-11-06', 'Привет, я Агафья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user315@example.com', 'password315', 'Ефим', 'Лукин', '1952-02-01', 'Привет, я Ефим!', 'MALE', 'ACTIVE', 'USER'),
-('user316@example.com', 'password316', 'Евдокия', 'Калинина', '1953-06-26', 'Привет, я Евдокия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user317@example.com', 'password317', 'Василий', 'Носков', '1954-09-20', 'Привет, я Василий!', 'MALE', 'ACTIVE', 'USER'),
-('user318@example.com', 'password318', 'Зинаида', 'Муравьева', '1955-01-14', 'Привет, я Зинаида!', 'FEMALE', 'INACTIVE', 'USER'),
-('user319@example.com', 'password319', 'Фома', 'Родионов', '1956-04-09', 'Привет, я Фома!', 'MALE', 'ACTIVE', 'USER'),
-('user320@example.com', 'password320', 'Ангелина', 'Самсонова', '1957-08-03', 'Привет, я Ангелина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user321@example.com', 'password321', 'Еремей', 'Мясников', '1958-12-28', 'Привет, я Еремей!', 'MALE', 'ACTIVE', 'USER'),
-('user322@example.com', 'password322', 'Евгения', 'Лихачева', '1959-05-23', 'Привет, я Евгения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user323@example.com', 'password323', 'Семен', 'Буров', '1960-10-17', 'Привет, я Семен!', 'MALE', 'ACTIVE', 'USER'),
-('user324@example.com', 'password324', 'Арина', 'Кулешова', '1961-02-10', 'Привет, я Арина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user325@example.com', 'password325', 'Трофим', 'Зыков', '1962-05-05', 'Привет, я Трофим!', 'MALE', 'ACTIVE', 'USER'),
-('user326@example.com', 'password326', 'Кира', 'Владимирова', '1963-09-29', 'Привет, я Кира!', 'FEMALE', 'INACTIVE', 'USER'),
-('user327@example.com', 'password327', 'Аркадий', 'Корчагин', '1964-12-23', 'Привет, я Аркадий!', 'MALE', 'ACTIVE', 'USER'),
-('user328@example.com', 'password328', 'Лариса', 'Ермакова', '1965-04-18', 'Привет, я Лариса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user329@example.com', 'password329', 'Марфа', 'Фролова', '1966-07-12', 'Привет, я Марфа!', 'FEMALE', 'ACTIVE', 'USER'),
-('user330@example.com', 'password330', 'Герасим', 'Степанов', '1967-11-06', 'Привет, я Герасим!', 'MALE', 'INACTIVE', 'USER'),
-('user331@example.com', 'password331', 'Александра', 'Горшкова', '1968-02-01', 'Привет, я Александра!', 'FEMALE', 'ACTIVE', 'USER'),
-('user332@example.com', 'password332', 'Евсей', 'Одинцов', '1969-06-26', 'Привет, я Евсей!', 'MALE', 'INACTIVE', 'USER'),
-('user333@example.com', 'password333', 'Антонина', 'Сазонова', '1970-09-20', 'Привет, я Антонина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user334@example.com', 'password334', 'Платон', 'Яковлев', '1971-01-14', 'Привет, я Платон!', 'MALE', 'INACTIVE', 'USER'),
-('user335@example.com', 'password335', 'Евдокия', 'Крылова', '1972-04-09', 'Привет, я Евдокия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user336@example.com', 'password336', 'Артем', 'Тихонов', '1973-08-03', 'Привет, я Артем!', 'MALE', 'INACTIVE', 'USER'),
-('user337@example.com', 'password337', 'Василиса', 'Белоусова', '1974-12-28', 'Привет, я Василиса!', 'FEMALE', 'ACTIVE', 'USER'),
-('user338@example.com', 'password338', 'Егор', 'Козлов', '1975-05-23', 'Привет, я Егор!', 'MALE', 'INACTIVE', 'USER'),
-('user339@example.com', 'password339', 'Анна', 'Маркова', '1976-10-17', 'Привет, я Анна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user340@example.com', 'password340', 'Дмитрий', 'Семенов', '1977-02-10', 'Привет, я Дмитрий!', 'MALE', 'INACTIVE', 'USER'),
-('user341@example.com', 'password341', 'Елена', 'Виноградова', '1978-05-05', 'Привет, я Елена!', 'FEMALE', 'ACTIVE', 'USER'),
-('user342@example.com', 'password342', 'Никита', 'Федоров', '1979-09-29', 'Привет, я Никита!', 'MALE', 'INACTIVE', 'USER'),
-('user343@example.com', 'password343', 'Ольга', 'Кузнецова', '1980-12-23', 'Привет, я Ольга!', 'FEMALE', 'ACTIVE', 'USER'),
-('user344@example.com', 'password344', 'Степан', 'Ильин', '1981-04-18', 'Привет, я Степан!', 'MALE', 'INACTIVE', 'USER'),
-('user345@example.com', 'password345', 'Таисия', 'Зайцева', '1982-07-12', 'Привет, я Таисия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user346@example.com', 'password346', 'Тимофей', 'Сорокин', '1983-11-06', 'Привет, я Тимофей!', 'MALE', 'INACTIVE', 'USER'),
-('user347@example.com', 'password347', 'Ульяна', 'Максимова', '1984-02-01', 'Привет, я Ульяна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user348@example.com', 'password348', 'Федор', 'Орлов', '1985-06-26', 'Привет, я Федор!', 'MALE', 'INACTIVE', 'USER'),
-('user349@example.com', 'password349', 'Юлия', 'Андреева', '1986-09-20', 'Привет, я Юлия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user350@example.com', 'password350', 'Яков', 'Григорьев', '1987-01-14', 'Привет, я Яков!', 'MALE', 'INACTIVE', 'USER'),
-('user351@example.com', 'password351', 'Алексей', 'Павлов', '1988-04-09', 'Привет, я Алексей!', 'MALE', 'ACTIVE', 'USER'),
-('user352@example.com', 'password352', 'Алина', 'Семенова', '1989-08-03', 'Привет, я Алина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user353@example.com', 'password353', 'Артем', 'Васильев', '1990-12-28', 'Привет, я Артем!', 'MALE', 'ACTIVE', 'USER'),
-('user354@example.com', 'password354', 'Валерия', 'Козлова', '1991-05-23', 'Привет, я Валерия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user355@example.com', 'password355', 'Виктор', 'Николаев', '1992-10-17', 'Привет, я Виктор!', 'MALE', 'ACTIVE', 'USER'),
-('user356@example.com', 'password356', 'Галина', 'Морозова', '1993-02-10', 'Привет, я Галина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user357@example.com', 'password357', 'Денис', 'Волков', '1994-05-05', 'Привет, я Денис!', 'MALE', 'ACTIVE', 'USER'),
-('user358@example.com', 'password358', 'Екатерина', 'Алексеева', '1995-09-29', 'Привет, я Екатерина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user359@example.com', 'password359', 'Игорь', 'Лебедев', '1996-12-23', 'Привет, я Игорь!', 'MALE', 'ACTIVE', 'USER'),
-('user360@example.com', 'password360', 'Ксения', 'Соколова', '1997-04-18', 'Привет, я Ксения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user361@example.com', 'password361', 'Максим', 'Кузнецов', '1998-07-12', 'Привет, я Максим!', 'MALE', 'ACTIVE', 'USER'),
-('user362@example.com', 'password362', 'Надежда', 'Новикова', '1999-11-06', 'Привет, я Надежда!', 'FEMALE', 'INACTIVE', 'USER'),
-('user363@example.com', 'password363', 'Олег', 'Федотов', '2000-02-01', 'Привет, я Олег!', 'MALE', 'ACTIVE', 'USER'),
-('user364@example.com', 'password364', 'Полина', 'Михайлова', '2001-06-26', 'Привет, я Полина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user365@example.com', 'password365', 'Роман', 'Белов', '2002-09-20', 'Привет, я Роман!', 'MALE', 'ACTIVE', 'USER'),
-('user366@example.com', 'password366', 'Светлана', 'Титова', '2003-01-14', 'Привет, я Светлана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user367@example.com', 'password367', 'Тимур', 'Комаров', '2004-04-09', 'Привет, я Тимур!', 'MALE', 'ACTIVE', 'USER'),
-('user368@example.com', 'password368', 'Ульяна', 'Орлова', '2005-08-03', 'Привет, я Ульяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user369@example.com', 'password369', 'Филипп', 'Андреев', '1950-12-28', 'Привет, я Филипп!', 'MALE', 'ACTIVE', 'USER'),
-('user370@example.com', 'password370', 'Элина', 'Макарова', '1951-05-23', 'Привет, я Элина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user371@example.com', 'password371', 'Юрий', 'Захаров', '1952-10-17', 'Привет, я Юрий!', 'MALE', 'ACTIVE', 'USER'),
-('user372@example.com', 'password372', 'Яна', 'Иванова', '1953-02-10', 'Привет, я Яна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user373@example.com', 'password373', 'Анатолий', 'Морозов', '1954-05-05', 'Привет, я Анатолий!', 'MALE', 'ACTIVE', 'USER'),
-('user374@example.com', 'password374', 'Борис', 'Смирнов', '1955-09-29', 'Привет, я Борис!', 'MALE', 'INACTIVE', 'USER'),
-('user375@example.com', 'password375', 'Валентина', 'Козлова', '1956-12-23', 'Привет, я Валентина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user376@example.com', 'password376', 'Геннадий', 'Волков', '1957-04-18', 'Привет, я Геннадий!', 'MALE', 'INACTIVE', 'USER'),
-('user377@example.com', 'password377', 'Дарья', 'Новикова', '1958-07-12', 'Привет, я Дарья!', 'FEMALE', 'ACTIVE', 'USER'),
-('user378@example.com', 'password378', 'Евгений', 'Федотов', '1959-11-06', 'Привет, я Евгений!', 'MALE', 'INACTIVE', 'USER'),
-('user379@example.com', 'password379', 'Жанна', 'Михайлова', '1960-02-01', 'Привет, я Жанна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user380@example.com', 'password380', 'Захар', 'Белов', '1961-06-26', 'Привет, я Захар!', 'MALE', 'INACTIVE', 'USER'),
-('user381@example.com', 'password381', 'Ирина', 'Титова', '1962-09-20', 'Привет, я Ирина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user382@example.com', 'password382', 'Кирилл', 'Комаров', '1963-01-14', 'Привет, я Кирилл!', 'MALE', 'INACTIVE', 'USER'),
-('user383@example.com', 'password383', 'Лариса', 'Орлова', '1964-04-09', 'Привет, я Лариса!', 'FEMALE', 'ACTIVE', 'USER'),
-('user384@example.com', 'password384', 'Михаил', 'Андреев', '1965-08-03', 'Привет, я Михаил!', 'MALE', 'INACTIVE', 'USER'),
-('user385@example.com', 'password385', 'Наталья', 'Макарова', '1966-12-28', 'Привет, я Наталья!', 'FEMALE', 'ACTIVE', 'USER'),
-('user386@example.com', 'password386', 'Оксана', 'Захарова', '1967-05-23', 'Привет, я Оксана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user387@example.com', 'password387', 'Павел', 'Иванов', '1968-10-17', 'Привет, я Павел!', 'MALE', 'ACTIVE', 'USER'),
-('user388@example.com', 'password388', 'Раиса', 'Смирнова', '1969-02-10', 'Привет, я Раиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user389@example.com', 'password389', 'Сергей', 'Козлов', '1970-05-05', 'Привет, я Сергей!', 'MALE', 'ACTIVE', 'USER'),
-('user390@example.com', 'password390', 'Тамара', 'Волкова', '1971-09-29', 'Привет, я Тамара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user391@example.com', 'password391', 'Ульяна', 'Новикова', '1972-12-23', 'Привет, я Ульяна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user392@example.com', 'password392', 'Федор', 'Федотов', '1973-04-18', 'Привет, я Федор!', 'MALE', 'INACTIVE', 'USER'),
-('user393@example.com', 'password393', 'Харитон', 'Михайлов', '1974-07-12', 'Привет, я Харитон!', 'MALE', 'ACTIVE', 'USER'),
-('user394@example.com', 'password394', 'Цветана', 'Белова', '1975-11-06', 'Привет, я Цветана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user395@example.com', 'password395', 'Чеслав', 'Титов', '1976-02-01', 'Привет, я Чеслав!', 'MALE', 'ACTIVE', 'USER'),
-('user396@example.com', 'password396', 'Шарлотта', 'Комарова', '1977-06-26', 'Привет, я Шарлотта!', 'FEMALE', 'INACTIVE', 'USER'),
-('user397@example.com', 'password397', 'Эдуард', 'Орлов', '1978-09-20', 'Привет, я Эдуард!', 'MALE', 'ACTIVE', 'USER'),
-('user398@example.com', 'password398', 'Юлианна', 'Андреева', '1979-01-14', 'Привет, я Юлианна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user399@example.com', 'password399', 'Ярослав', 'Макаров', '1980-04-09', 'Привет, я Ярослав!', 'MALE', 'ACTIVE', 'USER'),
-('user400@example.com', 'password400', 'Анжела', 'Захарова', '1981-08-03', 'Привет, я Анжела!', 'FEMALE', 'INACTIVE', 'USER'),
-('user401@example.com', 'password401', 'Игнат', 'Кудряшов', '1982-12-28', 'Привет, я Игнат!', 'MALE', 'ACTIVE', 'USER'),
-('user402@example.com', 'password402', 'Варвара', 'Тихомирова', '1983-05-23', 'Привет, я Варвара!', 'FEMALE', 'INACTIVE', 'USER'),
-('user403@example.com', 'password403', 'Лука', 'Большаков', '1984-10-17', 'Привет, я Лука!', 'MALE', 'ACTIVE', 'USER'),
-('user404@example.com', 'password404', 'Анфиса', 'Широкова', '1985-02-10', 'Привет, я Анфиса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user405@example.com', 'password405', 'Родион', 'Филиппов', '1986-05-05', 'Привет, я Родион!', 'MALE', 'ACTIVE', 'USER'),
-('user406@example.com', 'password406', 'Клавдия', 'Пономарева', '1987-09-29', 'Привет, я Клавдия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user407@example.com', 'password407', 'Святослав', 'Мартынов', '1988-12-23', 'Привет, я Святослав!', 'MALE', 'ACTIVE', 'USER'),
-('user408@example.com', 'password408', 'Евлампия', 'Воронцова', '1989-04-18', 'Привет, я Евлампия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user409@example.com', 'password409', 'Гордей', 'Овчинников', '1990-07-12', 'Привет, я Гордей!', 'MALE', 'ACTIVE', 'USER'),
-('user410@example.com', 'password410', 'Алевтина', 'Соболева', '1991-11-06', 'Привет, я Алевтина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user411@example.com', 'password411', 'Мирон', 'Куликов', '1992-02-01', 'Привет, я Мирон!', 'MALE', 'ACTIVE', 'USER'),
-('user412@example.com', 'password412', 'Людмила', 'Нестерова', '1993-06-26', 'Привет, я Людмила!', 'FEMALE', 'INACTIVE', 'USER'),
-('user413@example.com', 'password413', 'Арсений', 'Мамонтов', '1994-09-20', 'Привет, я Арсений!', 'MALE', 'ACTIVE', 'USER'),
-('user414@example.com', 'password414', 'Агафья', 'Гущина', '1995-01-14', 'Привет, я Агафья!', 'FEMALE', 'INACTIVE', 'USER'),
-('user415@example.com', 'password415', 'Ефим', 'Лукин', '1996-04-09', 'Привет, я Ефим!', 'MALE', 'ACTIVE', 'USER'),
-('user416@example.com', 'password416', 'Евдокия', 'Калинина', '1997-08-03', 'Привет, я Евдокия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user417@example.com', 'password417', 'Василий', 'Носков', '1998-12-28', 'Привет, я Василий!', 'MALE', 'ACTIVE', 'USER'),
-('user418@example.com', 'password418', 'Зинаида', 'Муравьева', '1999-05-23', 'Привет, я Зинаида!', 'FEMALE', 'INACTIVE', 'USER'),
-('user419@example.com', 'password419', 'Фома', 'Родионов', '2000-10-17', 'Привет, я Фома!', 'MALE', 'ACTIVE', 'USER'),
-('user420@example.com', 'password420', 'Ангелина', 'Самсонова', '2001-02-10', 'Привет, я Ангелина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user421@example.com', 'password421', 'Еремей', 'Мясников', '2002-05-05', 'Привет, я Еремей!', 'MALE', 'ACTIVE', 'USER'),
-('user422@example.com', 'password422', 'Евгения', 'Лихачева', '2003-09-29', 'Привет, я Евгения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user423@example.com', 'password423', 'Семен', 'Буров', '2004-12-23', 'Привет, я Семен!', 'MALE', 'ACTIVE', 'USER'),
-('user424@example.com', 'password424', 'Арина', 'Кулешова', '2005-04-18', 'Привет, я Арина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user425@example.com', 'password425', 'Трофим', 'Зыков', '1950-07-12', 'Привет, я Трофим!', 'MALE', 'ACTIVE', 'USER'),
-('user426@example.com', 'password426', 'Кира', 'Владимирова', '1951-11-06', 'Привет, я Кира!', 'FEMALE', 'INACTIVE', 'USER'),
-('user427@example.com', 'password427', 'Аркадий', 'Корчагин', '1952-02-01', 'Привет, я Аркадий!', 'MALE', 'ACTIVE', 'USER'),
-('user428@example.com', 'password428', 'Лариса', 'Ермакова', '1953-06-26', 'Привет, я Лариса!', 'FEMALE', 'INACTIVE', 'USER'),
-('user429@example.com', 'password429', 'Марфа', 'Фролова', '1954-09-20', 'Привет, я Марфа!', 'FEMALE', 'ACTIVE', 'USER'),
-('user430@example.com', 'password430', 'Герасим', 'Степанов', '1955-01-14', 'Привет, я Герасим!', 'MALE', 'INACTIVE', 'USER'),
-('user431@example.com', 'password431', 'Александра', 'Горшкова', '1956-04-09', 'Привет, я Александра!', 'FEMALE', 'ACTIVE', 'USER'),
-('user432@example.com', 'password432', 'Евсей', 'Одинцов', '1957-08-03', 'Привет, я Евсей!', 'MALE', 'INACTIVE', 'USER'),
-('user433@example.com', 'password433', 'Антонина', 'Сазонова', '1958-12-28', 'Привет, я Антонина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user434@example.com', 'password434', 'Платон', 'Яковлев', '1959-05-23', 'Привет, я Платон!', 'MALE', 'INACTIVE', 'USER'),
-('user435@example.com', 'password435', 'Евдокия', 'Крылова', '1960-10-17', 'Привет, я Евдокия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user436@example.com', 'password436', 'Артем', 'Тихонов', '1961-02-10', 'Привет, я Артем!', 'MALE', 'INACTIVE', 'USER'),
-('user437@example.com', 'password437', 'Василиса', 'Белоусова', '1962-05-05', 'Привет, я Василиса!', 'FEMALE', 'ACTIVE', 'USER'),
-('user438@example.com', 'password438', 'Егор', 'Козлов', '1963-09-29', 'Привет, я Егор!', 'MALE', 'INACTIVE', 'USER'),
-('user439@example.com', 'password439', 'Анна', 'Маркова', '1964-12-23', 'Привет, я Анна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user440@example.com', 'password440', 'Дмитрий', 'Семенов', '1965-04-18', 'Привет, я Дмитрий!', 'MALE', 'INACTIVE', 'USER'),
-('user441@example.com', 'password441', 'Елена', 'Виноградова', '1966-07-12', 'Привет, я Елена!', 'FEMALE', 'ACTIVE', 'USER'),
-('user442@example.com', 'password442', 'Никита', 'Федоров', '1967-11-06', 'Привет, я Никита!', 'MALE', 'INACTIVE', 'USER'),
-('user443@example.com', 'password443', 'Ольга', 'Кузнецова', '1968-02-01', 'Привет, я Ольга!', 'FEMALE', 'ACTIVE', 'USER'),
-('user444@example.com', 'password444', 'Степан', 'Ильин', '1969-06-26', 'Привет, я Степан!', 'MALE', 'INACTIVE', 'USER'),
-('user445@example.com', 'password445', 'Таисия', 'Зайцева', '1970-09-20', 'Привет, я Таисия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user446@example.com', 'password446', 'Тимофей', 'Сорокин', '1971-01-14', 'Привет, я Тимофей!', 'MALE', 'INACTIVE', 'USER'),
-('user447@example.com', 'password447', 'Ульяна', 'Максимова', '1972-04-09', 'Привет, я Ульяна!', 'FEMALE', 'ACTIVE', 'USER'),
-('user448@example.com', 'password448', 'Федор', 'Орлов', '1973-08-03', 'Привет, я Федор!', 'MALE', 'INACTIVE', 'USER'),
-('user449@example.com', 'password449', 'Юлия', 'Андреева', '1974-12-28', 'Привет, я Юлия!', 'FEMALE', 'ACTIVE', 'USER'),
-('user450@example.com', 'password450', 'Яков', 'Григорьев', '1975-05-23', 'Привет, я Яков!', 'MALE', 'INACTIVE', 'USER'),
-('user451@example.com', 'password451', 'Алексей', 'Павлов', '1976-10-17', 'Привет, я Алексей!', 'MALE', 'ACTIVE', 'USER'),
-('user452@example.com', 'password452', 'Алина', 'Семенова', '1977-02-10', 'Привет, я Алина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user453@example.com', 'password453', 'Артем', 'Васильев', '1978-05-05', 'Привет, я Артем!', 'MALE', 'ACTIVE', 'USER'),
-('user454@example.com', 'password454', 'Валерия', 'Козлова', '1979-09-29', 'Привет, я Валерия!', 'FEMALE', 'INACTIVE', 'USER'),
-('user455@example.com', 'password455', 'Виктор', 'Николаев', '1980-12-23', 'Привет, я Виктор!', 'MALE', 'ACTIVE', 'USER'),
-('user456@example.com', 'password456', 'Галина', 'Морозова', '1981-04-18', 'Привет, я Галина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user457@example.com', 'password457', 'Денис', 'Волков', '1982-07-12', 'Привет, я Денис!', 'MALE', 'ACTIVE', 'USER'),
-('user458@example.com', 'password458', 'Екатерина', 'Алексеева', '1983-11-06', 'Привет, я Екатерина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user459@example.com', 'password459', 'Игорь', 'Лебедев', '1984-02-01', 'Привет, я Игорь!', 'MALE', 'ACTIVE', 'USER'),
-('user460@example.com', 'password460', 'Ксения', 'Соколова', '1985-06-26', 'Привет, я Ксения!', 'FEMALE', 'INACTIVE', 'USER'),
-('user461@example.com', 'password461', 'Максим', 'Кузнецов', '1986-09-20', 'Привет, я Максим!', 'MALE', 'ACTIVE', 'USER'),
-('user462@example.com', 'password462', 'Надежда', 'Новикова', '1987-01-14', 'Привет, я Надежда!', 'FEMALE', 'INACTIVE', 'USER'),
-('user463@example.com', 'password463', 'Олег', 'Федотов', '1988-04-09', 'Привет, я Олег!', 'MALE', 'ACTIVE', 'USER'),
-('user464@example.com', 'password464', 'Полина', 'Михайлова', '1989-08-03', 'Привет, я Полина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user465@example.com', 'password465', 'Роман', 'Белов', '1990-12-28', 'Привет, я Роман!', 'MALE', 'ACTIVE', 'USER'),
-('user466@example.com', 'password466', 'Светлана', 'Титова', '1991-05-23', 'Привет, я Светлана!', 'FEMALE', 'INACTIVE', 'USER'),
-('user467@example.com', 'password467', 'Тимур', 'Комаров', '1992-10-17', 'Привет, я Тимур!', 'MALE', 'ACTIVE', 'USER'),
-('user468@example.com', 'password468', 'Ульяна', 'Орлова', '1993-02-10', 'Привет, я Ульяна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user469@example.com', 'password469', 'Филипп', 'Андреев', '1994-05-05', 'Привет, я Филипп!', 'MALE', 'ACTIVE', 'USER'),
-('user470@example.com', 'password470', 'Элина', 'Макарова', '1995-09-29', 'Привет, я Элина!', 'FEMALE', 'INACTIVE', 'USER'),
-('user471@example.com', 'password471', 'Юрий', 'Захаров', '1996-12-23', 'Привет, я Юрий!', 'MALE', 'ACTIVE', 'USER'),
-('user472@example.com', 'password472', 'Яна', 'Иванова', '1997-04-18', 'Привет, я Яна!', 'FEMALE', 'INACTIVE', 'USER'),
-('user473@example.com', 'password473', 'Анатолий', 'Морозов', '1998-07-12', 'Привет, я Анатолий!', 'MALE', 'ACTIVE', 'USER'),
-('user474@example.com', 'password474', 'Борис', 'Смирнов', '1999-11-06', 'Привет, я Борис!', 'MALE', 'INACTIVE', 'USER'),
-('user475@example.com', 'password475', 'Валентина', 'Козлова', '2000-02-01', 'Привет, я Валентина!', 'FEMALE', 'ACTIVE', 'USER'),
-('user476@example.com', 'password476', 'Геннадий', 'Волков', '2001-06-26', 'Привет, я Геннадий!', 'MALE', 'INACTIVE', 'USER'),
-('user477@example.com', 'password477', 'Дарья', 'Новикова', '2002-09-20', 'Привет, я Дарья!', 'FEMALE', 'ACTIVE', 'USER'),
-('user478@example.com', 'password478', 'Евгений', 'Федотов', '2003-01-14', 'Привет, я Евгений!', 'MALE', 'INACTIVE', 'USER');
+-- 1. 20-year-old Italian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('sophia.italy@example.com', 'securepass123', 'Sophia', 'Rossi', '2003-06-15', 'Loves coffee and traveling', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
 
-INSERT INTO "like" (from_profile, to_profile, "like", match) VALUES 
-(500, 501, TRUE, FALSE), (501, 502, FALSE, FALSE);
+-- 2. 21-year-old Russian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('anna.russia@example.com', 'securepass123', 'Anna', 'Ivanova', '2002-05-22', 'History enthusiast', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 3. 22-year-old Japanese woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('yumi.japan@example.com', 'securepass123', 'Yumi', 'Tanaka', '2001-04-10', 'Kimono designer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 4. 23-year-old Mongolian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('bolormaa.mongolia@example.com', 'securepass123', 'Bolormaa', 'Bat', '2000-03-18', 'Horse rider and nomad', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 5. 24-year-old Greek woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('elena.greece@example.com', 'securepass123', 'Elena', 'Papadopoulos', '1999-02-25', 'Loves the sea and philosophy', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 6. 25-year-old Israeli woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('noa.israel@example.com', 'securepass123', 'Noa', 'Levi', '1998-01-30', 'Tech startup employee', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 7. 26-year-old Nigerian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('amina.nigeria@example.com', 'securepass123', 'Amina', 'Okafor', '1997-12-05', 'Fashion designer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 8. 27-year-old Egyptian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('layla.egypt@example.com', 'securepass123', 'Layla', 'Hassan', '1996-11-12', 'Tour guide at historical sites', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 9. 28-year-old French woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('camille.france@example.com', 'securepass123', 'Camille', 'Dubois', '1995-10-08', 'Artist and wine lover', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 10. 29-year-old Italian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('francesca.italy@example.com', 'securepass123', 'Francesca', 'Conti', '1994-09-14', 'Chef in a family restaurant', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 11. 30-year-old Russian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('ekaterina.russia@example.com', 'securepass123', 'Ekaterina', 'Petrova', '1993-08-20', 'Hiking and nature lover', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 12. 31-year-old Japanese woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('akira.japan@example.com', 'securepass123', 'Akira', 'Sato', '1992-07-03', 'Bookstore owner', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 13. 32-year-old Mongolian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('tsegi.mongolia@example.com', 'securepass123', 'Tsegi', 'Ganbold', '1991-06-11', 'Traditional healer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 14. 33-year-old Greek woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('maria.greece@example.com', 'securepass123', 'Maria', 'Nikolaou', '1990-05-17', 'Dancer and choreographer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 15. 34-year-old Israeli woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('tamar.israel@example.com', 'securepass123', 'Tamar', 'Cohen', '1989-04-23', 'Archaeologist', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 16. 35-year-old Nigerian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('zara.nigeria@example.com', 'securepass123', 'Zara', 'Adeleke', '1988-03-29', 'Entrepreneur and influencer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 17. 36-year-old Egyptian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('dalia.egypt@example.com', 'securepass123', 'Dalia', 'Mahmoud', '1987-02-02', 'Spice merchant', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 18. 37-year-old French woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('claire.france@example.com', 'securepass123', 'Claire', 'Moreau', '1986-01-07', 'Art historian', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 19. 38-year-old Italian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('isabella.italy@example.com', 'securepass123', 'Isabella', 'Ferrari', '1985-12-12', 'Gelato shop owner', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 20. 39-year-old Russian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('olga.russia@example.com', 'securepass123', 'Olga', 'Sokolova', '1984-11-18', 'Fashion model', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 21. 40-year-old Japanese woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('hina.japan@example.com', 'securepass123', 'Hina', 'Yamamoto', '1983-10-24', 'Zen meditation teacher', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 22. 41-year-old Mongolian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('nara.mongolia@example.com', 'securepass123', 'Nara', 'Bold', '1982-09-30', 'Horse breeder', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 23. 42-year-old Greek woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('dimitra.greece@example.com', 'securepass123', 'Dimitra', 'Kostas', '1981-08-05', 'Philosopher and writer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 24. 43-year-old Israeli woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('rivka.israel@example.com', 'securepass123', 'Rivka', 'Levy', '1980-07-11', 'Marine biologist', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 25. 44-year-old Nigerian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('efun.nigeria@example.com', 'securepass123', 'Efun', 'Ogunlesi', '1979-06-15', 'Fashion show organizer', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 26. 45-year-old Egyptian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('farida.egypt@example.com', 'securepass123', 'Farida', 'Abdullah', '1978-05-21', 'Nile cruise director', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 27. 46-year-old French woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('josephine.france@example.com', 'securepass123', 'Josephine', 'Leroy', '1977-04-27', 'Florist in Provence', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 28. 47-year-old Italian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('valentina.italy@example.com', 'securepass123', 'Valentina', 'Romano', '1976-03-03', 'Cooking instructor', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 29. 48-year-old Russian woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('irina.russia@example.com', 'securepass123', 'Irina', 'Volkova', '1975-02-08', 'Astronomy professor', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 30. 49-year-old Japanese woman
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('michiko.japan@example.com', 'securepass123', 'Michiko', 'Kobayashi', '1974-01-14', 'Calligraphy master', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 31. 50-year-old Italian woman (book lover)
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('giovanna.italy@example.com', 'securepass123', 'Giovanna', 'Marino', '1973-12-05', 
+  'Passionate book collector and literary critic. Loves classic Italian literature and cozy cafes with good espresso.', 
+  'FEMALE', 
+  'image.jpeg', 
+  'ACTIVE', 
+  'USER'
+);
+
+-- 20-year-old Italian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('luca.italy@example.com', 'securepass123', 'Luca', 'Ferrari', '2003-06-12', 'Coffee enthusiast and vintage car lover', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 21-year-old Russian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('dmitri.russia@example.com', 'securepass123', 'Dmitri', 'Ivanov', '2002-05-18', 'History student and winter sports fan', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 22-year-old Japanese man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('haruto.japan@example.com', 'securepass123', 'Haruto', 'Tanaka', '2001-04-22', 'Ramen chef and nightlife explorer', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 23-year-old Mongolian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('tengis.mongolia@example.com', 'securepass123', 'Tengis', 'Bataar', '2000-03-15', 'Eagle hunter and mountain guide', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 24-year-old Greek man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('nikos.greece@example.com', 'securepass123', 'Nikos', 'Papadopoulos', '1999-02-28', 'Seafood chef and beach volleyball player', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 25-year-old Israeli man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('avi.israel@example.com', 'securepass123', 'Avi', 'Cohen', '1998-01-10', 'Political science graduate and debate club leader', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 26-year-old Nigerian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('chike.nigeria@example.com', 'securepass123', 'Chike', 'Okafor', '1997-12-05', 'Fashion entrepreneur and music producer', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 27-year-old Egyptian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('karim.egypt@example.com', 'securepass123', 'Karim', 'Hassan', '1996-11-20', 'Tour guide and history blogger', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 28-year-old French man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('antoine.france@example.com', 'securepass123', 'Antoine', 'Dubois', '1995-10-15', 'Baker and pastry perfectionist', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 29-year-old Italian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('marco.italy@example.com', 'securepass123', 'Marco', 'Ricci', '1994-09-08', 'Pasta chef and wine connoisseur', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 30-year-old Russian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('alexei.russia@example.com', 'securepass123', 'Alexei', 'Petrov', '1993-08-03', 'Motorcycle mechanic and road trip enthusiast', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 31-year-old Japanese man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('ryo.japan@example.com', 'securepass123', 'Ryo', 'Sato', '1992-07-17', 'Zen practitioner and calligraphy artist', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 32-year-old Mongolian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('batu.mongolia@example.com', 'securepass123', 'Batu', 'Ganbaatar', '1991-06-21', 'Horse breeder and traditional musician', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 33-year-old Greek man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('stavros.greece@example.com', 'securepass123', 'Stavros', 'Nikolaidis', '1990-05-25', 'Fishing boat captain and father of twins', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 34-year-old Israeli man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('david.israel@example.com', 'securepass123', 'David', 'Levi', '1989-04-30', 'Archaeologist and ancient languages expert', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 35-year-old Nigerian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('emeka.nigeria@example.com', 'securepass123', 'Emeka', 'Adeyemi', '1988-03-12', 'Tailor and fashion school instructor', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 36-year-old Egyptian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('hassan.egypt@example.com', 'securepass123', 'Hassan', 'Mahmoud', '1987-02-14', 'Cafe owner and backgammon champion', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 37-year-old French man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('olivier.france@example.com', 'securepass123', 'Olivier', 'Lefevre', '1986-01-18', 'Street artist and Paris tour guide', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 38-year-old Italian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('giovanni.italy@example.com', 'securepass123', 'Giovanni', 'Romano', '1985-12-22', 'Wine sommelier and vineyard owner', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 39-year-old Russian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('mikhail.russia@example.com', 'securepass123', 'Mikhail', 'Volkov', '1984-11-26', 'Astronomer and science communicator', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 40-year-old Japanese man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('kenji.japan@example.com', 'securepass123', 'Kenji', 'Yamamoto', '1983-10-31', 'Kendo master and martial arts teacher', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 41-year-old Mongolian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('altai.mongolia@example.com', 'securepass123', 'Altai', 'Munkh', '1982-09-05', 'Traditional ger builder and craftsman', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 42-year-old Greek man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('yiannis.greece@example.com', 'securepass123', 'Yiannis', 'Kostas', '1981-08-09', 'Nightclub owner and music festival organizer', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 43-year-old Israeli man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('ariel.israel@example.com', 'securepass123', 'Ariel', 'Ben-David', '1980-07-14', 'Desert survival instructor and geologist', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 44-year-old Nigerian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('tunde.nigeria@example.com', 'securepass123', 'Tunde', 'Balogun', '1979-06-18', 'DJ and music producer', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 45-year-old Egyptian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('samir.egypt@example.com', 'securepass123', 'Samir', 'Farouk', '1978-05-23', 'Bookstore owner and poetry lover', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 46-year-old French man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('philippe.france@example.com', 'securepass123', 'Philippe', 'Girard', '1977-04-27', 'Cycling tour guide and amateur photographer', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 47-year-old Italian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('vincenzo.italy@example.com', 'securepass123', 'Vincenzo', 'De Luca', '1976-03-01', 'Marble sculptor and art professor', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 48-year-old Russian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('boris.russia@example.com', 'securepass123', 'Boris', 'Orlov', '1975-02-05', 'Chess grandmaster and mathematics teacher', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 49-year-old Japanese man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('hiroshi.japan@example.com', 'securepass123', 'Hiroshi', 'Matsumoto', '1974-01-10', 'Tea ceremony master and cultural ambassador', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- 50-year-old Mongolian man
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role)
+VALUES ('gerel.mongolia@example.com', 'securepass123', 'Gerel', 'Tseren', '1973-12-15', 'Storyteller and keeper of oral traditions', 'MALE', 'image.jpeg', 'ACTIVE', 'USER');
+
+-- default
+INSERT INTO profile (email, password, name, surname, birth_date, about, gender, photo, status, role) VALUES
+('ivanov@mail.ru', '123', 'Ivan', 'Ivanov', '2001-12-03', 'I am QA', 'MALE', 'image.jpeg', 'ACTIVE', 'USER'),
+('sidorova@mail.ru', '456', 'Elena', 'Sidorova', '1999-09-01', 'I am Java Dev', 'FEMALE', 'image.jpeg', 'ACTIVE', 'USER'),
+('admin@charm.ru', 'qwerty', 'Admin', NULL, NULL, NULL, NULL, NULL, 'INACTIVE', 'ADMIN');

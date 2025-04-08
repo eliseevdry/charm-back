@@ -2,14 +2,11 @@ package ru.eliseev.charm.back.controller.filter;
 
 import static jakarta.servlet.DispatcherType.FORWARD;
 import static jakarta.servlet.DispatcherType.REQUEST;
-import static ru.eliseev.charm.back.utils.ConnectionManager.AVAILABLE_PAGE_SIZES;
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -19,29 +16,11 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Locale;
-import ru.eliseev.charm.back.dao.ProfileDao;
-import ru.eliseev.charm.back.model.Gender;
-import ru.eliseev.charm.back.model.Status;
 
 @WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {
 
 	private static final String METHOD_PARAM = "_method";
-	private final ProfileDao profileDao = ProfileDao.getInstance();
-
-	@Override
-	public void init(FilterConfig filterConfig) {
-		ServletContext servletContext = filterConfig.getServletContext();
-		if (servletContext.getAttribute("genders") == null) {
-			servletContext.setAttribute("genders", Gender.values());
-		}
-		if (servletContext.getAttribute("statuses") == null) {
-			servletContext.setAttribute("statuses", Status.values());
-		}
-		if (servletContext.getAttribute("availablePageSizes") == null) {
-			servletContext.setAttribute("availablePageSizes", AVAILABLE_PAGE_SIZES);
-		}
-	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
