@@ -41,6 +41,8 @@ public class ProfileDao {
 	public static final String UPDATE_STATUSES = "UPDATE profile SET status = ? WHERE id IN (select unnest(?))";
 	//language=POSTGRES-PSQL
 	public static final String DELETE = "DELETE FROM profile WHERE id = ?";
+    //language=POSTGRES-PSQL
+    public static final String EXISTS_BY_EMAIL = "SELECT 1 FROM profile WHERE id != ? AND email = ?";
 	//language=POSTGRES-PSQL
 	public static final String SUITABLE = """
 			SELECT * FROM (
@@ -133,10 +135,14 @@ public class ProfileDao {
 		}
 	}
 
-	public boolean existByEmail(String email) {
-		Query query = new ProfileSelectQueryBuilder().addEmailFilter(email).build();
+    public boolean existByEmail(Long id, String email) {
+        if (id == null) {
+            id = -1L;
+        }
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+             PreparedStatement stmt = conn.prepareStatement(EXISTS_BY_EMAIL)) {
+            stmt.setLong(1, id);
+            stmt.setString(2, email);
 			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		} catch (SQLException e) {

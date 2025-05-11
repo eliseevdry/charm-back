@@ -22,10 +22,10 @@
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <a href="/registration"><img src="content/app/img/pencil.png" width="75"></a>
+                            <a href="/registration"><img src="${pageContext.request.contextPath}/img/pencil.png" width="75"></a>
                         </td>
                         <td>
-                            <input type="image" src="content/app/img/arrow-right.png" width="75" alt="submit"
+                            <input type="image" src="${pageContext.request.contextPath}/img/arrow-right.png" width="75" alt="submit"
                                    class="icon"/>
                         </td>
                     </tr>

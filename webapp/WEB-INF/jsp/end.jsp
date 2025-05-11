@@ -8,7 +8,7 @@
     <body>
         <%@ include file="header.jsp" %>
         <div>
-            <img src="content/app/img/search.png" width="75" class="icon">
+            <img src="${pageContext.request.contextPath}/img/search.png" width="75" class="icon">
             <h3>${wordBundle.getWord("next-no-more")}</h3>
         </div>
         <%@ include file="footer.jsp" %>

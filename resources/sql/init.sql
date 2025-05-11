@@ -1,3 +1,5 @@
+CREATE DATABASE charm_repository;
+
 CREATE TABLE profile(
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR NOT NULL UNIQUE,  

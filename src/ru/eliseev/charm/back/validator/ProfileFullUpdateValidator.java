@@ -1,13 +1,13 @@
 package ru.eliseev.charm.back.validator;
 
-import static ru.eliseev.charm.back.utils.DateTimeUtils.isValidAge;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
+
+import static ru.eliseev.charm.back.utils.DateTimeUtils.isValidAge;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {
@@ -30,7 +30,7 @@ public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDt
             if (!isValidEmail(dto.getEmail())) {
                 result.add("error.email.invalid");
             }
-            if (dao.existByEmail(dto.getEmail())) {
+            if (dao.existByEmail(dto.getId(), dto.getEmail())) {
                 result.add("error.email.exist");
             }
         }

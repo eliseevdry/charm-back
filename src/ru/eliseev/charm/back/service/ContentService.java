@@ -32,18 +32,9 @@ public class ContentService {
     }
 
     public void download(String contentPath, OutputStream outputStream) throws IOException {
-        InputStream inputStream;
         String decodedPath = URLDecoder.decode(contentPath, StandardCharsets.UTF_8);
-        if (decodedPath.startsWith("/app/")) {
-            String appPath = "/WEB-INF" + decodedPath.replaceFirst("/app", "");
-            inputStream = ContentService.class.getClassLoader().getResourceAsStream(appPath);
-        } else {
-            Path contentFullPath = Path.of(BASE_CONTENT_PATH, decodedPath);
-            inputStream = Files.newInputStream(contentFullPath);
-        }
-        if (inputStream == null) {
-            throw new FileNotFoundException();
-        }
+        Path contentFullPath = Path.of(BASE_CONTENT_PATH, decodedPath);
+        InputStream inputStream = Files.newInputStream(contentFullPath);
         writeContent(inputStream, outputStream);
     }
 

@@ -21,7 +21,7 @@
                                 <br>
                             </c:if>
                             <c:if test="${next.photo == null}">
-                                <img src="content/app/img/empty_profile.png" height="500">
+                                <img src="${pageContext.request.contextPath}/img/empty_profile.png" height="500"/>
                                 <br>
                             </c:if>
                         </td>
@@ -34,17 +34,17 @@
                     <tr class="hiddenRow">
                         <td>
                             <button type="submit" name="action" value="LIKE" class="hiddenButton">
-                                <img src="content/app/img/thumb-up.png" width="75" class="icon">
+                                <img src="${pageContext.request.contextPath}/img/thumb-up.png" width="75" class="icon"/>
                             </button>
                         </td>
                         <td>
                             <button type="submit" name="action" value="SKIP" class="hiddenButton">
-                                <img src="content/app/img/arrow-right.png" width="75" class="icon">
+                                <img src="${pageContext.request.contextPath}/img/arrow-right.png" width="75" class="icon"/>
                             </button>
                         </td>
                         <td>
                             <button type="submit" name="action" value="DISLIKE" class="hiddenButton">
-                                <img src="content/app/img/thumb-down.png" width="75" class="icon">
+                                <img src="${pageContext.request.contextPath}/img/thumb-down.png" width="75" class="icon"/>
                             </button>
                         </td>
                     </tr>

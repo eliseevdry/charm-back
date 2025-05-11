@@ -43,7 +43,7 @@
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <input type="image" src="content/app/img/filter.png" width="75" alt="submit" class="icon"/>
+                            <input type="image" src="${pageContext.request.contextPath}/img/filter.png" width="75" alt="submit" class="icon"/>
                         </td>
                         <td>
                             <table>
@@ -233,7 +233,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
+                            <input type="image" src="${pageContext.request.contextPath}/img/floppy-disk.png" width="75" alt="submit"
                                    class="icon"/>
                         </td>
                         <td></td>

@@ -12,7 +12,7 @@
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <input type="image" src="content/app/img/filter.png" width="75" alt="submit" class="icon"/>
+                            <input type="image" src="${pageContext.request.contextPath}/img/filter.png" width="75" alt="submit" class="icon"/>
                         </td>
                         <td>${wordBundle.getWord("page")}</td>
                         <td><input type="number" name="page" min="1" value="${filter.page}"
