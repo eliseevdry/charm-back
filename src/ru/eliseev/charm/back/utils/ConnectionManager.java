@@ -27,6 +27,7 @@ public class ConnectionManager {
     public static final int QUERY_TIMEOUT = Integer.parseInt(QUERY_TIMEOUT_STR != null ? QUERY_TIMEOUT_STR : "10");
     private static final String POOL_SIZE_STR = ConfigFileUtils.get("app.datasource.pool.size");
     public static final int POOL_SIZE = Integer.parseInt(POOL_SIZE_STR != null ? POOL_SIZE_STR : "10");
+    private static final String POOL_IMPL = ConfigFileUtils.get("app.datasource.pool.impl");
     public static final String DEFAULT_SORTED_COLUMN = "id";
     public static final Integer DEFAULT_PAGE = 1;
     public static final Integer DEFAULT_PAGE_SIZE = 10;
@@ -40,7 +41,7 @@ public class ConnectionManager {
     @SneakyThrows
     private static void init() {
         Class.forName(DRIVER);
-        if (ConfigFileUtils.getFeatureFlag("use-custom-pool")) {
+        if (!"hikari".equals(POOL_IMPL)) {
             CustomDataSourceConfig config = new CustomDataSourceConfig(URL, USER, PASSWORD, POOL_SIZE);
 
             dataSource = new CustomDataSource(config);
