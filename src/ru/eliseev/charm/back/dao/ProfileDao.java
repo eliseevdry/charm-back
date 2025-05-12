@@ -19,8 +19,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
 
 import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
 import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
@@ -245,16 +247,16 @@ public class ProfileDao {
 		}
 	}
 
-	public List<ProfileSimpleDto> findSuitableForUser(Long userId, int limit) {
+	public Queue<ProfileSimpleDto> findSuitableForUser(Long userId, int limit) {
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(SUITABLE)) {
 			stmt.setObject(1, userId);
-			stmt.setInt(2, Math.min(limit, 1));
+			stmt.setInt(2, limit);
 			ResultSet rs = stmt.executeQuery();
 
-			List<ProfileSimpleDto> profiles = new ArrayList<>();
+			LinkedList<ProfileSimpleDto> profiles = new LinkedList<>();
 			while (rs.next()) {
-				profiles.add(profileSimpleDtoMapper.map(rs));
+				profiles.offer(profileSimpleDtoMapper.map(rs));
 			}
 			return profiles;
 		} catch (SQLException e) {
