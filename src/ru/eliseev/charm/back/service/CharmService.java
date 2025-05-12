@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.service;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.LikeDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.Action;
@@ -10,7 +11,6 @@ import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 
 import java.util.Optional;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentHashMap;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CharmService {
@@ -18,12 +18,13 @@ public class CharmService {
 	private static final CharmService INSTANCE = new CharmService();
 	private final LikeDao likeDao = LikeDao.getInstance();
 	private final ProfileDao profileDao = ProfileDao.getInstance();
-	private final ConcurrentHashMap<Long, Queue<ProfileSimpleDto>> cache = new ConcurrentHashMap<>();
+	private final CacheService cacheService = CacheService.getInstance();
 
 	public static CharmService getInstance() {
 		return INSTANCE;
 	}
 
+	@SneakyThrows
 	public Optional<ProfileSimpleDto> next(CharmDto charmDto) {
 		Long userId = charmDto.getFromProfile();
 		Action action = charmDto.getAction();
@@ -31,13 +32,14 @@ public class CharmService {
 			likeDao.like(userId, charmDto.getToProfile(), action == Action.LIKE);
 		}
 
-		Queue<ProfileSimpleDto> queue = cache.get(userId);
+		ProfileSimpleDto next = cacheService.poll(userId.toString(), ProfileSimpleDto.class);
 
-		if (queue == null || queue.isEmpty()) {
-			queue = profileDao.findSuitableForUser(userId, 5);
-			cache.put(userId, queue);
+		if (next == null) {
+			Queue<ProfileSimpleDto> queue = profileDao.findSuitableForUser(userId, 5);
+			next = queue.poll();
+			cacheService.setQueue(userId.toString(), queue);
 		}
 
-		return Optional.ofNullable(queue.poll());
+		return Optional.ofNullable(next);
 	}
 }
