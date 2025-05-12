@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.utils.PasswordUtils;
 
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 
@@ -29,7 +30,8 @@ public class CredentialsDtoToProfileMapper implements Mapper<CredentialsDto, Pro
             profile.setEmail(dto.getEmail());
         }
         if (!isBlank(dto.getNewPassword())) {
-            profile.setPassword(dto.getNewPassword());
+            String passwordHash = PasswordUtils.hashPassword(dto.getNewPassword());
+            profile.setPassword(passwordHash);
         }
         return profile;
     }
