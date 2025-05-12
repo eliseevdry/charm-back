@@ -1,23 +1,5 @@
 package ru.eliseev.charm.back.dao;
 
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.FETCH_SIZE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.MAX_ROWS;
-import static ru.eliseev.charm.back.utils.ConnectionManager.QUERY_TIMEOUT;
-
-import java.sql.Array;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileFilter;
@@ -29,8 +11,22 @@ import ru.eliseev.charm.back.dto.Query;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileMapper;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileSimpleDtoMapper;
 import ru.eliseev.charm.back.model.Profile;
-import ru.eliseev.charm.back.model.Status;
 import ru.eliseev.charm.back.utils.ConnectionManager;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.FETCH_SIZE;
+import static ru.eliseev.charm.back.utils.ConnectionManager.MAX_ROWS;
+import static ru.eliseev.charm.back.utils.ConnectionManager.QUERY_TIMEOUT;
 
 @Slf4j
 public class ProfileDao {
@@ -38,9 +34,11 @@ public class ProfileDao {
 	//language=POSTGRES-PSQL
 	public static final String INSERT = "INSERT INTO profile (email, password) VALUES (?, ?)";
 	//language=POSTGRES-PSQL
-	public static final String UPDATE_STATUSES = "UPDATE profile SET status = ? WHERE id IN (select unnest(?))";
+	public static final String UPDATE_STATUS = "UPDATE profile SET status = ?, version = ? WHERE id = ? AND version = ?";
 	//language=POSTGRES-PSQL
 	public static final String DELETE = "DELETE FROM profile WHERE id = ?";
+    //language=POSTGRES-PSQL
+    public static final String EXISTS_BY_EMAIL = "SELECT 1 FROM profile WHERE id != ? AND email = ?";
 	//language=POSTGRES-PSQL
 	public static final String SUITABLE = """
 			SELECT * FROM (
@@ -133,10 +131,14 @@ public class ProfileDao {
 		}
 	}
 
-	public boolean existByEmail(String email) {
-		Query query = new ProfileSelectQueryBuilder().addEmailFilter(email).build();
+    public boolean existByEmail(Long id, String email) {
+        if (id == null) {
+            id = -1L;
+        }
 		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+             PreparedStatement stmt = conn.prepareStatement(EXISTS_BY_EMAIL)) {
+            stmt.setLong(1, id);
+            stmt.setString(2, email);
 			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		} catch (SQLException e) {
@@ -181,10 +183,13 @@ public class ProfileDao {
 							  .addGender(profile.getGender())
 							  .addStatus(profile.getStatus())
 							  .addPhoto(profile.getPhoto())
-							  .build(profile.getId());
+			.build(profile.getId(), profile.getVersion());
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
-			stmt.executeUpdate();
+			int updateCount = stmt.executeUpdate();
+			if (updateCount == 0) {
+				log.warn("The update did not occur for profile id = {}, version = {}", profile.getId(), profile.getVersion());
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -198,20 +203,13 @@ public class ProfileDao {
 			conn = ConnectionManager.getConnection();
 			conn.setAutoCommit(false);
 
-			stmt = conn.prepareStatement(UPDATE_STATUSES);
+            stmt = conn.prepareStatement(UPDATE_STATUS);
 
-			Map<Status, Set<Long>> updateMap =
-					dtos.stream().collect(Collectors.groupingBy(
-									ProfileUpdateStatusDto::getStatus,
-									Collectors.mapping(ProfileUpdateStatusDto::getId, Collectors.toSet())
-							)
-					);
-
-			for (Map.Entry<Status, Set<Long>> entry : updateMap.entrySet()) {
-				Long[] idArray = entry.getValue().toArray(new Long[0]);
-				Array sqlArray = conn.createArrayOf("BIGINT", idArray);
-				stmt.setString(1, entry.getKey().toString());
-				stmt.setArray(2, sqlArray);
+            for (ProfileUpdateStatusDto dto : dtos) {
+                stmt.setString(1, dto.getStatus().toString());
+                stmt.setInt(2, dto.getVersion() + 1);
+                stmt.setLong(3, dto.getId());
+                stmt.setLong(4, dto.getVersion());
 				stmt.addBatch();
 			}
 

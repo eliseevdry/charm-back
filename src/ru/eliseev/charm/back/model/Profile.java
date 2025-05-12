@@ -20,4 +20,5 @@ public class Profile {
     String photo;
     Status status;
     Role role;
+    int version = 0;
 }

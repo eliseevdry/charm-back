@@ -1,11 +1,12 @@
 package ru.eliseev.charm.back.dto;
 
+import ru.eliseev.charm.back.model.Gender;
+import ru.eliseev.charm.back.model.Status;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import ru.eliseev.charm.back.model.Gender;
-import ru.eliseev.charm.back.model.Status;
 
 public class ProfileUpdateQueryBuilder {
     //language=POSTGRES-PSQL
@@ -100,9 +101,11 @@ public class ProfileUpdateQueryBuilder {
         return this;
     }
 
-    public Query build(Long id) {
-        sb.append(" WHERE id = ?");
+    public Query build(Long id, int version) {
+        sb.append(", version = ? WHERE id = ? AND version = ?");
+        args.add(version + 1);
         args.add(id);
+        args.add(version);
         return new Query(sb.toString(), args);
     }
 }

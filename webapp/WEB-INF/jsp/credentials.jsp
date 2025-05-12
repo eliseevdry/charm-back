@@ -11,9 +11,10 @@
             <small style="color: red">${wordBundle.getWord("email-warning")}</small>
             <table>
                 <tr class="hiddenRow">
-                    <form method="post" action="/credentials?id=${profile.id}" enctype="multipart/form-data">
+                    <form method="post" action="/credentials">
                         <input type="hidden" name="_method" value="put"/>
                         <input type="hidden" name="id" value="${profile.id}">
+                        <input type="hidden" name="version" value="${profile.version}">
                         <table>
                             <tr>
                                 <td><h3>${wordBundle.getWord("email")}</h3></td>
@@ -35,7 +36,7 @@
                         <table>
                             <tr class="hiddenRow">
                                 <td>
-                                    <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit"
+                                    <input type="image" src="${pageContext.request.contextPath}/img/floppy-disk.png" width="75" alt="submit"
                                            class="icon" onclick="return confirm()"/>
                                 </td>
                             </tr>
@@ -54,7 +55,7 @@
                     <form method="post" action="/profile">
                         <input type="hidden" name="_method" value="delete"/>
                         <input type="hidden" name="id" value="${profile.id}">
-                        <input type="image" src="content/app/img/cross.png" width="75" alt="submit" class="icon"
+                        <input type="image" src="${pageContext.request.contextPath}/img/cross.png" width="75" alt="submit" class="icon"
                                onclick="return confirm()"/>
                     </form>
                 </tr>

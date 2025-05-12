@@ -22,6 +22,7 @@ public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUp
     @Override
     public Profile map(ProfileFullUpdateDto dto, Profile profile) {
         profile.setId(dto.getId());
+        profile.setVersion(dto.getVersion());
         if (dto.getEmail() != null) {
             profile.setEmail(dto.getEmail());
         }

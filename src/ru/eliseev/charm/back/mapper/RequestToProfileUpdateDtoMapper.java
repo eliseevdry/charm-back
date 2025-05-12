@@ -1,7 +1,5 @@
 package ru.eliseev.charm.back.mapper;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -9,6 +7,8 @@ import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 import java.time.LocalDate;
 
 import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
@@ -33,6 +33,10 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
         String id = req.getParameter("id");
         if (!isBlank(id)) {
             dto.setId(Long.parseLong(id));
+        }
+        String version = req.getParameter("version");
+        if (!isBlank(version)) {
+            dto.setVersion(Integer.parseInt(version));
         }
         dto.setName(req.getParameter("name"));
         dto.setSurname(req.getParameter("surname"));

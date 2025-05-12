@@ -1,19 +1,20 @@
 package ru.eliseev.charm.back.dto;
 
+import ru.eliseev.charm.back.model.Status;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
 import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
 import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_SORTED_COLUMN;
 import static ru.eliseev.charm.back.utils.DateTimeUtils.getPastDate;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import ru.eliseev.charm.back.model.Status;
-
 public class ProfileSelectQueryBuilder {
 	//language=POSTGRES-PSQL
 	public static final String SELECT_BASE = """
-			SELECT id, email, password, "name", surname, birth_date, about, gender, photo, status, role
+		SELECT id, email, password, "name", surname, birth_date, about, gender, photo, status, role, version
 			FROM profile
 			WHERE '' = ''
 			""";

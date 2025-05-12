@@ -1,12 +1,12 @@
 package ru.eliseev.charm.back.validator;
 
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.RegistrationDto;
+
+import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegistrationValidator implements Validator<RegistrationDto> {
@@ -24,7 +24,7 @@ public class RegistrationValidator implements Validator<RegistrationDto> {
         ValidationResult result = new ValidationResult();
         if (!isValidEmail(dto.getEmail())) {
             result.add("error.email.invalid");
-        } else if (dao.existByEmail(dto.getEmail())) {
+        } else if (dao.existByEmail(null, dto.getEmail())) {
             result.add("error.email.exist");
         }
         if (!isValidPassword(dto.getPassword()) || !dto.getPassword().equals(dto.getConfirm())) {

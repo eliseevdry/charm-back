@@ -23,4 +23,5 @@ public class ProfileGetDto {
     Status status;
     String photo;
     Role role;
+    int version = 0;
 }

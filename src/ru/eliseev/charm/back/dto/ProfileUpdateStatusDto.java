@@ -9,5 +9,6 @@ import ru.eliseev.charm.back.model.Status;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProfileUpdateStatusDto {
     Long id;
+    int version = 0;
     Status status;
 }

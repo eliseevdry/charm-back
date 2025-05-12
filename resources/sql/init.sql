@@ -1,4 +1,6 @@
-CREATE TABLE profile(
+create DATABASE charm_repository;
+
+create TABLE profile(
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR NOT NULL UNIQUE,  
     password VARCHAR NOT NULL, 
@@ -10,21 +12,22 @@ CREATE TABLE profile(
     photo VARCHAR,
     status VARCHAR NOT NULL DEFAULT 'INACTIVE',
     role VARCHAR NOT NULL DEFAULT 'USER',
+    version INT NOT NULL DEFAULT 0,
     created_date TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
-COMMENT ON COLUMN profile.id IS 'sortable';
-COMMENT ON COLUMN profile.email IS 'sortable';
-COMMENT ON COLUMN profile."name" IS 'sortable';
-COMMENT ON COLUMN profile.surname IS 'sortable';
-COMMENT ON COLUMN profile.birth_date IS 'sortable';
-COMMENT ON COLUMN profile.gender IS 'sortable';
-COMMENT ON COLUMN profile.status IS 'sortable';
-COMMENT ON COLUMN profile.role IS 'sortable';
+comment on column profile.id is 'sortable';
+comment on column profile.email is 'sortable';
+comment on column profile."name" is 'sortable';
+comment on column profile.surname is 'sortable';
+comment on column profile.birth_date is 'sortable';
+comment on column profile.gender is 'sortable';
+comment on column profile.status is 'sortable';
+comment on column profile.role is 'sortable';
 
-CREATE TABLE "like"(
-    from_profile BIGINT NOT NULL REFERENCES profile (id) ON DELETE CASCADE,
-    to_profile BIGINT NOT NULL REFERENCES profile (id) ON DELETE CASCADE,
+create TABLE "like"(
+    from_profile BIGINT NOT NULL REFERENCES profile (id) ON delete CASCADE,
+    to_profile BIGINT NOT NULL REFERENCES profile (id) ON delete CASCADE,
     "like" BOOLEAN NOT NULL,
     match BOOLEAN NOT NULL,
     created_date TIMESTAMP NOT NULL DEFAULT current_timestamp,

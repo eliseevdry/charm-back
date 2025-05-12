@@ -43,6 +43,7 @@ public class ProfileUpdateDtoToProfileMapper implements Mapper<ProfileUpdateDto,
         if (dto.getPhoto() != null) {
             profile.setPhoto(dto.getPhoto().getSubmittedFileName());
         }
+        profile.setVersion(dto.getVersion());
         return profile;
     }
 }

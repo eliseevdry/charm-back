@@ -1,7 +1,5 @@
 package ru.eliseev.charm.back.mapper;
 
-import java.sql.Date;
-import java.sql.ResultSet;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -9,6 +7,9 @@ import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.model.Role;
 import ru.eliseev.charm.back.model.Status;
+
+import java.sql.Date;
+import java.sql.ResultSet;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResultSetToProfileMapper implements Mapper<ResultSet, Profile> {
@@ -50,6 +51,7 @@ public class ResultSetToProfileMapper implements Mapper<ResultSet, Profile> {
 		if (role != null) {
 			profile.setRole(Role.valueOf(role));
 		}
+        profile.setVersion(rs.getInt("version"));
 		return profile;
 	}
 }

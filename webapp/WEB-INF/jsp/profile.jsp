@@ -11,6 +11,7 @@
             <form method="post" action="/profile?id=${profile.id}" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="put"/>
                 <input type="hidden" name="id" value="${profile.id}">
+                <input type="hidden" name="version" value="${profile.version}">
                 <table>
                     <tr>
                         <td><h3>${wordBundle.getWord("name")}</h3></td>
@@ -56,16 +57,16 @@
                 <table>
                     <tr class="hiddenRow">
                         <td>
-                            <input type="image" src="content/app/img/floppy-disk.png" width="75" alt="submit" class="icon"/>
+                            <input type="image" src="${pageContext.request.contextPath}/img/floppy-disk.png" width="75" alt="submit" class="icon"/>
                         </td>
                         <td>
-                            <a href="/credentials?id=${profile.id}"><img src="content/app/img/at-sign.png" width="75"></a>
+                            <a href="/credentials?id=${profile.id}"><img src="${pageContext.request.contextPath}/img/at-sign.png" width="75"></a>
                         </td>
                         <td>
-                            <a href="/profile/pdf?id=${profile.id}"><img src="content/app/img/id.png" alt="" width="75"></a>
+                            <a href="/profile/pdf?id=${profile.id}"><img src="${pageContext.request.contextPath}/img/id.png" alt="" width="75"></a>
                         </td>
                         <td>
-                            <a href="/matches"><img src="content/app/img/flame.png" width="75"></a>
+                            <a href="/matches"><img src="${pageContext.request.contextPath}/img/flame.png" width="75"></a>
                         </td>
                     </tr>
                 </table>
