@@ -1,12 +1,12 @@
 package ru.eliseev.charm.back.dto;
 
-import jakarta.servlet.http.Part;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
 
+import jakarta.servlet.http.Part;
 import java.time.LocalDate;
 
 @Data
@@ -20,4 +20,5 @@ public class ProfileUpdateDto {
     Gender gender;
     Status status;
     Part photo;
+    int version = 0;
 }

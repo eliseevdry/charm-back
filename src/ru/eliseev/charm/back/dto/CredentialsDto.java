@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CredentialsDto {
     Long id;
+    int version = 0;
     String email;
     String newPassword;
     String confirmNewPassword;

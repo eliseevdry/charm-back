@@ -39,6 +39,7 @@ public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetD
             dto.setPhoto(getProfilePhotoPath(profile.getId(), profile.getPhoto()));
         }
         dto.setRole(profile.getRole());
+        dto.setVersion(profile.getVersion());
         return dto;
     }
 }

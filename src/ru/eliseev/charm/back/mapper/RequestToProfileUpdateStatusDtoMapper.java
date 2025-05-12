@@ -1,13 +1,14 @@
 package ru.eliseev.charm.back.mapper;
 
-import jakarta.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dto.ProfileUpdateStatusDto;
 import ru.eliseev.charm.back.model.Status;
+
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToProfileUpdateStatusDtoMapper implements Mapper<HttpServletRequest, List<ProfileUpdateStatusDto>> {
@@ -39,6 +40,7 @@ public class RequestToProfileUpdateStatusDtoMapper implements Mapper<HttpServlet
 				ProfileUpdateStatusDto dto = new ProfileUpdateStatusDto();
 				dto.setId(Long.parseLong(split[1]));
 				dto.setStatus(Status.valueOf(split[0]));
+				dto.setVersion(Integer.parseInt(split[2]));
 				dtos.add(dto);
 			} catch (Exception ignored) {
 			}

@@ -14,6 +14,7 @@
                     <form method="post" action="/credentials">
                         <input type="hidden" name="_method" value="put"/>
                         <input type="hidden" name="id" value="${profile.id}">
+                        <input type="hidden" name="version" value="${profile.version}">
                         <table>
                             <tr>
                                 <td><h3>${wordBundle.getWord("email")}</h3></td>

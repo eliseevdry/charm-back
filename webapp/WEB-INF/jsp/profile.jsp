@@ -11,6 +11,7 @@
             <form method="post" action="/profile?id=${profile.id}" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="put"/>
                 <input type="hidden" name="id" value="${profile.id}">
+                <input type="hidden" name="version" value="${profile.version}">
                 <table>
                     <tr>
                         <td><h3>${wordBundle.getWord("name")}</h3></td>

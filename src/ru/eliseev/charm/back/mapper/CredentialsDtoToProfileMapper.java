@@ -24,6 +24,7 @@ public class CredentialsDtoToProfileMapper implements Mapper<CredentialsDto, Pro
     @Override
     public Profile map(CredentialsDto dto, Profile profile) {
         profile.setId(dto.getId());
+        profile.setVersion(dto.getVersion());
         if (!isBlank(dto.getEmail())) {
             profile.setEmail(dto.getEmail());
         }

@@ -215,7 +215,7 @@
                                                 </option>
                                             </c:if>
                                             <c:if test="${statusVar != profile.status}">
-                                                <option value="${statusVar}_${profile.id}">
+                                                <option value="${statusVar}_${profile.id}_${profile.version}">
                                                     ${wordBundle.getWord(statusVar)}
                                                 </option>
                                             </c:if>
