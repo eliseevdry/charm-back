@@ -1,10 +1,5 @@
 package ru.eliseev.charm.back.service;
 
-import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
-
-import jakarta.servlet.http.Part;
-import java.util.List;
-import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -24,6 +19,13 @@ import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.utils.PasswordUtils;
+
+import jakarta.servlet.http.Part;
+import java.util.List;
+import java.util.Optional;
+
+import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
@@ -49,7 +51,8 @@ public class ProfileService {
     }
 
     public Long save(RegistrationDto dto) {
-        return dao.save(dto.getEmail(), dto.getPassword());
+        String passwordHash = PasswordUtils.hashPassword(dto.getPassword());
+        return dao.save(dto.getEmail(), passwordHash);
     }
 
     public Optional<ProfileGetDto> findById(Long id) {
@@ -67,7 +70,9 @@ public class ProfileService {
 	}
 
     public Optional<UserDetails> login(LoginDto dto) {
-        return dao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).map(profileToUserDetailsMapper::map);
+        return dao.findByEmail(dto.getEmail())
+            .filter(profile -> PasswordUtils.checkPassword(dto.getPassword(), profile.getPassword()))
+            .map(profileToUserDetailsMapper::map);
     }
 
     public List<ProfileGetDto> findAll(ProfileFilter filter) {

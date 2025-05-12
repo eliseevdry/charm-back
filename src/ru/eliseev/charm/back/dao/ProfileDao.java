@@ -83,11 +83,11 @@ public class ProfileDao {
 		return INSTANCE;
 	}
 
-	public Long save(String email, String password) {
+	public Long save(String email, String passwordHash) {
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setString(1, email);
-			stmt.setString(2, password);
+			stmt.setString(2, passwordHash);
 
 			stmt.executeUpdate();
 
@@ -115,11 +115,8 @@ public class ProfileDao {
 		}
 	}
 
-	public Optional<Profile> findByEmailAndPassword(String email, String password) {
-		Query query = new ProfileSelectQueryBuilder()
-							  .addEmailFilter(email)
-							  .addPasswordFilter(password)
-							  .build();
+	public Optional<Profile> findByEmail(String email) {
+		Query query = new ProfileSelectQueryBuilder().addEmailFilter(email).build();
 		try (Connection conn = ConnectionManager.getConnection();
 			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();

@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.utils.PasswordUtils;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUpdateDto, Profile> {
@@ -27,7 +28,8 @@ public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUp
             profile.setEmail(dto.getEmail());
         }
         if (dto.getPassword() != null) {
-            profile.setPassword(dto.getPassword());
+            String passwordHash = PasswordUtils.hashPassword(dto.getPassword());
+            profile.setPassword(passwordHash);
         }
         if (dto.getName() != null) {
             profile.setName(dto.getName());
