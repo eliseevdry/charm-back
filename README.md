@@ -2,7 +2,7 @@
 
 ### Локальный запуск:
 
-1) Запускаем postgres и redis (local или docker), скачиваем Tomcat Server, ;
+1) Запускаем postgres и redis (local или docker), скачиваем Tomcat Server;
 2) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
 3) Прописываем настройки для redis (host, port);
 4) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
@@ -15,13 +15,13 @@
 1) Скачиваем plugin `Smart Tomcat`;
 2) Добавляем конфигурацию запуска `Smart Tomcat`;
 3) Ставим `/` в `Context Path`, в `Deployment directory` указываем директорию `web` или `webapp`;
-4) Если не находит classpath в `Extra JVM classpath` указываем сбилженную директорию `out`.
+4) Если не находит classpath в `Extra JVM classpath` указываем сбилженную директорию `out`/`target`.
 
 ### Запуск с Intellij Idea Ultimate:
 1) Переходим в настройки -> `Project Structure...`;
 2) Создаем модуль `web`;
-3) Проверяем чтобы везде в модуле был путь до директории `web` или `webapp` в корне проекта;
-4) `WEB-INF`, `img` и `favicon.ico` должны находиться в директории `web` или `webapp`;
+3) Проверяем чтобы везде в модуле был путь до директории `web`/`webapp` в корне проекта;
+4) `WEB-INF`, `img` и `favicon.ico` должны находиться в директории `web`/`webapp`;
 5) Создаем артифакт `Web Application: Exploded` из этого модуля;
 6) Добавляем конфигурацию запуска `Tomcat Server: Local`;
 7) В `Deployment` ставим `/` в `Application Context` и добавляем наш артифакт, помимо `build`.
