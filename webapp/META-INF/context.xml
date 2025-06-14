@@ -1,0 +1,15 @@
+<Context>
+    <Resource name="jdbc/hikariDatasource"
+              auth="Container"
+              type="javax.sql.DataSource"
+              factory="com.zaxxer.hikari.HikariJNDIFactory"
+              driverClassName="org.postgresql.Driver"
+              jdbcUrl="jdbc:postgresql://localhost:5432/charm_repository"
+              username="postgres"
+              password="postgres"
+              maximumPoolSize="10"
+              maxIdle="4"
+              maxWait="5000"
+              validationQuery="SELECT 1"
+              connectionTimeout="30000"/>
+</Context>

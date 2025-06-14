@@ -1,11 +1,11 @@
 package ru.eliseev.charm.back.utils;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import ru.eliseev.charm.back.dto.Query;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.io.Closeable;
 import java.sql.Connection;
@@ -45,18 +45,20 @@ public class ConnectionManager {
 
             dataSource = new CustomDataSource(config);
         } else {
-            HikariConfig config = new HikariConfig();
-            config.setJdbcUrl(URL);
-            config.setUsername(USER);
-            config.setPassword(PASSWORD);
-            config.setMaximumPoolSize(POOL_SIZE);
-            config.setMinimumIdle(5);
-            config.setConnectionTimeout(10000);
-            config.setIdleTimeout(60000);
-            config.setMaxLifetime(1800000);
-            config.setConnectionTestQuery("SELECT 1");
-
-            dataSource = new HikariDataSource(config);
+            Context ctx = new InitialContext();
+            dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/hikariDatasource");
+//            HikariConfig config = new HikariConfig();
+//            config.setJdbcUrl(URL);
+//            config.setUsername(USER);
+//            config.setPassword(PASSWORD);
+//            config.setMaximumPoolSize(POOL_SIZE);
+//            config.setMinimumIdle(5);
+//            config.setConnectionTimeout(10000);
+//            config.setIdleTimeout(60000);
+//            config.setMaxLifetime(1800000);
+//            config.setConnectionTestQuery("SELECT 1");
+//
+//            dataSource = new HikariDataSource(config);
         }
     }
 
