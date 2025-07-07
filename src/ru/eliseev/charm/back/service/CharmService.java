@@ -18,7 +18,7 @@ public class CharmService {
 	private static final CharmService INSTANCE = new CharmService();
 	private final LikeDao likeDao = LikeDao.getInstance();
 	private final ProfileDao profileDao = ProfileDao.getInstance();
-	private final CacheService cacheService = CacheService.getInstance();
+	private final ProfileCacheService profileCacheService = ProfileCacheService.getInstance();
 
 	public static CharmService getInstance() {
 		return INSTANCE;
@@ -32,14 +32,18 @@ public class CharmService {
 			likeDao.like(userId, charmDto.getToProfile(), action == Action.LIKE);
 		}
 
-		ProfileSimpleDto next = cacheService.poll(userId.toString(), ProfileSimpleDto.class);
+		Optional<ProfileSimpleDto> nextOpt = profileCacheService.lPop(userId.toString());
 
-		if (next == null) {
-			Queue<ProfileSimpleDto> queue = profileDao.findSuitableForUser(userId, 5);
-			next = queue.poll();
-			cacheService.setQueue(userId.toString(), queue);
+		if (nextOpt.isPresent() && profileCacheService.isNullObject(nextOpt.get())) {
+			return Optional.empty();
 		}
 
-		return Optional.ofNullable(next);
+		if (nextOpt.isEmpty()) {
+			Queue<ProfileSimpleDto> queue = profileDao.findSuitableForUser(userId, 5);
+			nextOpt = Optional.ofNullable(queue.poll());
+			profileCacheService.setQueue(userId.toString(), queue);
+		}
+
+		return nextOpt;
 	}
 }
