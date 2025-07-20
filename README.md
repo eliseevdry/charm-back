@@ -12,8 +12,9 @@
 8) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
    linux: `/Users/andrey.s.eliseev/Downloads`);
 9) В корне проекта делаем скрипт исполняемым `chmod +x build_and_deploy.sh`;
-10) Запустите скрипт.
-11) Логи `tail -f $CATALINA_HOME/logs/catalina.out`
+10) Запустите скрипт;
+11) Логи `tail -f $CATALINA_HOME/logs/catalina.out`;
+12) Остановить приложение `$CATALINA_HOME/bin/shutdown.sh`.
 
 ### Локальный запуск:
 
