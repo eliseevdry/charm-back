@@ -12,12 +12,12 @@ check_error() {
 
 # 1. Проверка наличия необходимых инструментов
 if ! command -v javac &> /dev/null; then
-    echo "Ошибка: JDK не установлен или не добавлен в PATH"
+    echo "❌ Ошибка: JDK не установлен или не добавлен в PATH"
     exit 1
 fi
 
 if ! command -v jar &> /dev/null; then
-    echo "Ошибка: Утилита jar не найдена (часть JDK)"
+    echo "❌ Ошибка: Утилита jar не найдена (часть JDK)"
     exit 1
 fi
 
@@ -29,28 +29,47 @@ RESOURCES_DIR="resources"         # Папка с ресурсами
 SRC_DIR="src"                     # Папка с исходниками
 WEB_DIR="webapp"                  # Папка с веб-контентом (WEB-INF, JSP и т.д.)
 LIB_DIR="lib"                     # Папка с зависимостями (JAR-файлы)
+
 TEST_DIR="/ru/eliseev/charm/back/test"
+MAX_LINES=350  # Максимально допустимое количество строк в классе
 
 DIST_DIR="build"
 DIST_WEB_DIR="$DIST_DIR/webapp"              
 DIST_CLASSES_DIR="$DIST_WEB_DIR/WEB-INF/classes"       # Папка для скомпилированных классов
 DIST_LIB_DIR="$DIST_WEB_DIR/WEB-INF/lib"       # Папка для скомпилированных классов
 
-# 3. Подготовка папок
-echo "Подготовка структуры папок..."
+# 1. Проверка длины Java-классов
+echo "📏 Проверка (checkstyle), что все классы <= $MAX_LINES строк..."
+LONG_FILES=()
+while IFS= read -r -d '' file; do
+  lines=$(wc -l < "$file")
+  if (( lines > MAX_LINES )); then
+    LONG_FILES+=("$file ($lines строк)")
+  fi
+done < <(find "$SRC_DIR" -name "*.java" -print0)
+
+if [ ${#LONG_FILES[@]} -gt 0 ]; then
+  echo "⚠️ Найдены слишком длинные файлы:"
+  printf "   ▪ %s\n" "${LONG_FILES[@]}"
+  echo "Пожалуйста, разбейте их на меньшие классы."
+  exit 1
+fi
+
+# 2. Подготовка папок
+echo "📁 Подготовка структуры папок..."
 find "$DIST_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 mkdir -p "$DIST_DIR"
 mkdir -p "$DIST_CLASSES_DIR"
 mkdir -p "$DIST_LIB_DIR"
 
-# 4. Компиляция Java-классов
-echo "🔹 Компиляция Java-классов..."
+# 3. Компиляция Java-классов
+echo "⚙️ Компиляция Java-классов..."
 find "$SRC_DIR" -name "*.java" > sources.txt
 javac -d "$DIST_CLASSES_DIR" -cp "$LIB_DIR/*" @sources.txt
 check_error "Ошибка компиляции! Проверьте исходный код."
 rm sources.txt
 
-# 5. Запуск всех тестовых классов
+# 4. Запуск всех тестовых классов
 echo "🔍 Поиск тестовых классов в $TEST_DIR..."
 TEST_CLASSES=$(find "$DIST_CLASSES_DIR$TEST_DIR" -name "*.class" | sed "s|$DIST_CLASSES_DIR/||; s|.class$||; s|/|.|g")
 
@@ -59,27 +78,27 @@ if [ -z "$TEST_CLASSES" ]; then
   exit 1
 fi
 
-echo "🔹 Запуск тестов:"
+echo "🧪 Запуск тестов:"
 for TEST_CLASS in $TEST_CLASSES; do
   echo "   ▪ $TEST_CLASS"
   java -ea -cp "$DIST_CLASSES_DIR:$LIB_DIR/*" "$TEST_CLASS"
   check_error "Тест $TEST_CLASS не пройден!"
 done
 
-# 6. Копирование классов и библиотек
-echo "Копирование ресурсов..."
+# 5. Копирование классов и библиотек
+echo "🖨️ Копирование ресурсов..."
 cp -r "$WEB_DIR"/* "$DIST_WEB_DIR"
 cp -r "$RESOURCES_DIR"/* "$DIST_CLASSES_DIR"
 cp -r "$LIB_DIR"/*.jar "$DIST_LIB_DIR"
 
-# 7. Создание WAR-файла
+# 6. Создание WAR-файла
 echo "📦 Создание WAR-архива..."
 cd "$DIST_WEB_DIR" || exit
 jar -cvf "../ROOT.war" *
 cd ..
 
-# 8. Остановка Tomcat перед развёртыванием
-echo "Остановка Tomcat..."
+# 7. Остановка Tomcat перед развёртыванием
+echo "🔌 Остановка Tomcat..."
 if [ -f "$TOMCAT_STOP" ]; then
     "$TOMCAT_STOP"
     sleep 5  # Даём Tomcat время на корректную остановку
@@ -89,8 +108,8 @@ else
     echo "Продолжение без остановки Tomcat..."
 fi
 
-# 9. Очистка папки webapps
-echo "Очистка папки webapps..."
+# 8. Очистка папки webapps
+echo "🧽 Очистка папки webapps..."
 if [ -d "$TOMCAT_WEBAPPS" ]; then
     # Удаляем все файлы и папки в webapps, кроме самого каталога
     find "$TOMCAT_WEBAPPS" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
@@ -100,8 +119,8 @@ else
     exit 1
 fi
 
-# 10. Развёртывание в Tomcat
-echo "🚀 Развёртывание в Tomcat..."
+# 9. Развёртывание в Tomcat
+echo "🏗️ Развёртывание в Tomcat..."
 if [ -d "$TOMCAT_WEBAPPS" ]; then
     cp "ROOT.war" "$TOMCAT_WEBAPPS/"
     echo "WAR-файл успешно скопирован в $TOMCAT_WEBAPPS"
@@ -111,7 +130,7 @@ else
     exit 1
 fi
 
-# 11. Запуск Tomcat
+# 10. Запуск Tomcat
 echo "🚀 Запуск Tomcat..."
 if [ -f "$TOMCAT_START" ]; then
     "$TOMCAT_START"
