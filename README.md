@@ -11,8 +11,7 @@
 7) Прописываем настройки для Redis (host, port) в `application.properties`;
 8) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
    linux: `/Users/andrey.s.eliseev/Downloads`);
-9) Скачайте maven;
-10) Запустите `mvn clean package cargo:run`.
+9) Запустите `./mvn clean package cargo:run` или для windows `mvnw.cmd clean package cargo:run`.
 
 ### Локальный запуск:
 
