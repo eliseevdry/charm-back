@@ -35,7 +35,7 @@ public class CredentialsValidator implements Validator<CredentialsDto> {
                 result.add("error.email.exist");
             }
         }
-        if (!isValidPassword(dto.getNewPassword()) && !dto.getNewPassword().equals(dto.getConfirmNewPassword())) {
+        if (!isValidPassword(dto.getNewPassword()) || !dto.getNewPassword().equals(dto.getConfirmNewPassword())) {
             result.add("error.password.invalid");
         }
         return result;
