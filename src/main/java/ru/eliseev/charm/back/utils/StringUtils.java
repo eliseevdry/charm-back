@@ -1,7 +1,8 @@
 package ru.eliseev.charm.back.utils;
 
-import java.util.regex.Pattern;
 import lombok.experimental.UtilityClass;
+
+import java.util.regex.Pattern;
 
 @UtilityClass
 public class StringUtils {
@@ -19,7 +20,6 @@ public class StringUtils {
     }
 
     public static boolean isValidPassword(String password) {
-        if (isBlank(password)) return false;
-        return !password.isBlank();
+        return !isBlank(password);
     }
 }
