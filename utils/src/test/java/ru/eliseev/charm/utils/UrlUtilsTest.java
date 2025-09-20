@@ -1,4 +1,4 @@
-package ru.eliseev.charm.back.utils;
+package ru.eliseev.charm.utils;
 
 import junit.framework.TestCase;
 

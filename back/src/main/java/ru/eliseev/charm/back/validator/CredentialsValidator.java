@@ -6,8 +6,8 @@ import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
 
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
+import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CredentialsValidator implements Validator<CredentialsDto> {

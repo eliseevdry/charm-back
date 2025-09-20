@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.dao;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import ru.eliseev.charm.back.config.ConnectionManager;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileSelectQueryBuilder;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
@@ -11,7 +12,6 @@ import ru.eliseev.charm.back.dto.Query;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileMapper;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileSimpleDtoMapper;
 import ru.eliseev.charm.back.model.Profile;
-import ru.eliseev.charm.back.utils.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.FETCH_SIZE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.MAX_ROWS;
-import static ru.eliseev.charm.back.utils.ConnectionManager.QUERY_TIMEOUT;
+import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.config.ConnectionManager.FETCH_SIZE;
+import static ru.eliseev.charm.back.config.ConnectionManager.MAX_ROWS;
+import static ru.eliseev.charm.back.config.ConnectionManager.QUERY_TIMEOUT;
 
 @Slf4j
 public class ProfileDao {

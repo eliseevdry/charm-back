@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 
-import static ru.eliseev.charm.back.utils.DateTimeUtils.isValidAge;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.back.utils.StringUtils.isValidPassword;
+import static ru.eliseev.charm.utils.DateTimeUtils.isValidAge;
+import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {

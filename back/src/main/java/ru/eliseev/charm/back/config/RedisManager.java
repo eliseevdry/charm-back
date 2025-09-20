@@ -1,8 +1,9 @@
-package ru.eliseev.charm.back.utils;
+package ru.eliseev.charm.back.config;
 
 import lombok.experimental.UtilityClass;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import ru.eliseev.charm.utils.ConfigFileUtils;
 
 @UtilityClass
 public class RedisManager {

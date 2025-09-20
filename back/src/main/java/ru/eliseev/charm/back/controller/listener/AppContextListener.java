@@ -1,16 +1,16 @@
 package ru.eliseev.charm.back.controller.listener;
 
+import ru.eliseev.charm.back.config.ConnectionManager;
+import ru.eliseev.charm.back.config.RedisManager;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
-import ru.eliseev.charm.back.utils.ConnectionManager;
-import ru.eliseev.charm.back.utils.RedisManager;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
-import static ru.eliseev.charm.back.utils.ConnectionManager.AVAILABLE_PAGE_SIZES;
+import static ru.eliseev.charm.back.config.ConnectionManager.AVAILABLE_PAGE_SIZES;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {

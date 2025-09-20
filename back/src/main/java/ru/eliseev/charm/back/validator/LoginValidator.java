@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.LoginDto;
 
-import static ru.eliseev.charm.back.utils.StringUtils.isValidEmail;
+import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginValidator implements Validator<LoginDto> {

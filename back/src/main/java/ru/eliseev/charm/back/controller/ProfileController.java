@@ -24,11 +24,11 @@ import java.io.OutputStream;
 import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 import static ru.eliseev.charm.back.utils.UrlUtils.PDF_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @WebServlet(PROFILE_URL + "/*")
 @MultipartConfig

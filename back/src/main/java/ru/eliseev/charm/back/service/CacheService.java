@@ -3,8 +3,8 @@ package ru.eliseev.charm.back.service;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import redis.clients.jedis.Jedis;
+import ru.eliseev.charm.back.config.RedisManager;
 import ru.eliseev.charm.back.mapper.JsonMapper;
-import ru.eliseev.charm.back.utils.RedisManager;
 
 import java.io.IOException;
 import java.util.Queue;

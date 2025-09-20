@@ -1,4 +1,4 @@
-package ru.eliseev.charm.back.utils;
+package ru.eliseev.charm.back.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 import ru.eliseev.charm.back.dto.Query;
 import ru.eliseev.charm.pool.CustomDataSource;
 import ru.eliseev.charm.pool.dto.CustomDataSourceConfig;
+import ru.eliseev.charm.utils.ConfigFileUtils;
 
 import javax.sql.DataSource;
 import java.io.Closeable;

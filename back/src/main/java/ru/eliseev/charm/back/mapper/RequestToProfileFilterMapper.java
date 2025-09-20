@@ -7,10 +7,10 @@ import ru.eliseev.charm.back.model.Status;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_PAGE_SIZE;
-import static ru.eliseev.charm.back.utils.ConnectionManager.DEFAULT_SORTED_COLUMN;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_SORTED_COLUMN;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToProfileFilterMapper implements Mapper<HttpServletRequest, ProfileFilter> {

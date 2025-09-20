@@ -8,9 +8,9 @@ import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 import java.sql.Date;
 import java.sql.ResultSet;
 
-import static ru.eliseev.charm.back.utils.DateTimeUtils.getAge;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
+import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResultSetToProfileSimpleDtoMapper implements Mapper<ResultSet, ProfileSimpleDto> {

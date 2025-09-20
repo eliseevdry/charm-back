@@ -14,8 +14,8 @@ import java.util.Locale;
 
 import static jakarta.servlet.DispatcherType.FORWARD;
 import static jakarta.servlet.DispatcherType.REQUEST;
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {

@@ -48,12 +48,6 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
-        <!--security-->
-        <dependency>
-            <groupId>org.mindrot</groupId>
-            <artifactId>jbcrypt</artifactId>
-        </dependency>
-
         <!--observability-->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -81,11 +75,9 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
         </dependency>
-
-        <!--test-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>ru.eliseev.charm</groupId>
+            <artifactId>utils</artifactId>
         </dependency>
     </dependencies>
 

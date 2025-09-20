@@ -19,7 +19,7 @@ import ru.eliseev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import ru.eliseev.charm.back.mapper.ProfileToUserDetailsMapper;
 import ru.eliseev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import ru.eliseev.charm.back.model.Profile;
-import ru.eliseev.charm.back.utils.PasswordUtils;
+import ru.eliseev.charm.utils.PasswordUtils;
 
 import jakarta.servlet.http.Part;
 import java.util.List;

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 import java.time.LocalDate;
 
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletRequest, ProfileUpdateDto> {

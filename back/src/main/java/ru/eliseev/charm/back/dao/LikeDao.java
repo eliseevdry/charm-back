@@ -2,7 +2,7 @@ package ru.eliseev.charm.back.dao;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.eliseev.charm.back.utils.ConnectionManager;
+import ru.eliseev.charm.back.config.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

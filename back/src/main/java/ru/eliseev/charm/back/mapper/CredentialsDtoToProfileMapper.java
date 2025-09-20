@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
-import ru.eliseev.charm.back.utils.PasswordUtils;
+import ru.eliseev.charm.utils.PasswordUtils;
 
-import static ru.eliseev.charm.back.utils.StringUtils.isBlank;
+import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CredentialsDtoToProfileMapper implements Mapper<CredentialsDto, Profile> {

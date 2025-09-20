@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.model.Profile;
 
-import static ru.eliseev.charm.back.utils.DateTimeUtils.getAge;
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
+import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetDto> {
