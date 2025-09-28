@@ -11,6 +11,7 @@
         <module>back</module>
         <module>pool</module>
         <module>utils</module>
+        <module>check-maven-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -118,12 +119,48 @@
                 <version>3.8.1</version>
                 <scope>test</scope>
             </dependency>
+
+            <!--for plugins-->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>3.9.11</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>3.15.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>3.9.11</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>ru.eliseev.charm</groupId>
+                    <artifactId>check-maven-plugin</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <configuration>
+                        <maxLines>350</maxLines>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>lines</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>

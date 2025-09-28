@@ -31,4 +31,13 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>ru.eliseev.charm</groupId>
+                <artifactId>check-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

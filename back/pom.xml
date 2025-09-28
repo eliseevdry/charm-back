@@ -88,6 +88,10 @@
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven3-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>ru.eliseev.charm</groupId>
+                <artifactId>check-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>
