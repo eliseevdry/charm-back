@@ -1,43 +1,43 @@
 # Charm Dating App
 
-### Как запустить проект без IDE?
+## Как запустить проект?
 
-1) Установите JDK-21;
-2) Скачиваем на компьютер Tomcat Server;
-3) Добавляем переменную окружения `export CATALINA_HOME="/путь/к/tomcat"`
-4) Скачиваем postgres, запускаем, выполняем скрипт `/resources/sql/init.sql`;
-5) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
-6) Скачиваем и запускаем Redis;
-7) Прописываем настройки для Redis (host, port) в `application.properties`;
-8) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
+1) Устанавливаем JDK-21;
+2) Скачиваем postgres (либо postgres в docker), запускаем, выполняем скрипт `/resources/sql/init.sql`;
+3) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
+4) Скачиваем и запускаем Redis (либо Redis в docker);
+5) Прописываем настройки для Redis (host, port) в `application.properties`;
+6) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
    linux: `/Users/andrey.s.eliseev/Downloads`);
-9) Запустите `./mvn clean package cargo:run` или для windows `mvnw.cmd clean package cargo:run`.
+7) Запустите `./mvnw clean package` или для windows `./mvnw.cmd clean package`.
 
-### Локальный запуск:
+### без Intellij Idea (cargo mvn plugin)
 
-1) Запускаем postgres и redis (local или docker), скачиваем Tomcat Server;
-2) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
-3) Прописываем настройки для redis (host, port);
-4) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
-   linux: `/Users/andrey.s.eliseev/Downloads`);
-5) Собираем war-архив либо в ручную (см. курс), либо с помощью IDE (варианты запуска с Intellij Idea показаны ниже) и помещаем в Apache Tomcat Server.
+7) Перейдите в директорию back;
+8) Запустите `../mvnw cargo:run` или для windows `../mvnw.cmd cargo:run`;
+9) Остановите приложение `control + c`.
 
-Далее планируется перейти на docker-compose
+### без Intellij Idea (свой Tomcat Server)
+7) Скачиваем на компьютер Tomcat Server;
+8) Перенести war-архив в директорию `/путь/к/tomcat/webapps`;
+9) Запустить сервер с помощью `/путь/к/tomcat/bin/startup.sh` или для windows `/путь/к/tomcat/bin/startup.bat`;
+10) Остановить сервер с помощью `/путь/к/tomcat/bin/shutdown.sh` или для windows `/путь/к/tomcat/bin/shutdown.bat`.
 
 ### Запуск с Intellij Idea Community:
-1) Скачиваем plugin `Smart Tomcat`;
-2) Добавляем конфигурацию запуска `Smart Tomcat`;
-3) Ставим `/` в `Context Path`, в `Deployment directory` указываем директорию `web` или `webapp`;
-4) Если не находит classpath в `Extra JVM classpath` указываем сбилженную директорию `out`/`target`.
+7) Скачиваем plugin `Smart Tomcat`;
+8) Добавляем конфигурацию запуска `Smart Tomcat`;
+9) Ставим `/` в `Context Path`, в `Deployment directory` указываем директорию `/путь/к/проекту/back/src/main/webapp`;
+10) Если не находит classpath в `Extra JVM classpath` указываем сбилженную директорию `target`.
 
 ### Запуск с Intellij Idea Ultimate:
-1) Переходим в настройки -> `Project Structure...`;
-2) Создаем модуль `web`;
-3) Проверяем чтобы везде в модуле был путь до директории `web`/`webapp` в корне проекта;
-4) `WEB-INF`, `img` и `favicon.ico` должны находиться в директории `web`/`webapp`;
-5) Создаем артифакт `Web Application: Exploded` из этого модуля;
-6) Добавляем конфигурацию запуска `Tomcat Server: Local`;
-7) В `Deployment` ставим `/` в `Application Context` и добавляем наш артифакт, помимо `build`.
+7) Переходим в настройки -> `Project Structure...`;
+8) Создаем модуль `web`;
+9) Проверяем чтобы везде в модуле был путь до директории `/путь/к/проекту/back/src/main/webapp` в корне проекта;
+10) Создаем артифакт `Web Application: Exploded` из этого модуля;
+11) Добавляем конфигурацию запуска `Tomcat Server: Local`;
+12) В `Deployment` ставим `/` в `Application Context` и добавляем наш артифакт, помимо `build`.
+
+Далее планируется перейти на docker-compose
 
 #### docker:
 `docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres`
