@@ -7,9 +7,7 @@
 3) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
 4) Скачиваем и запускаем Redis (либо Redis в docker);
 5) Прописываем настройки для Redis (host, port) в `application.properties`;
-6) Меняем путь к папке 'downloads' в `application.properties` (windows: `C:/Users/Andrey_Eliseev/Downloads`,
-   linux: `/Users/andrey.s.eliseev/Downloads`);
-7) Запустите `./mvnw clean package` или для windows `./mvnw.cmd clean package`.
+6) Запустите `./mvnw clean package` или для windows `./mvnw.cmd clean package`.
 
 ### без Intellij Idea (cargo mvn plugin)
 
