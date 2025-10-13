@@ -4,9 +4,9 @@
 
 1) Устанавливаем JDK-21;
 2) Скачиваем postgres (либо postgres в docker), запускаем, выполняем скрипт `/resources/sql/init.sql`;
-3) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `application.properties`;
+3) Прописываем логин (`postgres`), пароль (`postgres`), порт (`5432`), репозиторий (`charm-repository`) в `back/pom.xml:16`;
 4) Скачиваем и запускаем Redis (либо Redis в docker);
-5) Прописываем настройки для Redis (host, port) в `application.properties`;
+5) Прописываем настройки для Redis (host, port) в `back/pom.xml:16`;
 6) Запустите `./mvnw clean package` или для windows `./mvnw.cmd clean package`.
 
 ### без Intellij Idea (cargo mvn plugin)

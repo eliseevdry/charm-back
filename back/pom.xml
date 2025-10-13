@@ -13,6 +13,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <properties>
+        <app.datasource.url>jdbc:postgresql://localhost:5432/charm_repository</app.datasource.url>
+        <app.datasource.username>postgres</app.datasource.username>
+        <app.datasource.password>postgres</app.datasource.password>
+        <app.redis.host>localhost</app.redis.host>
+        <app.redis.port>6379</app.redis.port>
+    </properties>
+
     <dependencies>
         <!--web-->
         <dependency>
@@ -97,7 +105,59 @@
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/sql/**</exclude>
+                </excludes>
             </resource>
         </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <file>
+                    <exists>${user.home}/Downloads/k8s_prod.yml</exists>
+                </file>
+            </activation>
+            <properties>
+                <app.datasource.url>jdbc:postgresql://postgres.prod:6432/charm_repository</app.datasource.url>
+                <app.datasource.username>prod_username</app.datasource.username>
+                <app.datasource.password>ASDncdskasuAS123</app.datasource.password>
+                <app.redis.host>redis.prod</app.redis.host>
+                <app.redis.port>26379</app.redis.port>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <file>
+                    <exists>${user.home}/Downloads/k8s_dev.yml</exists>
+                </file>
+            </activation>
+            <properties>
+                <app.datasource.url>jdbc:postgresql://postgres.dev:6432/charm_repository</app.datasource.url>
+                <app.datasource.username>dev_username</app.datasource.username>
+                <app.datasource.password>secret_pass</app.datasource.password>
+                <app.redis.host>redis.dev</app.redis.host>
+                <app.redis.port>6379</app.redis.port>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <parameters>true</parameters>
+                            <compilerArgs>
+                                <arg>-Xlint:-options</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
