@@ -8,7 +8,6 @@ import ru.eliseev.charm.back.validator.RegistrationValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet(REGISTRATION_URL)
 @Slf4j
 public class RegistrationController extends HttpServlet {
 
@@ -27,6 +25,12 @@ public class RegistrationController extends HttpServlet {
     private final RequestToRegistrationDtoMapper requestToRegistrationDtoMapper = RequestToRegistrationDtoMapper.getInstance();
 
     private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
+
+	private static final RegistrationController INSTANCE = new RegistrationController();
+
+	public static RegistrationController getInstance() {
+		return INSTANCE;
+	}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

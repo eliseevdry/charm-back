@@ -4,6 +4,8 @@ import lombok.experimental.UtilityClass;
 import ru.eliseev.charm.utils.ConfigFileUtils;
 
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @UtilityClass
 public class UrlUtils {
@@ -33,5 +35,28 @@ public class UrlUtils {
 
     public static String getProfilePhotoPath(Long id, String fileName) {
         return "/profiles/" + id + "/" + fileName;
+    }
+
+    public static String extractFirstPart(String url) {
+        if (url == null || url.isEmpty()) {
+            return "/";
+        }
+
+        String apiPrefix = "";
+        if (url.startsWith(REST_URL)) {
+            apiPrefix = REST_URL;
+            url = url.substring(7);
+        }
+
+        String path = url.split("\\?")[0];
+
+        Pattern pattern = Pattern.compile("^(/[^/?]+)");
+        Matcher matcher = pattern.matcher(path);
+
+        if (matcher.find()) {
+            return apiPrefix + matcher.group(1);
+        }
+
+        return apiPrefix.isEmpty() ? "/" : apiPrefix;
     }
 }

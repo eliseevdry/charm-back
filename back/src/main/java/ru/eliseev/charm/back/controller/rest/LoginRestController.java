@@ -8,7 +8,6 @@ import ru.eliseev.charm.back.service.ProfileService;
 import ru.eliseev.charm.back.validator.LoginValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,16 +17,20 @@ import java.util.List;
 import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_REST_URL;
 
-@WebServlet(LOGIN_REST_URL)
-public class LoginController extends HttpServlet {
+public class LoginRestController extends HttpServlet {
 
 	private final ProfileService service = ProfileService.getInstance();
 
 	private final LoginValidator loginValidator = LoginValidator.getInstance();
 
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();
+
+	private static final LoginRestController INSTANCE = new LoginRestController();
+
+	public static LoginRestController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {

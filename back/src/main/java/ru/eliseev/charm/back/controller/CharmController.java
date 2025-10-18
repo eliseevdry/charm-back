@@ -6,7 +6,6 @@ import ru.eliseev.charm.back.mapper.RequestToCharmDtoMapper;
 import ru.eliseev.charm.back.service.CharmService;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,11 +15,16 @@ import java.util.Optional;
 import static ru.eliseev.charm.back.utils.UrlUtils.CHARM_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet(CHARM_URL)
 public class CharmController extends HttpServlet {
 
 	private final CharmService service = CharmService.getInstance();
 	private final RequestToCharmDtoMapper mapper = RequestToCharmDtoMapper.getInstance();
+
+	private static final CharmController INSTANCE = new CharmController();
+
+	public static CharmController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
