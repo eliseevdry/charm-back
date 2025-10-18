@@ -14,8 +14,6 @@ import ru.eliseev.charm.back.validator.ProfileUpdateValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,8 +28,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@WebServlet(PROFILE_URL + "/*")
-@MultipartConfig
 @Slf4j
 public class ProfileController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
@@ -41,6 +37,12 @@ public class ProfileController extends HttpServlet {
 	private final ProfileGetDtoToPdfMapper profileGetDtoToPdfMapper = ProfileGetDtoToPdfMapper.getInstance();
 
 	private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
+
+	private static final ProfileController INSTANCE = new ProfileController();
+
+	public static ProfileController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

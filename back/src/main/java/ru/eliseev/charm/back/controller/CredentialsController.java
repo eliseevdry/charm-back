@@ -9,7 +9,6 @@ import ru.eliseev.charm.back.validator.CredentialsValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +21,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@WebServlet(CREDENTIALS_URL)
 @Slf4j
 public class CredentialsController extends HttpServlet {
 
@@ -31,6 +29,12 @@ public class CredentialsController extends HttpServlet {
     private final RequestToCredentialsDtoMapper requestToCredentialsDtoMapper = RequestToCredentialsDtoMapper.getInstance();
 
     private final CredentialsValidator credentialsValidator = CredentialsValidator.getInstance();
+
+	private static final CredentialsController INSTANCE = new CredentialsController();
+
+	public static CredentialsController getInstance() {
+		return INSTANCE;
+	}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
