@@ -13,8 +13,6 @@ import ru.eliseev.charm.back.validator.RegistrationValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,18 +27,20 @@ import java.util.Optional;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static jakarta.servlet.http.HttpServletResponse.SC_NO_CONTENT;
-import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@WebServlet(REST_URL + PROFILE_URL)
-@MultipartConfig
 @Slf4j
-public class ProfileController extends HttpServlet {
+public class ProfileRestController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();
 	private final ProfileFullUpdateValidator profileFullUpdateValidator = ProfileFullUpdateValidator.getInstance();
 	private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
+
+	private static final ProfileRestController INSTANCE = new ProfileRestController();
+
+	public static ProfileRestController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {

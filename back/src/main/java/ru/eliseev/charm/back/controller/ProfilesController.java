@@ -7,7 +7,6 @@ import ru.eliseev.charm.back.mapper.RequestToProfileUpdateStatusDtoMapper;
 import ru.eliseev.charm.back.service.ProfileService;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,12 +16,17 @@ import java.util.List;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILES_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet(PROFILES_URL)
 public class ProfilesController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final RequestToProfileUpdateStatusDtoMapper updateMapper =
 			RequestToProfileUpdateStatusDtoMapper.getInstance();
 	private final RequestToProfileFilterMapper filterMapper = RequestToProfileFilterMapper.getInstance();
+
+	private static final ProfilesController INSTANCE = new ProfilesController();
+
+	public static ProfilesController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

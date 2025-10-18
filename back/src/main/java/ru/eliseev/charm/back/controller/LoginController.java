@@ -8,7 +8,6 @@ import ru.eliseev.charm.back.validator.LoginValidator;
 import ru.eliseev.charm.back.validator.ValidationResult;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
-@WebServlet(LOGIN_URL)
 public class LoginController extends HttpServlet {
 
 	private final ProfileService service = ProfileService.getInstance();
@@ -27,6 +25,12 @@ public class LoginController extends HttpServlet {
 	private final RequestToLoginDtoMapper requestToLoginDtoMapper = RequestToLoginDtoMapper.getInstance();
 
 	private final LoginValidator loginValidator = LoginValidator.getInstance();
+
+	private static final LoginController INSTANCE = new LoginController();
+
+	public static LoginController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -22,11 +22,17 @@ import static ru.eliseev.charm.back.utils.UrlUtils.CHARM_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebServlet(REST_URL + CHARM_URL)
-public class CharmController extends HttpServlet {
+public class CharmRestController extends HttpServlet {
 
 	private final CharmService service = CharmService.getInstance();
 
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();
+
+	private static final CharmRestController INSTANCE = new CharmRestController();
+
+	public static CharmRestController getInstance() {
+		return INSTANCE;
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
