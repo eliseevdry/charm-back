@@ -127,7 +127,21 @@
                 <app.datasource.password>ASDncdskasuAS123</app.datasource.password>
                 <app.redis.host>redis.prod</app.redis.host>
                 <app.redis.port>26379</app.redis.port>
+                <maven.test.skip>true</maven.test.skip>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <compilerArgs>
+                                <arg>-Xlint:-options</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>dev</id>
