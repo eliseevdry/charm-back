@@ -13,12 +13,6 @@
     <description>Maven plugin to check Java classes</description>
 
     <dependencies>
-        <!--other-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
         <!--for plugins-->
         <dependency>
             <groupId>org.apache.maven</groupId>
