@@ -19,6 +19,10 @@ public class StringUtils {
         return VALID_EMAIL_ADDRESS_REGEX.matcher(email).matches();
     }
 
+    /*
+		 use ru.eliseev.charm.utils.PasswordUtils.isValidPassword
+	 */
+    @Deprecated(since = "1.0", forRemoval = true)
     public static boolean isValidPassword(String password) {
         return !isBlank(password);
     }

@@ -6,8 +6,8 @@ import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 
 import static ru.eliseev.charm.utils.DateTimeUtils.isValidAge;
+import static ru.eliseev.charm.utils.PasswordUtils.isValidPassword;
 import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
-import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {
