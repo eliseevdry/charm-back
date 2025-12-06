@@ -3,8 +3,11 @@ package ru.eliseev.charm.back;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Context;
+import org.apache.catalina.LifecycleState;
+import org.apache.catalina.Service;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
+import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
@@ -34,6 +37,26 @@ public class CharmBackApplication {
 		WebResourceSet webResourceSet = new DirResourceSet(webResourceRoot, "/WEB-INF/classes", classesFolder, "/");
 		webResourceRoot.addPreResources(webResourceSet);
 		ctx.setResources(webResourceRoot);
+
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			log.info("Received shutdown signal");
+			try {
+				if (tomcat.getServer() != null && tomcat.getServer().getState() == LifecycleState.STARTED) {
+					log.info("Starting graceful shutdown...");
+					for (Service service : tomcat.getServer().findServices()) {
+						for (Connector connector : service.findConnectors()) {
+							connector.pause();
+						}
+					}
+					Thread.sleep(3000);
+					tomcat.stop();
+					tomcat.destroy();
+					log.info("Tomcat stopped gracefully");
+				}
+			} catch (Exception e) {
+				log.error("Error during shutdown: " + e.getMessage(), e);
+			}
+		}));
 
 		tomcat.start();
 		tomcat.getServer().await();
