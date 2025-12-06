@@ -27,19 +27,19 @@
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
-                <version>5.0.0</version>
+                <version>6.2.0-M1</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.0-M1</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-                <version>2.0.0</version>
+                <version>3.0.1</version>
                 <scope>runtime</scope>
             </dependency>
 
@@ -96,11 +96,6 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.19.0</version>
-            </dependency>
-            <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>2.19.0</version>
@@ -125,12 +120,6 @@
             </dependency>
 
             <!--for plugins-->
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-plugin-api</artifactId>
-                <version>3.9.11</version>
-                <scope>provided</scope>
-            </dependency>
             <dependency>
                 <groupId>org.apache.maven.plugin-tools</groupId>
                 <artifactId>maven-plugin-annotations</artifactId>
