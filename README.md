@@ -40,3 +40,12 @@
 #### docker:
 `docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres`
 `docker run -p 6379:6379 -it redis/redis-stack:latest`
+
+### local Nexus
+
+1) `docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3`
+2) Заходим в контейнер `docker exec -it < ID контейнера> /bin/bash`
+3) Узнаем пароль внутри контейнера `cat ../../../nexus-data/admin.password`
+4) http://localhost:8081
+5) Вводим логин `admin` и найденный пароль
+6) Меняем логин и пароль на свой
