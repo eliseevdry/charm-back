@@ -7,8 +7,6 @@ import ru.eliseev.charm.back.controller.rest.ProfileRestController;
 import ru.eliseev.charm.back.controller.rest.ProfilesRestController;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,10 +26,6 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.extractFirstPart;
 
-@WebServlet({LOGIN_URL, LANG_URL, LOGOUT_URL, MATCHES_URL, PROFILE_URL + "/*", PROFILES_URL, REGISTRATION_URL, CREDENTIALS_URL, CONTENT_URL + "/*",
-	CHARM_URL, REST_URL + PROFILES_URL, REST_URL + PROFILE_URL, REST_URL + MATCHES_URL, LOGIN_REST_URL, REST_URL + CHARM_URL
-})
-@MultipartConfig
 public class DispatcherServlet extends HttpServlet {
 
 	private final LoginController loginController = LoginController.getInstance();

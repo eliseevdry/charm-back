@@ -8,11 +8,9 @@ import ru.eliseev.charm.back.model.Status;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.annotation.WebListener;
 
 import static ru.eliseev.charm.back.config.ConnectionManager.AVAILABLE_PAGE_SIZES;
 
-@WebListener
 public class AppContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
