@@ -185,4 +185,17 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <!--    ../.m2/settings.xml-->
+    <!--    /path/to/maven/conf/settings.xml - от сюда можно скопировать-->
+    <distributionManagement>
+        <repository>
+            <id>charm-nexus</id>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>charm-nexus</id>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
