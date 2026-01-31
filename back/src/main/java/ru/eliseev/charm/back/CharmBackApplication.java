@@ -9,7 +9,7 @@ import org.apache.catalina.startup.Tomcat;
 import org.apache.tomcat.util.descriptor.web.ErrorPage;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
-import ru.eliseev.charm.back.controller.DispatcherServlet;
+import ru.eliseev.charm.back.controller.CustomDispatcherServlet;
 import ru.eliseev.charm.back.controller.filter.AuthFilter;
 import ru.eliseev.charm.back.controller.filter.ErrorFilter;
 import ru.eliseev.charm.back.controller.filter.HiddenHttpMethodFilter;
@@ -99,8 +99,8 @@ public class CharmBackApplication {
     }
 
     private void registerServlets(Context ctx) {
-        String servletName = "DispatcherServlet";
-        Tomcat.addServlet(ctx, servletName, new DispatcherServlet());
+        String servletName = "CustomDispatcherServlet";
+        Tomcat.addServlet(ctx, servletName, new CustomDispatcherServlet());
 
         ctx.addServletMappingDecoded(LOGIN_URL, servletName);
         ctx.addServletMappingDecoded(LANG_URL, servletName);

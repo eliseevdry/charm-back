@@ -26,7 +26,7 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.extractFirstPart;
 
-public class DispatcherServlet extends HttpServlet {
+public class CustomDispatcherServlet extends HttpServlet {
 
 	private final LoginController loginController = LoginController.getInstance();
 	private final LanguageController languageController = LanguageController.getInstance();
