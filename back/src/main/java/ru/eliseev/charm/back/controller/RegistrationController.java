@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.mapper.RequestToRegistrationDtoMapper;
@@ -18,19 +19,14 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @Slf4j
+@Setter
 public class RegistrationController extends HttpServlet {
 
-    private final ProfileService service = ProfileService.getInstance();
+    private ProfileService service;
 
-    private final RequestToRegistrationDtoMapper requestToRegistrationDtoMapper = RequestToRegistrationDtoMapper.getInstance();
+    private RequestToRegistrationDtoMapper requestToRegistrationDtoMapper;
 
-    private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
-
-	private static final RegistrationController INSTANCE = new RegistrationController();
-
-	public static RegistrationController getInstance() {
-		return INSTANCE;
-	}
+    private RegistrationValidator registrationValidator;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -16,12 +16,6 @@ public class JsonMapper {
         .configure(ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true)
         .build();
 
-    private static final JsonMapper INSTANCE = new JsonMapper();
-
-    public static JsonMapper getInstance() {
-        return INSTANCE;
-    }
-
     public <T> T readValue(InputStream src, Class<T> valueType) throws IOException {
         return objectMapper.readValue(src, valueType);
     }

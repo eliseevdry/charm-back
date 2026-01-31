@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.service;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
@@ -27,28 +26,22 @@ import java.util.Optional;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class ProfileService {
 
-    private static final ProfileService INSTANCE = new ProfileService();
+    private ProfileDao dao;
 
-	private final ProfileDao dao = ProfileDao.getInstance();
+    private ContentService contentService;
 
-    private final ContentService contentService = ContentService.getInstance();
+    private ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper;
 
-    private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
+    private ProfileToUserDetailsMapper profileToUserDetailsMapper;
 
-    private final ProfileToUserDetailsMapper profileToUserDetailsMapper = ProfileToUserDetailsMapper.getInstance();
+    private ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper;
 
-    private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
+    private ProfileFullUpdateDtoToProfileMapper profileFullUpdateDtoToProfileMapper;
 
-    private final ProfileFullUpdateDtoToProfileMapper profileFullUpdateDtoToProfileMapper = ProfileFullUpdateDtoToProfileMapper.getInstance();
-
-    private final CredentialsDtoToProfileMapper credentialsDtoToProfileMapper = CredentialsDtoToProfileMapper.getInstance();
-
-    public static ProfileService getInstance() {
-        return INSTANCE;
-    }
+    private CredentialsDtoToProfileMapper credentialsDtoToProfileMapper;
 
     public Long save(RegistrationDto dto) {
         String passwordHash = PasswordUtils.hashPassword(dto.getPassword());

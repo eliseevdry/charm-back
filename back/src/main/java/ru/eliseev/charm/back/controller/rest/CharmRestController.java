@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller.rest;
 
 import com.fasterxml.jackson.databind.DatabindException;
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.CharmDto;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 import ru.eliseev.charm.back.dto.UserDetails;
@@ -18,17 +19,12 @@ import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
+@Setter
 public class CharmRestController extends HttpServlet {
 
-	private final CharmService service = CharmService.getInstance();
+    private CharmService service;
 
-	private final JsonMapper jsonMapper = JsonMapper.getInstance();
-
-	private static final CharmRestController INSTANCE = new CharmRestController();
-
-	public static CharmRestController getInstance() {
-		return INSTANCE;
-	}
+    private JsonMapper jsonMapper;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {

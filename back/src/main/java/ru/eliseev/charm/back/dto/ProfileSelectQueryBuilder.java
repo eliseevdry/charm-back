@@ -6,9 +6,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE;
-import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE_SIZE;
-import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_SORTED_COLUMN;
+import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE_SIZE;
+import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_SORTED_COLUMN;
 import static ru.eliseev.charm.utils.DateTimeUtils.getPastDate;
 
 public class ProfileSelectQueryBuilder {

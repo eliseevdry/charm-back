@@ -1,7 +1,5 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.model.Gender;
@@ -13,14 +11,7 @@ import java.time.LocalDate;
 
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletRequest, ProfileUpdateDto> {
-
-    private static final RequestToProfileUpdateDtoMapper INSTANCE = new RequestToProfileUpdateDtoMapper();
-
-    public static RequestToProfileUpdateDtoMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public ProfileUpdateDto map(HttpServletRequest req) {

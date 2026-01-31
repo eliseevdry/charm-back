@@ -4,10 +4,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 
 import java.net.URLDecoder;
@@ -16,15 +13,7 @@ import java.nio.file.Path;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.BASE_CONTENT_PATH;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Slf4j
 public class ProfileGetDtoToPdfMapper implements Mapper<ProfileGetDto, Document> {
-
-    private static final ProfileGetDtoToPdfMapper INSTANCE = new ProfileGetDtoToPdfMapper();
-
-    public static ProfileGetDtoToPdfMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public Document map(ProfileGetDto dto) {

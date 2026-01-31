@@ -1,21 +1,12 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.Action;
 import ru.eliseev.charm.back.dto.CharmDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToCharmDtoMapper implements Mapper<HttpServletRequest, CharmDto> {
-
-	private static final RequestToCharmDtoMapper INSTANCE = new RequestToCharmDtoMapper();
-
-	public static RequestToCharmDtoMapper getInstance() {
-		return INSTANCE;
-	}
 
 	@Override
 	public CharmDto map(HttpServletRequest req) {

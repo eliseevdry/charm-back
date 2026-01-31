@@ -1,8 +1,8 @@
 package ru.eliseev.charm.back.dao;
 
+import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.eliseev.charm.back.config.ConnectionManager;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileSelectQueryBuilder;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
@@ -12,7 +12,9 @@ import ru.eliseev.charm.back.dto.Query;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileMapper;
 import ru.eliseev.charm.back.mapper.ResultSetToProfileSimpleDtoMapper;
 import ru.eliseev.charm.back.model.Profile;
+import ru.eliseev.charm.back.utils.ConnectionUtils;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,13 +26,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 
-import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE;
-import static ru.eliseev.charm.back.config.ConnectionManager.DEFAULT_PAGE_SIZE;
-import static ru.eliseev.charm.back.config.ConnectionManager.FETCH_SIZE;
-import static ru.eliseev.charm.back.config.ConnectionManager.MAX_ROWS;
-import static ru.eliseev.charm.back.config.ConnectionManager.QUERY_TIMEOUT;
+import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE;
+import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE_SIZE;
 
 @Slf4j
+@Setter
 public class ProfileDao {
 
 	//language=POSTGRES-PSQL
@@ -69,22 +69,14 @@ public class ProfileDao {
 			ORDER BY l.created_date DESC
 			OFFSET ? LIMIT ?
 			""";
-
-	private static final ProfileDao INSTANCE = new ProfileDao();
-
-	private final ResultSetToProfileMapper profileMapper = ResultSetToProfileMapper.getInstance();
-	private final ResultSetToProfileSimpleDtoMapper profileSimpleDtoMapper =
-			ResultSetToProfileSimpleDtoMapper.getInstance();
-
+    private ResultSetToProfileMapper profileMapper;
+    private ResultSetToProfileSimpleDtoMapper profileSimpleDtoMapper;
+    private DataSource dataSource;
 	private List<String> sortableColumns;
-
-	@SneakyThrows
-	public static ProfileDao getInstance() {
-		return INSTANCE;
-	}
+    private int fetchSize;
 
 	public Long save(String email, String passwordHash) {
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setString(1, email);
 			stmt.setString(2, passwordHash);
@@ -101,8 +93,8 @@ public class ProfileDao {
 
 	public Optional<Profile> findById(Long id) {
 		Query query = new ProfileSelectQueryBuilder().addIdFilter(id).build();
-		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = ConnectionUtils.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
 
 			Profile profile = null;
@@ -117,8 +109,8 @@ public class ProfileDao {
 
 	public Optional<Profile> findByEmail(String email) {
 		Query query = new ProfileSelectQueryBuilder().addEmailFilter(email).build();
-		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = ConnectionUtils.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
 			Profile profile = null;
 			if (rs.next()) {
@@ -134,7 +126,7 @@ public class ProfileDao {
         if (id == null) {
             id = -1L;
         }
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(EXISTS_BY_EMAIL)) {
             stmt.setLong(1, id);
             stmt.setString(2, email);
@@ -154,11 +146,8 @@ public class ProfileDao {
 							  .addLTAge(filter.getLtAge())
 							  .addGTEAge(filter.getGteAge())
 							  .build(getSortColumn(filter.getSort()), filter.getPage(), filter.getPageSize());
-		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
-			stmt.setFetchSize(FETCH_SIZE);
-			stmt.setMaxRows(MAX_ROWS);
-			stmt.setQueryTimeout(QUERY_TIMEOUT);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = ConnectionUtils.getPreparedStmt(conn, query)) {
 			ResultSet rs = stmt.executeQuery();
 
 			List<Profile> profiles = new ArrayList<>();
@@ -183,8 +172,8 @@ public class ProfileDao {
 							  .addStatus(profile.getStatus())
 							  .addPhoto(profile.getPhoto())
 			.build(profile.getId(), profile.getVersion());
-		try (Connection conn = ConnectionManager.getConnection();
-			 PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = ConnectionUtils.getPreparedStmt(conn, query)) {
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 0) {
 				log.warn("The update did not occur for profile id = {}, version = {}", profile.getId(), profile.getVersion());
@@ -199,7 +188,7 @@ public class ProfileDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = ConnectionManager.getConnection();
+            conn = dataSource.getConnection();
 			conn.setAutoCommit(false);
 
             stmt = conn.prepareStatement(UPDATE_STATUS);
@@ -232,7 +221,7 @@ public class ProfileDao {
 	}
 
 	public boolean delete(Long id) {
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(DELETE)) {
 			stmt.setLong(1, id);
 
@@ -245,7 +234,7 @@ public class ProfileDao {
 	}
 
 	public Queue<ProfileSimpleDto> findSuitableForUser(Long userId, int limit) {
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(SUITABLE)) {
 			stmt.setObject(1, userId);
 			stmt.setInt(2, limit);
@@ -262,7 +251,7 @@ public class ProfileDao {
 	}
 
 	public List<Profile> findMatches(Long userId, ProfileFilter filter) {
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(MATCH)) {
 
 			Integer pageSize = filter.getPageSize();
@@ -288,7 +277,7 @@ public class ProfileDao {
 
 	private String getSortColumn(String sort) {
 		if (sortableColumns == null) {
-			try (Connection conn = ConnectionManager.getConnection()) {
+            try (Connection conn = dataSource.getConnection()) {
 				ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
 				sortableColumns = new ArrayList<>();
 				while (rs.next()) {

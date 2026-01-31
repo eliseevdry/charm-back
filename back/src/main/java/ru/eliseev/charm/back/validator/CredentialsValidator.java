@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.validator;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
@@ -9,16 +8,10 @@ import ru.eliseev.charm.back.model.Profile;
 import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
 import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class CredentialsValidator implements Validator<CredentialsDto> {
 
-	private final ProfileDao dao = ProfileDao.getInstance();
-
-    private static final CredentialsValidator INSTANCE = new CredentialsValidator();
-
-    public static CredentialsValidator getInstance() {
-        return INSTANCE;
-    }
+    private ProfileDao dao;
 
     @Override
     public ValidationResult validate(CredentialsDto dto) {

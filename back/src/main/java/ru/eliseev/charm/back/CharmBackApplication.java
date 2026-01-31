@@ -14,7 +14,6 @@ import ru.eliseev.charm.back.controller.filter.AuthFilter;
 import ru.eliseev.charm.back.controller.filter.ErrorFilter;
 import ru.eliseev.charm.back.controller.filter.HiddenHttpMethodFilter;
 import ru.eliseev.charm.back.controller.filter.LanguageFilter;
-import ru.eliseev.charm.back.controller.listener.AppContextListener;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
@@ -70,8 +69,7 @@ public class CharmBackApplication {
 
         ctx.addWelcomeFile(getJspPath(LOGIN_URL));
         registerErrorPages(ctx);
-        ctx.addApplicationListener(AppContextListener.class.getName());
-        registerServlets(ctx);
+        registerDispatcherServlet(ctx);
         registerFilters(ctx);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -98,7 +96,7 @@ public class CharmBackApplication {
         tomcat.getServer().await();
     }
 
-    private void registerServlets(Context ctx) {
+    private void registerDispatcherServlet(Context ctx) {
         String servletName = "CustomDispatcherServlet";
         Tomcat.addServlet(ctx, servletName, new CustomDispatcherServlet());
 

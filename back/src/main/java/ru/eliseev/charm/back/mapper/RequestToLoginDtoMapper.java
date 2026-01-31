@@ -1,19 +1,10 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.LoginDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToLoginDtoMapper implements Mapper<HttpServletRequest, LoginDto> {
-
-    private static final RequestToLoginDtoMapper INSTANCE = new RequestToLoginDtoMapper();
-
-    public static RequestToLoginDtoMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public LoginDto map(HttpServletRequest req) {

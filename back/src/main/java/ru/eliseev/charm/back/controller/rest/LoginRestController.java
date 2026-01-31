@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller.rest;
 
 import com.fasterxml.jackson.databind.DatabindException;
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.LoginDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.JsonMapper;
@@ -18,19 +19,14 @@ import java.util.Optional;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
+@Setter
 public class LoginRestController extends HttpServlet {
 
-	private final ProfileService service = ProfileService.getInstance();
+    private ProfileService service;
 
-	private final LoginValidator loginValidator = LoginValidator.getInstance();
+    private LoginValidator loginValidator;
 
-	private final JsonMapper jsonMapper = JsonMapper.getInstance();
-
-	private static final LoginRestController INSTANCE = new LoginRestController();
-
-	public static LoginRestController getInstance() {
-		return INSTANCE;
-	}
+    private JsonMapper jsonMapper;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {

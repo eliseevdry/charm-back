@@ -1,23 +1,16 @@
 package ru.eliseev.charm.back.validator;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 
 import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
 import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class RegistrationValidator implements Validator<RegistrationDto> {
 
-	private final ProfileDao dao = ProfileDao.getInstance();
-
-    private static final RegistrationValidator INSTANCE = new RegistrationValidator();
-
-    public static RegistrationValidator getInstance() {
-        return INSTANCE;
-    }
+    private ProfileDao dao;
 
     @Override
     public ValidationResult validate(RegistrationDto dto) {

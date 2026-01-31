@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller.rest;
 
 import com.fasterxml.jackson.databind.DatabindException;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
@@ -30,17 +31,12 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NO_CONTENT;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @Slf4j
+@Setter
 public class ProfileRestController extends HttpServlet {
-	private final ProfileService service = ProfileService.getInstance();
-	private final JsonMapper jsonMapper = JsonMapper.getInstance();
-	private final ProfileFullUpdateValidator profileFullUpdateValidator = ProfileFullUpdateValidator.getInstance();
-	private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
-
-	private static final ProfileRestController INSTANCE = new ProfileRestController();
-
-	public static ProfileRestController getInstance() {
-		return INSTANCE;
-	}
+    private ProfileService service;
+    private JsonMapper jsonMapper;
+    private ProfileFullUpdateValidator profileFullUpdateValidator;
+    private RegistrationValidator registrationValidator;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {

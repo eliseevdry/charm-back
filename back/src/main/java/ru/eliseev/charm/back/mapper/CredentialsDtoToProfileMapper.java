@@ -1,21 +1,12 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.utils.PasswordUtils;
 
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CredentialsDtoToProfileMapper implements Mapper<CredentialsDto, Profile> {
-
-    private static final CredentialsDtoToProfileMapper INSTANCE = new CredentialsDtoToProfileMapper();
-
-    public static CredentialsDtoToProfileMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public Profile map(CredentialsDto dto) {

@@ -2,11 +2,14 @@ package ru.eliseev.charm.back.controller.filter;
 
 import com.fasterxml.jackson.databind.DatabindException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.eliseev.charm.back.mapper.JsonMapper;
 import ru.eliseev.charm.back.service.bundle.WordBundle;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -26,7 +29,14 @@ import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 @Slf4j
 public class ErrorFilter implements Filter {
 
-    private final JsonMapper jsonMapper = JsonMapper.getInstance();
+    private JsonMapper jsonMapper;
+
+    @Override
+    public void init(FilterConfig filterConfig) {
+        WebApplicationContext webApplicationContext =
+            WebApplicationContextUtils.findWebApplicationContext(filterConfig.getServletContext());
+        jsonMapper = (JsonMapper) webApplicationContext.getBean("jsonMapper");
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {

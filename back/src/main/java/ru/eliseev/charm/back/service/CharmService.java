@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.service;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dao.LikeDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
@@ -12,17 +11,11 @@ import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 import java.util.Optional;
 import java.util.Queue;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class CharmService {
-
-	private static final CharmService INSTANCE = new CharmService();
-	private final LikeDao likeDao = LikeDao.getInstance();
-	private final ProfileDao profileDao = ProfileDao.getInstance();
-	private final CacheService cacheService = CacheService.getInstance();
-
-	public static CharmService getInstance() {
-		return INSTANCE;
-	}
+    private LikeDao likeDao;
+    private ProfileDao profileDao;
+    private CacheService cacheService;
 
 	@SneakyThrows
 	public Optional<ProfileSimpleDto> next(CharmDto charmDto) {

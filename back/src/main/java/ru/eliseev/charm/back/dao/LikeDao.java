@@ -1,14 +1,15 @@
 package ru.eliseev.charm.back.dao;
 
-import lombok.SneakyThrows;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import ru.eliseev.charm.back.config.ConnectionManager;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Slf4j
+@Setter
 public class LikeDao {
 	//language=POSTGRES-PSQL
 	private static final String LIKE = """
@@ -21,15 +22,11 @@ public class LikeDao {
 			INSERT INTO "like" (from_profile, to_profile, "like", match)
 			SELECT ?, ?, ?, EXISTS (SELECT 1 FROM has_match)
 			""";
-	private static final LikeDao INSTANCE = new LikeDao();
 
-	@SneakyThrows
-	public static LikeDao getInstance() {
-		return INSTANCE;
-	}
+    private DataSource dataSource;
 
 	public void like(Long fromProfileId, Long toProfileId, boolean isLike) {
-		try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = dataSource.getConnection();
 			 PreparedStatement updateStmt = conn.prepareStatement(LIKE)) {
 			updateStmt.setBoolean(1, isLike);
 			updateStmt.setLong(2, toProfileId);

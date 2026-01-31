@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileUpdateStatusDto;
 import ru.eliseev.charm.back.mapper.RequestToProfileFilterMapper;
@@ -16,17 +17,11 @@ import java.util.List;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILES_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
+@Setter
 public class ProfilesController extends HttpServlet {
-	private final ProfileService service = ProfileService.getInstance();
-	private final RequestToProfileUpdateStatusDtoMapper updateMapper =
-			RequestToProfileUpdateStatusDtoMapper.getInstance();
-	private final RequestToProfileFilterMapper filterMapper = RequestToProfileFilterMapper.getInstance();
-
-	private static final ProfilesController INSTANCE = new ProfilesController();
-
-	public static ProfilesController getInstance() {
-		return INSTANCE;
-	}
+    private ProfileService service;
+    private RequestToProfileUpdateStatusDtoMapper updateMapper;
+    private RequestToProfileFilterMapper filterMapper;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -1,8 +1,5 @@
 package ru.eliseev.charm.back.service;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,13 +12,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static ru.eliseev.charm.back.utils.UrlUtils.BASE_CONTENT_PATH;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ContentService {
-    private static final ContentService INSTANCE = new ContentService();
-
-    public static ContentService getInstance() {
-        return INSTANCE;
-    }
 
     public void upload(String contentPath, InputStream inputStream) throws IOException {
         Path contentFullPath = Path.of(BASE_CONTENT_PATH, contentPath);

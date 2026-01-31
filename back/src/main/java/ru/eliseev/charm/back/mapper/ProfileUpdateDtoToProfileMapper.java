@@ -1,18 +1,9 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.model.Profile;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileUpdateDtoToProfileMapper implements Mapper<ProfileUpdateDto, Profile> {
-
-    private static final ProfileUpdateDtoToProfileMapper INSTANCE = new ProfileUpdateDtoToProfileMapper();
-
-    public static ProfileUpdateDtoToProfileMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public Profile map(ProfileUpdateDto dto) {

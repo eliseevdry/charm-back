@@ -1,27 +1,21 @@
 package ru.eliseev.charm.back.service;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import redis.clients.jedis.Jedis;
-import ru.eliseev.charm.back.config.RedisManager;
+import redis.clients.jedis.JedisPool;
 import ru.eliseev.charm.back.mapper.JsonMapper;
 
 import java.io.IOException;
 import java.util.Queue;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class CacheService {
 
-    private final JsonMapper jsonMapper = JsonMapper.getInstance();
-    private static final CacheService INSTANCE = new CacheService();
-
-    public static CacheService getInstance() {
-        return INSTANCE;
-    }
-
+    private JsonMapper jsonMapper;
+    private JedisPool jedisPool;
 
     public <T> T poll(String queueKey, Class<T> clazz) throws IOException {
-        try (Jedis jedis = RedisManager.getResource()) {
+        try (Jedis jedis = jedisPool.getResource()) {
             String json = jedis.lpop(queueKey);
             if (json == null) {
                 return null;
@@ -31,7 +25,7 @@ public class CacheService {
     }
 
     public <T> void setQueue(String queueKey, Queue<T> queue) throws IOException {
-        try (Jedis jedis = RedisManager.getResource()) {
+        try (Jedis jedis = jedisPool.getResource()) {
             for (T dto : queue) {
                 String json = jsonMapper.writeValueAsString(dto);
                 jedis.rpush(queueKey, json);

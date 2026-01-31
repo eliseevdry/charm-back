@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.validator;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 
@@ -9,16 +8,10 @@ import static ru.eliseev.charm.utils.DateTimeUtils.isValidAge;
 import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
 import static ru.eliseev.charm.utils.StringUtils.isValidPassword;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {
 
-	private final ProfileDao dao = ProfileDao.getInstance();
-
-    private static final ProfileFullUpdateValidator INSTANCE = new ProfileFullUpdateValidator();
-
-    public static ProfileFullUpdateValidator getInstance() {
-        return INSTANCE;
-    }
+    private ProfileDao dao;
 
     @Override
     public ValidationResult validate(ProfileFullUpdateDto dto) {

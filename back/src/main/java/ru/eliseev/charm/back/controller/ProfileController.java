@@ -3,6 +3,7 @@ package ru.eliseev.charm.back.controller;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
@@ -29,20 +30,15 @@ import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @Slf4j
+@Setter
 public class ProfileController extends HttpServlet {
-	private final ProfileService service = ProfileService.getInstance();
+    private ProfileService service;
 
-	private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
+    private RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper;
 
-	private final ProfileGetDtoToPdfMapper profileGetDtoToPdfMapper = ProfileGetDtoToPdfMapper.getInstance();
+    private ProfileGetDtoToPdfMapper profileGetDtoToPdfMapper;
 
-	private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
-
-	private static final ProfileController INSTANCE = new ProfileController();
-
-	public static ProfileController getInstance() {
-		return INSTANCE;
-	}
+    private ProfileUpdateValidator profileUpdateValidator;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -1,21 +1,12 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.model.Profile;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetDto> {
-
-    private static final ProfileToProfileGetDtoMapper INSTANCE = new ProfileToProfileGetDtoMapper();
-
-    public static ProfileToProfileGetDtoMapper getInstance() {
-        return INSTANCE;
-    }
 
     @Override
     public ProfileGetDto map(Profile profile) {

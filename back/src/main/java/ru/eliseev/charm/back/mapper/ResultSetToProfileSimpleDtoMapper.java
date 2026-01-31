@@ -1,7 +1,5 @@
 package ru.eliseev.charm.back.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 
@@ -12,14 +10,7 @@ import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResultSetToProfileSimpleDtoMapper implements Mapper<ResultSet, ProfileSimpleDto> {
-
-	private static final ResultSetToProfileSimpleDtoMapper INSTANCE = new ResultSetToProfileSimpleDtoMapper();
-
-	public static ResultSetToProfileSimpleDtoMapper getInstance() {
-		return INSTANCE;
-	}
 
 	@Override
 	public ProfileSimpleDto map(ResultSet rs) {

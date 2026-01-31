@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
+import lombok.Setter;
 import ru.eliseev.charm.back.service.ContentService;
 
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +12,10 @@ import java.io.IOException;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static ru.eliseev.charm.back.utils.UrlUtils.CONTENT_URL;
 
+@Setter
 public class ContentController extends HttpServlet {
 
-    private final ContentService contentService = ContentService.getInstance();
-
-    private static final ContentController INSTANCE = new ContentController();
-
-    public static ContentController getInstance() {
-        return INSTANCE;
-    }
+    private ContentService contentService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {

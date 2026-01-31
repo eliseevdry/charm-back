@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller.rest;
 
 import com.fasterxml.jackson.databind.DatabindException;
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.JsonMapper;
@@ -16,17 +17,12 @@ import java.util.List;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
+@Setter
 public class MatchesRestController extends HttpServlet {
-	private final ProfileService service = ProfileService.getInstance();
-	private final RequestToProfileFilterMapper requestToProfileFilterMapper = RequestToProfileFilterMapper.getInstance();
+    private ProfileService service;
+    private RequestToProfileFilterMapper requestToProfileFilterMapper;
 
-	private final JsonMapper jsonMapper = JsonMapper.getInstance();
-
-	private static final MatchesRestController INSTANCE = new MatchesRestController();
-
-	public static MatchesRestController getInstance() {
-		return INSTANCE;
-	}
+    private JsonMapper jsonMapper;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {

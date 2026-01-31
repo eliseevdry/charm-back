@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.LoginDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.RequestToLoginDtoMapper;
@@ -18,19 +19,14 @@ import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
+@Setter
 public class LoginController extends HttpServlet {
 
-	private final ProfileService service = ProfileService.getInstance();
+    private ProfileService service;
 
-	private final RequestToLoginDtoMapper requestToLoginDtoMapper = RequestToLoginDtoMapper.getInstance();
+    private RequestToLoginDtoMapper requestToLoginDtoMapper;
 
-	private final LoginValidator loginValidator = LoginValidator.getInstance();
-
-	private static final LoginController INSTANCE = new LoginController();
-
-	public static LoginController getInstance() {
-		return INSTANCE;
-	}
+    private LoginValidator loginValidator;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
+import lombok.Setter;
 import ru.eliseev.charm.back.dto.CharmDto;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 import ru.eliseev.charm.back.mapper.RequestToCharmDtoMapper;
@@ -15,16 +16,11 @@ import java.util.Optional;
 import static ru.eliseev.charm.back.utils.UrlUtils.CHARM_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
+@Setter
 public class CharmController extends HttpServlet {
 
-	private final CharmService service = CharmService.getInstance();
-	private final RequestToCharmDtoMapper mapper = RequestToCharmDtoMapper.getInstance();
-
-	private static final CharmController INSTANCE = new CharmController();
-
-	public static CharmController getInstance() {
-		return INSTANCE;
-	}
+    private CharmService service;
+    private RequestToCharmDtoMapper mapper;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
