@@ -9,7 +9,6 @@ import ru.eliseev.charm.back.service.bundle.WordBundle;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -32,14 +31,12 @@ public class ErrorFilter implements Filter {
     private JsonMapper jsonMapper;
 
     @Override
-    public void init(FilterConfig filterConfig) {
-        WebApplicationContext webApplicationContext =
-            WebApplicationContextUtils.findWebApplicationContext(filterConfig.getServletContext());
-        jsonMapper = (JsonMapper) webApplicationContext.getBean("jsonMapper");
-    }
-
-    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        if (jsonMapper == null) {
+            WebApplicationContext webApplicationContext =
+                WebApplicationContextUtils.findWebApplicationContext(request.getServletContext());
+            jsonMapper = (JsonMapper) webApplicationContext.getBean("jsonMapper");
+        }
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 

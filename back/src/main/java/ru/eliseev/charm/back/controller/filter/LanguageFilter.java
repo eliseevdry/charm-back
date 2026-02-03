@@ -8,7 +8,6 @@ import ru.eliseev.charm.back.service.bundle.WordBundleRu;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -24,15 +23,13 @@ public class LanguageFilter implements Filter {
     private WordBundleEn wordBundleEn;
 
     @Override
-    public void init(FilterConfig filterConfig) {
-        WebApplicationContext webApplicationContext =
-            WebApplicationContextUtils.findWebApplicationContext(filterConfig.getServletContext());
-        wordBundleRu = (WordBundleRu) webApplicationContext.getBean("wordBundleRu");
-        wordBundleEn = (WordBundleEn) webApplicationContext.getBean("wordBundleEn");
-    }
-
-    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        if (wordBundleEn == null || wordBundleRu == null) {
+            WebApplicationContext webApplicationContext =
+                WebApplicationContextUtils.findWebApplicationContext(request.getServletContext());
+            wordBundleRu = (WordBundleRu) webApplicationContext.getBean("wordBundleRu");
+            wordBundleEn = (WordBundleEn) webApplicationContext.getBean("wordBundleEn");
+        }
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
