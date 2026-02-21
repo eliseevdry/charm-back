@@ -9,6 +9,7 @@ import org.apache.catalina.startup.Tomcat;
 import org.apache.tomcat.util.descriptor.web.ErrorPage;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
+import ru.eliseev.charm.back.config.CharmWebApplicationInitializer;
 import ru.eliseev.charm.back.controller.CustomDispatcherServlet;
 import ru.eliseev.charm.back.controller.filter.AuthFilter;
 import ru.eliseev.charm.back.controller.filter.ErrorFilter;
@@ -26,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -68,6 +70,7 @@ public class CharmBackApplication {
         Context ctx = tomcat.addWebapp("", webContentFolder);
 
         ctx.addWelcomeFile(getJspPath(LOGIN_URL));
+        ctx.addServletContainerInitializer(new CharmWebApplicationInitializer(), Set.of());
         registerErrorPages(ctx);
         registerDispatcherServlet(ctx);
         registerFilters(ctx);
