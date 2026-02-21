@@ -44,8 +44,7 @@
 ### local Nexus
 
 1) `docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3`
-2) Заходим в контейнер `docker exec -it < ID контейнера> /bin/bash`
-3) Узнаем пароль внутри контейнера `cat ../../../nexus-data/admin.password`
-4) http://localhost:8081
-5) Вводим логин `admin` и найденный пароль
-6) Меняем логин и пароль на свой
+2) Узнаем пароль внутри контейнера `docker exec -it < ID контейнера> cat /nexus-data/admin.password`
+3) http://localhost:8081
+4) Вводим логин `admin` и найденный пароль
+5) Меняем логин и пароль на свой
