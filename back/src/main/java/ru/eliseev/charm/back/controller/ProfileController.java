@@ -5,6 +5,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.dto.UserDetails;
@@ -31,13 +33,18 @@ import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @Slf4j
 @Setter
+@Controller
 public class ProfileController extends HttpServlet {
+    @Autowired
     private ProfileService service;
 
+    @Autowired
     private RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper;
 
+    @Autowired
     private ProfileGetDtoToPdfMapper profileGetDtoToPdfMapper;
 
+    @Autowired
     private ProfileUpdateValidator profileUpdateValidator;
 
 	@Override

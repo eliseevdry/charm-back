@@ -1,11 +1,13 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.Action;
 import ru.eliseev.charm.back.dto.CharmDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+@Component
 public class RequestToCharmDtoMapper implements Mapper<HttpServletRequest, CharmDto> {
 
 	@Override

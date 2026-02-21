@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileUpdateStatusDto;
 import ru.eliseev.charm.back.model.Status;
 
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class RequestToProfileUpdateStatusDtoMapper implements Mapper<HttpServletRequest, List<ProfileUpdateStatusDto>> {
 
 	@Override

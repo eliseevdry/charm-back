@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.back.model.Role;
@@ -9,6 +10,7 @@ import ru.eliseev.charm.back.model.Status;
 import java.sql.Date;
 import java.sql.ResultSet;
 
+@Component
 public class ResultSetToProfileMapper implements Mapper<ResultSet, Profile> {
 
 	@Override

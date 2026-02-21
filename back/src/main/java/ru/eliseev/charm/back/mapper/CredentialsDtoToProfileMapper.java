@@ -1,11 +1,13 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.utils.PasswordUtils;
 
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
+@Component
 public class CredentialsDtoToProfileMapper implements Mapper<CredentialsDto, Profile> {
 
     @Override

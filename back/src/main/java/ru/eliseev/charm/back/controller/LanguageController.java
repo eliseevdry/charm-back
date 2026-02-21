@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.controller;
 
 import lombok.Setter;
+import org.springframework.stereotype.Controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Setter
+@Controller
 public class LanguageController extends HttpServlet {
 
     @Override

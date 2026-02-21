@@ -3,6 +3,8 @@ package ru.eliseev.charm.back.controller.rest;
 import com.fasterxml.jackson.databind.DatabindException;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.dto.RegistrationDto;
@@ -32,10 +34,15 @@ import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @Slf4j
 @Setter
+@RestController
 public class ProfileRestController extends HttpServlet {
+    @Autowired
     private ProfileService service;
+    @Autowired
     private JsonMapper jsonMapper;
+    @Autowired
     private ProfileFullUpdateValidator profileFullUpdateValidator;
+    @Autowired
     private RegistrationValidator registrationValidator;
 
 	@Override

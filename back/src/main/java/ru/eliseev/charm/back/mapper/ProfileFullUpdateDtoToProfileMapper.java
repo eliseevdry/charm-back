@@ -1,9 +1,11 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileFullUpdateDto;
 import ru.eliseev.charm.back.model.Profile;
 import ru.eliseev.charm.utils.PasswordUtils;
 
+@Component
 public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUpdateDto, Profile> {
 
     @Override

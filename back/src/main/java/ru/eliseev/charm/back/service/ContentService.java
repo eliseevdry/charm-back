@@ -1,5 +1,7 @@
 package ru.eliseev.charm.back.service;
 
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,6 +14,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static ru.eliseev.charm.back.utils.UrlUtils.BASE_CONTENT_PATH;
 
+@Service
 public class ContentService {
 
     public void upload(String contentPath, InputStream inputStream) throws IOException {

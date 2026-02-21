@@ -5,6 +5,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 
 import java.net.URLDecoder;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.BASE_CONTENT_PATH;
 
+@Component
 public class ProfileGetDtoToPdfMapper implements Mapper<ProfileGetDto, Document> {
 
     @Override

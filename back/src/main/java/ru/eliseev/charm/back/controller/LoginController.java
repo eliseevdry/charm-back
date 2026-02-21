@@ -1,6 +1,8 @@
 package ru.eliseev.charm.back.controller;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.eliseev.charm.back.dto.LoginDto;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.RequestToLoginDtoMapper;
@@ -20,12 +22,16 @@ import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @Setter
+@Controller
 public class LoginController extends HttpServlet {
 
+    @Autowired
     private ProfileService service;
 
+    @Autowired
     private RequestToLoginDtoMapper requestToLoginDtoMapper;
 
+    @Autowired
     private LoginValidator loginValidator;
 
 	@Override

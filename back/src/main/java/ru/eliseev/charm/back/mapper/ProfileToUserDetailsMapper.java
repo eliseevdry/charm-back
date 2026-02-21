@@ -1,8 +1,10 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.model.Profile;
 
+@Component
 public class ProfileToUserDetailsMapper implements Mapper<Profile, UserDetails> {
 
     @Override

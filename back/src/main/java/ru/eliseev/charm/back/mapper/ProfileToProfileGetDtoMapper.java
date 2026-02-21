@@ -1,11 +1,13 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.model.Profile;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
 
+@Component
 public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetDto> {
 
     @Override

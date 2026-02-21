@@ -1,6 +1,8 @@
 package ru.eliseev.charm.back.controller;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.RequestToProfileFilterMapper;
@@ -16,9 +18,12 @@ import static ru.eliseev.charm.back.utils.UrlUtils.MATCHES_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @Setter
+@Controller
 public class MatchesController extends HttpServlet {
 
+    @Autowired
     private ProfileService service;
+    @Autowired
     private RequestToProfileFilterMapper requestToProfileFilterMapper;
 
 	@Override

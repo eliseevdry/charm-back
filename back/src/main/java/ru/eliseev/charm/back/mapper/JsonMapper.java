@@ -2,6 +2,7 @@ package ru.eliseev.charm.back.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +11,7 @@ import java.io.Writer;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT;
 
+@Component
 public class JsonMapper {
     private final ObjectMapper objectMapper = com.fasterxml.jackson.databind.json.JsonMapper.builder()
         .addModule(new JavaTimeModule())

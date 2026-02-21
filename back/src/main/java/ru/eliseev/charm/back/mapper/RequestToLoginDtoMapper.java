@@ -1,9 +1,11 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.LoginDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+@Component
 public class RequestToLoginDtoMapper implements Mapper<HttpServletRequest, LoginDto> {
 
     @Override

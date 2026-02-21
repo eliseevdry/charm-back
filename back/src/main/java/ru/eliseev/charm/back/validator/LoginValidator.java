@@ -1,14 +1,18 @@
 package ru.eliseev.charm.back.validator;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.LoginDto;
 
 import static ru.eliseev.charm.utils.StringUtils.isValidEmail;
 
 @Setter
+@Component
 public class LoginValidator implements Validator<LoginDto> {
 
+    @Autowired
     private ProfileDao dao;
 
     @Override

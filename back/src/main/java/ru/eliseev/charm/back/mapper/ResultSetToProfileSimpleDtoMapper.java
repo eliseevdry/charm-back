@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
 
 import java.sql.Date;
@@ -10,6 +11,7 @@ import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 import static ru.eliseev.charm.utils.DateTimeUtils.getAge;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
+@Component
 public class ResultSetToProfileSimpleDtoMapper implements Mapper<ResultSet, ProfileSimpleDto> {
 
 	@Override

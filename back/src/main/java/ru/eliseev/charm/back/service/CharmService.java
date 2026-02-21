@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.service;
 
 import lombok.Setter;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.eliseev.charm.back.dao.LikeDao;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.Action;
@@ -12,9 +14,13 @@ import java.util.Optional;
 import java.util.Queue;
 
 @Setter
+@Service
 public class CharmService {
+    @Autowired
     private LikeDao likeDao;
+    @Autowired
     private ProfileDao profileDao;
+    @Autowired
     private CacheService cacheService;
 
 	@SneakyThrows

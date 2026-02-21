@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.service;
 
 import lombok.Setter;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.eliseev.charm.back.dao.ProfileDao;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.dto.LoginDto;
@@ -27,20 +29,28 @@ import java.util.Optional;
 import static ru.eliseev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 
 @Setter
+@Service
 public class ProfileService {
 
+    @Autowired
     private ProfileDao dao;
 
+    @Autowired
     private ContentService contentService;
 
+    @Autowired
     private ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper;
 
+    @Autowired
     private ProfileToUserDetailsMapper profileToUserDetailsMapper;
 
+    @Autowired
     private ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper;
 
+    @Autowired
     private ProfileFullUpdateDtoToProfileMapper profileFullUpdateDtoToProfileMapper;
 
+    @Autowired
     private CredentialsDtoToProfileMapper credentialsDtoToProfileMapper;
 
     public Long save(RegistrationDto dto) {

@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.controller.rest;
 
 import com.fasterxml.jackson.databind.DatabindException;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.UserDetails;
 import ru.eliseev.charm.back.mapper.JsonMapper;
@@ -18,10 +20,13 @@ import java.util.List;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
 @Setter
+@RestController
 public class MatchesRestController extends HttpServlet {
+    @Autowired
     private ProfileService service;
+    @Autowired
     private RequestToProfileFilterMapper requestToProfileFilterMapper;
-
+    @Autowired
     private JsonMapper jsonMapper;
 
 	@Override

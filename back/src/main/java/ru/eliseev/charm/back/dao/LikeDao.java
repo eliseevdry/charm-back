@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.dao;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.SQLException;
 
 @Slf4j
 @Setter
+@Repository
 public class LikeDao {
 	//language=POSTGRES-PSQL
 	private static final String LIKE = """
@@ -23,6 +26,7 @@ public class LikeDao {
 			SELECT ?, ?, ?, EXISTS (SELECT 1 FROM has_match)
 			""";
 
+    @Autowired
     private DataSource dataSource;
 
 	public void like(Long fromProfileId, Long toProfileId, boolean isLike) {

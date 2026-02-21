@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.controller;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.eliseev.charm.back.dto.RegistrationDto;
 import ru.eliseev.charm.back.mapper.RequestToRegistrationDtoMapper;
 import ru.eliseev.charm.back.service.ProfileService;
@@ -20,12 +22,16 @@ import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @Slf4j
 @Setter
+@Controller
 public class RegistrationController extends HttpServlet {
 
+    @Autowired
     private ProfileService service;
 
+    @Autowired
     private RequestToRegistrationDtoMapper requestToRegistrationDtoMapper;
 
+    @Autowired
     private RegistrationValidator registrationValidator;
 
     @Override

@@ -1,5 +1,6 @@
 package ru.eliseev.charm.back.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.model.Status;
 
@@ -10,6 +11,7 @@ import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE_SIZE;
 import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_SORTED_COLUMN;
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
+@Component
 public class RequestToProfileFilterMapper implements Mapper<HttpServletRequest, ProfileFilter> {
 
 	@Override

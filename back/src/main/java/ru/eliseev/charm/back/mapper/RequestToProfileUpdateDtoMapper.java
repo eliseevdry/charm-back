@@ -1,6 +1,7 @@
 package ru.eliseev.charm.back.mapper;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import ru.eliseev.charm.back.dto.ProfileUpdateDto;
 import ru.eliseev.charm.back.model.Gender;
 import ru.eliseev.charm.back.model.Status;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 
 import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
+@Component
 public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletRequest, ProfileUpdateDto> {
 
     @Override

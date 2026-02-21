@@ -2,6 +2,8 @@ package ru.eliseev.charm.back.controller;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.eliseev.charm.back.dto.CredentialsDto;
 import ru.eliseev.charm.back.dto.ProfileGetDto;
 import ru.eliseev.charm.back.mapper.RequestToCredentialsDtoMapper;
@@ -24,12 +26,16 @@ import static ru.eliseev.charm.utils.StringUtils.isBlank;
 
 @Slf4j
 @Setter
+@Controller
 public class CredentialsController extends HttpServlet {
 
+    @Autowired
     private ProfileService service;
 
+    @Autowired
     private RequestToCredentialsDtoMapper requestToCredentialsDtoMapper;
 
+    @Autowired
     private CredentialsValidator credentialsValidator;
 
     @Override

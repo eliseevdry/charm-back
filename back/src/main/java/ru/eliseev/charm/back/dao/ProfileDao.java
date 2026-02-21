@@ -3,6 +3,8 @@ package ru.eliseev.charm.back.dao;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.eliseev.charm.back.dto.ProfileFilter;
 import ru.eliseev.charm.back.dto.ProfileSelectQueryBuilder;
 import ru.eliseev.charm.back.dto.ProfileSimpleDto;
@@ -31,6 +33,7 @@ import static ru.eliseev.charm.back.utils.ConnectionUtils.DEFAULT_PAGE_SIZE;
 
 @Slf4j
 @Setter
+@Repository
 public class ProfileDao {
 
 	//language=POSTGRES-PSQL
@@ -69,11 +72,13 @@ public class ProfileDao {
 			ORDER BY l.created_date DESC
 			OFFSET ? LIMIT ?
 			""";
+    @Autowired
     private ResultSetToProfileMapper profileMapper;
+    @Autowired
     private ResultSetToProfileSimpleDtoMapper profileSimpleDtoMapper;
+    @Autowired
     private DataSource dataSource;
 	private List<String> sortableColumns;
-    private int fetchSize;
 
 	public Long save(String email, String passwordHash) {
         try (Connection conn = dataSource.getConnection();
