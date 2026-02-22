@@ -10,7 +10,6 @@ import org.apache.tomcat.util.descriptor.web.ErrorPage;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import ru.eliseev.charm.back.config.CharmWebApplicationInitializer;
-import ru.eliseev.charm.back.controller.CustomDispatcherServlet;
 import ru.eliseev.charm.back.controller.filter.AuthFilter;
 import ru.eliseev.charm.back.controller.filter.ErrorFilter;
 import ru.eliseev.charm.back.controller.filter.HiddenHttpMethodFilter;
@@ -32,18 +31,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import static ru.eliseev.charm.back.utils.UrlUtils.ANY_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.CHARM_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.CONTENT_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.CREDENTIALS_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.LANG_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_REST_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.LOGOUT_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.MATCHES_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.PROFILES_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.PROFILE_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.REGISTRATION_URL;
-import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.getJspPath;
 
 @Slf4j
@@ -72,7 +60,6 @@ public class CharmBackApplication {
         ctx.addWelcomeFile(getJspPath(LOGIN_URL));
         ctx.addServletContainerInitializer(new CharmWebApplicationInitializer(), Set.of());
         registerErrorPages(ctx);
-        registerDispatcherServlet(ctx);
         registerFilters(ctx);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -85,7 +72,6 @@ public class CharmBackApplication {
                             connector.pause();
                         }
                     }
-                    Thread.sleep(3000);
                     tomcat.stop();
                     tomcat.destroy();
                     log.info("Tomcat stopped gracefully");
@@ -97,27 +83,6 @@ public class CharmBackApplication {
 
         tomcat.start();
         tomcat.getServer().await();
-    }
-
-    private void registerDispatcherServlet(Context ctx) {
-        String servletName = "CustomDispatcherServlet";
-        Tomcat.addServlet(ctx, servletName, new CustomDispatcherServlet());
-
-        ctx.addServletMappingDecoded(LOGIN_URL, servletName);
-        ctx.addServletMappingDecoded(LANG_URL, servletName);
-        ctx.addServletMappingDecoded(LOGOUT_URL, servletName);
-        ctx.addServletMappingDecoded(MATCHES_URL, servletName);
-        ctx.addServletMappingDecoded(PROFILE_URL + ANY_URL, servletName);
-        ctx.addServletMappingDecoded(PROFILES_URL, servletName);
-        ctx.addServletMappingDecoded(REGISTRATION_URL, servletName);
-        ctx.addServletMappingDecoded(CREDENTIALS_URL, servletName);
-        ctx.addServletMappingDecoded(CONTENT_URL + ANY_URL, servletName);
-        ctx.addServletMappingDecoded(CHARM_URL, servletName);
-        ctx.addServletMappingDecoded(REST_URL + PROFILES_URL, servletName);
-        ctx.addServletMappingDecoded(REST_URL + PROFILE_URL, servletName);
-        ctx.addServletMappingDecoded(REST_URL + MATCHES_URL, servletName);
-        ctx.addServletMappingDecoded(LOGIN_REST_URL, servletName);
-        ctx.addServletMappingDecoded(REST_URL + CHARM_URL, servletName);
     }
 
     private void registerFilters(Context ctx) {

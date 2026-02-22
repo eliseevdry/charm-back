@@ -1,7 +1,6 @@
 package ru.eliseev.charm.back.controller;
 
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.eliseev.charm.back.controller.rest.CharmRestController;
 import ru.eliseev.charm.back.controller.rest.LoginRestController;
 import ru.eliseev.charm.back.controller.rest.MatchesRestController;
@@ -49,6 +48,11 @@ public class CustomDispatcherServlet extends HttpServlet {
     private MatchesRestController matchesRestController;
     private LoginRestController loginRestController;
     private CharmRestController charmRestController;
+    private final WebApplicationContext webApplicationContext;
+
+    public CustomDispatcherServlet(WebApplicationContext webApplicationContext) {
+        this.webApplicationContext = webApplicationContext;
+    }
 
     @Override
     public void init(ServletConfig config) {
@@ -62,8 +66,6 @@ public class CustomDispatcherServlet extends HttpServlet {
         if (servletContext.getAttribute("availablePageSizes") == null) {
             servletContext.setAttribute("availablePageSizes", AVAILABLE_PAGE_SIZES);
         }
-        WebApplicationContext webApplicationContext =
-            WebApplicationContextUtils.findWebApplicationContext(servletContext);
         loginController = (LoginController) webApplicationContext.getBean("loginController");
         languageController = (LanguageController) webApplicationContext.getBean("languageController");
         logoutController = (LogoutController) webApplicationContext.getBean("logoutController");
