@@ -36,7 +36,7 @@ import static ru.eliseev.charm.utils.StringUtils.isBlank;
 @WebServlet(REST_URL + PROFILE_URL)
 @MultipartConfig
 @Slf4j
-public class ProfileController extends HttpServlet {
+public class ProfileRestController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();
 	private final ProfileFullUpdateValidator profileFullUpdateValidator = ProfileFullUpdateValidator.getInstance();
