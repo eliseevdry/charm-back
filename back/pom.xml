@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>back</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <app.datasource.url>jdbc:postgresql://localhost:5432/charm_repository</app.datasource.url>
@@ -33,6 +33,12 @@
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>11.0.18</version>
         </dependency>
 
         <!--database-->
@@ -81,6 +87,11 @@
         <dependency>
             <groupId>ru.eliseev.charm</groupId>
             <artifactId>utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.165</version>
         </dependency>
     </dependencies>
 
