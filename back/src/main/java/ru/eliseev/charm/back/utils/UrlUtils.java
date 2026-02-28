@@ -20,6 +20,7 @@ public class UrlUtils {
     public static final String CONTENT_URL = "/content";
     public static final String PDF_URL = "/pdf";
     public static final String REST_URL = "/api/v1";
+    public static final String WEBAPP_DIR = "webapp/";
     public static final String LOGIN_REST_URL = REST_URL + LOGIN_URL;
     public static final String BASE_CONTENT_PATH = ConfigFileUtils.get("app.base-content-path");
 
