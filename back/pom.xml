@@ -95,6 +95,18 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.eliseev.charm.back.CharmBackApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven3-plugin</artifactId>
             </plugin>
