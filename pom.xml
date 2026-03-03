@@ -42,6 +42,11 @@
                 <version>3.0.1</version>
                 <scope>runtime</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>11.0.18</version>
+            </dependency>
 
             <!--database-->
             <dependency>
@@ -110,6 +115,16 @@
                 <artifactId>utils</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>io.github.classgraph</groupId>
+                <artifactId>classgraph</artifactId>
+                <version>4.8.165</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-archiver</artifactId>
+                <version>4.8.0</version>
+            </dependency>
 
             <!--test-->
             <dependency>
@@ -153,34 +168,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.4.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.cargo</groupId>
-                    <artifactId>cargo-maven3-plugin</artifactId>
-                    <version>1.9.9</version>
-                    <configuration>
-                        <container>
-                            <containerId>tomcat10x</containerId>
-                            <type>embedded</type>
-                        </container>
-                        <configuration>
-                            <properties>
-                                <cargo.servlet.port>8080</cargo.servlet.port>
-                            </properties>
-                        </configuration>
-                        <deployables>
-                            <deployable>
-                                <properties>
-                                    <context>/</context>
-                                </properties>
-                            </deployable>
-                        </deployables>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
