@@ -21,7 +21,7 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static ru.eliseev.charm.back.utils.UrlUtils.LOGIN_REST_URL;
 
 @WebServlet(LOGIN_REST_URL)
-public class LoginController extends HttpServlet {
+public class LoginRestController extends HttpServlet {
 
 	private final ProfileService service = ProfileService.getInstance();
 

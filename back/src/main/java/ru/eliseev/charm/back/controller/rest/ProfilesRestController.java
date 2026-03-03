@@ -19,7 +19,7 @@ import static ru.eliseev.charm.back.utils.UrlUtils.PROFILES_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebServlet(REST_URL + PROFILES_URL)
-public class ProfilesController extends HttpServlet {
+public class ProfilesRestController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final JsonMapper jsonMapper = JsonMapper.getInstance();
 	private final RequestToProfileFilterMapper requestToProfileFilterMapper = RequestToProfileFilterMapper.getInstance();

@@ -20,7 +20,7 @@ import static ru.eliseev.charm.back.utils.UrlUtils.MATCHES_URL;
 import static ru.eliseev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebServlet(REST_URL + MATCHES_URL)
-public class MatchesController extends HttpServlet {
+public class MatchesRestController extends HttpServlet {
 	private final ProfileService service = ProfileService.getInstance();
 	private final RequestToProfileFilterMapper requestToProfileFilterMapper = RequestToProfileFilterMapper.getInstance();
 
