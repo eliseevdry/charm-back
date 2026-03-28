@@ -1,10 +1,13 @@
 package ru.eliseev.charm.utils;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class UrlUtilsTest extends TestCase {
-    public void test() {
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+class UrlUtilsTest {
+    @Test
+    void whenPasswordIsExistThenHashIsDifferent() {
         String password = "qwerty";
-        assert !PasswordUtils.hashPassword(password).equals(password) : "Ошибка в проверке 1";
+        assertNotEquals(password, PasswordUtils.hashPassword(password), "Ошибка в проверке 1");
     }
 }
