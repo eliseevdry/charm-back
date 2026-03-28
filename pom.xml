@@ -129,8 +129,8 @@
             <!--test-->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.12.2</version>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.13.4</version>
                 <scope>test</scope>
             </dependency>
 
@@ -147,6 +147,18 @@
                 <version>3.9.11</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.13.4</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>1.13.4</version>
+                <scope>compile</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -162,11 +174,19 @@
                     </configuration>
                     <executions>
                         <execution>
+                            <id>lines</id>
                             <phase>validate</phase>
                             <goals>
                                 <goal>lines</goal>
                             </goals>
                         </execution>
+                        <!--                        <execution>-->
+                        <!--                            <id>tests</id>-->
+                        <!--                            <phase>test</phase>-->
+                        <!--                            <goals>-->
+                        <!--                                <goal>tests</goal>-->
+                        <!--                            </goals>-->
+                        <!--                        </execution>-->
                     </executions>
                 </plugin>
             </plugins>

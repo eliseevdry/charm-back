@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Maven plugin to check Java class line count
+ * Check Java class line count
  */
 @Mojo(name = "lines", defaultPhase = LifecyclePhase.VALIDATE)
 public class LinesMojo extends AbstractMojo {
