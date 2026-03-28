@@ -1,11 +1,16 @@
 package ru.eliseev.charm.utils;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class StringUtilsTest extends TestCase {
-    public void test() {
-        assert StringUtils.isValidEmail("user@email.ru") : "Ошибка в проверке 1";
-        assert !StringUtils.isValidEmail("user...email") : "Ошибка: в проверке 2";
-        assert !StringUtils.isValidEmail("") : "Ошибка: в проверке 3";
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class StringUtilsTest {
+
+    @Test
+    void checkEmails() {
+        assertTrue(StringUtils.isValidEmail("user@email.ru"), "Ошибка в проверке 1");
+        assertFalse(StringUtils.isValidEmail("user...email"), "Ошибка: в проверке 2");
+        assertFalse(StringUtils.isValidEmail(""), "Ошибка: в проверке 3");
     }
 }
