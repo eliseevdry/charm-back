@@ -9,6 +9,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 public class HelpMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("This plugin is for code checking. Main goal - check.");
+        getLog().info("This plugin is for validate project. Main goal - check.");
+        getLog().info("Available goals:");
+        getLog().info("  - lines: Check Java class line counts (Validate phase)");
+        getLog().info("  - tests: Run Java tests using JUnit Platform (Test phase)");
     }
 }
