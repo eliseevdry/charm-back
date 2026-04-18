@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("fast")
 class StringUtilsTest {
@@ -24,7 +23,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isValidEmail(email);
 
             // then
-            assertTrue(result, "Ошибка в проверке 1");
+            assertThat(result).isTrue();
         }
 
         @Test
@@ -37,7 +36,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isValidEmail(email);
 
             // then
-            assertFalse(result, "Ошибка: в проверке 2");
+            assertThat(result).isFalse();
         }
 
         @Test
@@ -50,7 +49,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isValidEmail(email);
 
             // then
-            assertFalse(result, "Ошибка: в проверке 3");
+            assertThat(result).isFalse();
         }
     }
 
@@ -67,7 +66,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isBlank(str);
 
             // then
-            assertTrue(result, "Ошибка: строка не была признана пустой");
+            assertThat(result).isTrue();
         }
 
         @Test
@@ -80,7 +79,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isBlank(str);
 
             // then
-            assertFalse(result, "Ошибка: строка была признана пустой");
+            assertThat(result).isFalse();
         }
 
         @Test
@@ -93,7 +92,7 @@ class StringUtilsTest {
             boolean result = StringUtils.isBlank(str);
 
             // then
-            assertTrue(result, "Ошибка: null не был признан пустым");
+            assertThat(result).isTrue();
         }
     }
 }
